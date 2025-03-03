@@ -1,22 +1,22 @@
+import clickedNumber from "../controller"
+
 const getNumberElement = number => {
     const {
-      text,
-      
+      number,
     } = number
   
-    return `<div class="grid">${number}</div>`
- 
-    
+    return `<div onclick="clickedNumber" id="${number}">${number}</div>`
+
 }
-    
+    // document.getElementById('number').addEventListener('click' ,clickedNumber)
+
   
-  
-  export default (targetElement, { todos }) => {
-    const newTodoList = targetElement.cloneNode(true)
-    const todosElements = todos
-      .map(getTodoElement)
+export default (targetElement, { number }) => {
+    const newNumbersList = targetElement.cloneNode(true)
+    const numbersElements = number
+      .map(getNumberElement)
       .join('')
-    newTodoList.innerHTML = todosElements
-    return newTodoList
+    newNumbersList.innerHTML = numbersElements
+    return newNumbersList
 }
   

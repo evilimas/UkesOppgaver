@@ -1,5 +1,9 @@
-import GetNumbers from "./GetNumbers"
+import GetNumbers from "./GetNumbers.js"
+import numberView from './view/numbers.js'
 
+import registry from './registry.js'
+
+registry.add('numbers', numberView)
 
 const state = {
     numbers: GetNumbers()
