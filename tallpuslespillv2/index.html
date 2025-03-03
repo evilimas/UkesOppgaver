@@ -5,16 +5,35 @@
 <head>
     <meta charset="utf-8" />
     <title>Sliding puzzle</title>
-    <script src="model.js"></script>
-    <script src="view.js"></script>
-    <script src="controller.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body onload="updateView()">
-    <div id="app">
-    </div>
-    </script>
+<body>
+    <!-- <div id="app">
+        <div class="grid">
+            ${numbers}
+        </div>
+        <div>Antall trekk: ${model.count}</div>
+    </div> -->
+    <section class="slidingPuzzle">
+        <header class="header">
+            <h1>Sliding puzzle</h1>
+        </header>
+        <section class="main">
+            <div class="grid" data-component="numbers">
+                
+            </div>
+        </section>
+        <footer class="footer">
+            <span 
+                class="move-count" 
+                data-component="counter">
+                  1 Trekk
+            </span>
+        
+        </footer>
+    </section>
 </body>
+<script type="module" src="index.js"></script>
 
 </html>

@@ -1,4 +1,4 @@
-function clickedNumber(index) {
+export default function clickedNumber(index) {
     model.count++;
     let blankIndex = findBlankIndex(index);
     if (blankIndex == null) return;
@@ -17,3 +17,4 @@ function findBlankIndex(index) {
     }
     return null;
 }
+
