@@ -1,8 +1,6 @@
-const getNumberElement = (number) => {
-  const { 
-    numberText,
-   } = number;
-  return `<div onclick="clickedNumber(${numberText})" id="${numberText}">${numberText}</div>`;
+const getNumberElement = (number, index) => {
+  
+  return `<div onclick="clickedNumber(${index})">${number ?? ''}</div>`;
 };
 // document.getElementById('number').addEventListener('click' ,clickedNumber)
 
