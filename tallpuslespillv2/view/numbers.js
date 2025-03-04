@@ -1,9 +1,8 @@
-import clickedNumber from "../controller.js";
+
 const getNumberElement = (number, index) => {
   
-  return `<div onclick="${()=> clickedNumber(index)}" id="${number}">${number ?? ''}</div>`;
+  return `<div onclick="clickedNumber(${index})" id="square">${number ?? ''}</div>`;
 };
-// document.getElementById(`${number}`).addEventListener('click' ,clickedNumber)
 
 export default (targetElement, { numbers }) => {
   const newNumbersList = targetElement.cloneNode(true);
