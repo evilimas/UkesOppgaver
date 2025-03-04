@@ -1,13 +1,14 @@
 const getNumberElement = (number) => {
-  const { numbers } = number;
-  console.log(numbers)
-  return `<div onclick="clickedNumber(${number})" id="${number}">${number}</div>`;
+  const { 
+    numberText,
+   } = number;
+  return `<div onclick="clickedNumber(${numberText})" id="${numberText}">${numberText}</div>`;
 };
 // document.getElementById('number').addEventListener('click' ,clickedNumber)
 
-export default (targetElement, { number }) => {
+export default (targetElement, { numbers }) => {
   const newNumbersList = targetElement.cloneNode(true);
-  const numbersElements = number.map(getNumberElement).join("");
+  const numbersElements = numbers.map(getNumberElement).join("");
   newNumbersList.innerHTML = numbersElements;
   return newNumbersList;
 };

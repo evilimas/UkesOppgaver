@@ -1,15 +1,15 @@
 const getCount = count => {
-    const isClicked = () => click++
+    const isClicked = () => count++
   
-    if (click === 1) {
+    if (isClicked === 1) {
       return '1 Trekk'
     }
   
-    return `${click} Items left`
+    return `${count} Trekk`
   }
   
   export default (targetElement, { count }) => {
     const newCounter = targetElement.cloneNode(true)
-    newCounter.textContent = getCount(todos)
+    newCounter.textContent = getCount(count)
     return newCounter
   }
