@@ -1,7 +1,7 @@
-const getCount = count => {
-    const isClicked = () => count++
+const getCount = isClick => {
+    const count =  count++
   
-    if (isClicked === 1) {
+    if (count === 1) {
       return '1 Trekk'
     }
   
