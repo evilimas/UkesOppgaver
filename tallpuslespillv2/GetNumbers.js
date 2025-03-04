@@ -1,3 +1,4 @@
+
 const createElement = () => ({
     numbers: [3, 5, 6, 8, 1, null, 2, 4, 7],
     count: 0
@@ -13,7 +14,7 @@ const repeat = (elementFactory, number) => {
   }
 
 export default () => {
-    const howMany = numbers.length
+    const howMany = 9
     return repeat(createElement, howMany)
 }
 

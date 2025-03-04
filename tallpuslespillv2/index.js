@@ -1,9 +1,10 @@
 import GetNumbers from "./GetNumbers.js"
 import numberView from './view/numbers.js'
-
+import counterView from "./view/counter.js"
 import registry from './registry.js'
 
 registry.add('numbers', numberView)
+registry.add('counter', counterView)
 
 const state = {
     numbers: GetNumbers()
