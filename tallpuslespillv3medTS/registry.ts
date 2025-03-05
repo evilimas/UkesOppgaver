@@ -1,7 +1,7 @@
 const registry = {};
 
 const renderWrapper = (component: any) => {
-  return (targetElement, state) => {
+  return (targetElement: any, state: any) => {
     const element = component(targetElement, state);
 
     const childComponents = element.querySelectorAll("[data-component]");
@@ -21,12 +21,12 @@ const renderWrapper = (component: any) => {
   };
 };
 
-const add = (name, component) => {
+const add = (name: string | number, component: any) => {
   registry[name] = renderWrapper(component);
 };
 
-const renderRoot = (root: HTMLAllCollection, state: Object) => {
-  const cloneComponent = (root) => {
+const renderRoot = (root: any, state: Object) => {
+  const cloneComponent = (root: { cloneNode: (arg0: boolean) => any; }) => {
     return root.cloneNode(true);
   };
 
