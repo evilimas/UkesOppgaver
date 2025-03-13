@@ -2,7 +2,7 @@ import { State } from './types';
 const registry = {};
 window.registry = registry;
 
-const renderWrapper = (mainRenderComponentFunction) => {
+const renderWrapper = (mainRenderComponentFunction: any) => {
   return (targetElement: Element, state: State) => {
     const element = mainRenderComponentFunction(targetElement, state);
 
@@ -20,7 +20,7 @@ const renderWrapper = (mainRenderComponentFunction) => {
   };
 };
 
-const add = (name, renderComponentFunction) => {
+const add = (name: string | number  , renderComponentFunction: Element) => {
   registry[name] = renderWrapper(renderComponentFunction);
 };
 
