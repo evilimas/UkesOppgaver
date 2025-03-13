@@ -19,7 +19,6 @@ function findBlankIndex(index: number): number | null {
       return newIndex;
     }
   }
-  
   return null;
 }
 

@@ -1,4 +1,5 @@
 import { State } from './types';
+
 const registry = {};
 window.registry = registry;
 
