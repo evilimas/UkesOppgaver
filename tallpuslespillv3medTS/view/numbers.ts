@@ -1,12 +1,12 @@
 
 
-const getNumberElement = (number: number, index : number) => {
+const getNumberElement = (number: number) => {
   
-  return `<div onclick="clickedNumber(${index})" id="square">${number ?? ''}</div>`;
+  return `<div id="square">${number ?? ''}</div>`;
 };
 
-export default (targetElement: { cloneNode: (arg0: boolean) => any; }  , { numbers  }: any) => {
-  const newNumbersList = targetElement.cloneNode(true);
+export default (targetElement: Element  , numbers: []) => {
+  const newNumbersList = targetElement.cloneNode(true) as Element;
   const numbersElements = numbers.map(getNumberElement).join("");
   newNumbersList.innerHTML = numbersElements;
   return newNumbersList;
