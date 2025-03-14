@@ -2,11 +2,12 @@
 import numberView from './src/view/numbers';
 import counterView from './src/view/counter.ts';
 import registry from './src/registry.ts';
+import { State } from './types.ts'; 
 
 registry.add('numbers', numberView);
 registry.add('counter', counterView);
 
-const state: Object = {
+const state: State = {
   numbers: [3, 5, 6, 8, 1, null, 2, 4, 7],
   count: 0,
 };
