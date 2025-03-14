@@ -1,11 +1,11 @@
 import model from "./GetNumbers.js";
 export default function clickedNumber(index) {
-    // model.count++;
+    model.count++;
     let blankIndex = findBlankIndex(index);
     if (blankIndex == null) return;
     model.numbers[blankIndex] = model.numbers[index];
     model.numbers[index] = null;
-    // updateView();
+    updateView();
 }
 
 function findBlankIndex(index) {

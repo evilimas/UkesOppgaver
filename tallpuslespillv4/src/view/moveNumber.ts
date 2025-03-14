@@ -7,10 +7,9 @@ function clickedNumber(index: number) {
   if (blankIndex == null) {
     return null;
   }
-
+  console.log(index)
   state.numbers[blankIndex] = state.numbers[index];
   state.numbers[index] = null;
-
   render();
 }
 
