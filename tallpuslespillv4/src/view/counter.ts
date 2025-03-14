@@ -14,7 +14,7 @@ const getCount = (count : number) => {
 };
 
 
-  export default (targetElement: Element , { count } ) => {
+  export default (targetElement: Element , { count }: { count: number } ) => {
     const newCounter = targetElement.cloneNode(true)
     newCounter.textContent = getCount(count)
     return newCounter
