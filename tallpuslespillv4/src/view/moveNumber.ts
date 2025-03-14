@@ -1,4 +1,5 @@
-import { state } from "../../index";
+import { state } from '../../index';
+import { render } from '../../index';
 
 function clickedNumber(index: number) {
   state.count++;
@@ -9,8 +10,8 @@ function clickedNumber(index: number) {
 
   state.numbers[blankIndex] = state.numbers[index];
   state.numbers[index] = null;
-  console.log(state.numbers, state.count)
-  return state.numbers;
+
+  render();
 }
 
 function findBlankIndex(index: number): number | null {
