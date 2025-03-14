@@ -20,5 +20,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "index.ts", "types.ts"]
+  "include": ["src", "index.ts", "types.ts", "registry.ts"]
 }

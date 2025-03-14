@@ -16,3 +16,5 @@ window.requestAnimationFrame(() => {
   const newMain = registry.renderRoot(main, state);
   main?.replaceWith(newMain);
 });
+
+export { state }

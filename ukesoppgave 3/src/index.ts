@@ -13,7 +13,7 @@ const state: State = {
 
 window.requestAnimationFrame(() => {
   const main = document.querySelector<Element>('#app');
-  const newMain = registry.renderRoot(main, state);
+  const newMain = registry?.renderRoot(main, state);
   main?.replaceWith(newMain);
 });
 
