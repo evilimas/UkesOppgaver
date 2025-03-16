@@ -4,13 +4,10 @@ import { render } from '../../index';
 function clickedNumber(index: number) {
   state.count++;
   let blankIndex = findBlankIndex(index);
-  if (blankIndex == null) {
-    return null;
-  }
+  if (blankIndex == null) return null;
 
   state.numbers[blankIndex] = state.numbers[index];
   state.numbers[index] = null;
-
   render();
 }
 
