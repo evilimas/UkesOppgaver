@@ -63,8 +63,7 @@ export default class DatoComponent extends HTMLElement {
   }
 
   private setUpListeners() {
-    const btnYearUp = this.shadowRoot!.querySelector("#year-up");
-    btnYearUp?.addEventListener("click", () => this.year + 1);
-    console.log('Button clicked', this.year)
+    const btnYearUp = document.querySelector("#year-up");
+    btnYearUp?.addEventListener("click", () => console.log('Click'));
   }
 }
