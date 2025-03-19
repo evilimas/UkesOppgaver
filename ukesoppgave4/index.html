@@ -8,13 +8,21 @@
   </head>
   <body>
     <div id="app">
-      <div style="display:inline-flex; flex-direction: row; align-items: center; column-gap: 6px;">
-        <div style="font-size: 300%;margin-right: 0px;">15</div>
-        <div style="display:flex; flex-direction: column;">
-            <button>▲</button>
-            <button>▼</button>
+      <!-- <div
+        style="
+          display: inline-flex;
+          flex-direction: row;
+          align-items: center;
+          column-gap: 6px;
+        "
+      >
+        <div style="font-size: 300%; margin-right: 0px">2025</div>
+        <div style="display: flex; flex-direction: column">
+          <button data-year-up>▲</button>
+          <button data-year-down>▼</button>
         </div>
-    </div> 
+      </div> -->
+      <dato-component year="2025"></dato-component>
     </div>
     <script type="module" src="/src/index.ts"></script>
   </body>
