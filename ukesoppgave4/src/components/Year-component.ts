@@ -54,15 +54,16 @@ export default class DatoComponent extends HTMLElement {
         ">
         <div style="font-size: 300%; margin-right: 0px">${this.year}</div>
         <div style="display: flex; flex-direction: column">
-          <button year-up>▲</button>
+          <button id="year-up">▲</button>
           <button data-year-down>▼</button>
         </div>
       </div>
-      </dato-component>`;
+      </dato-component>
+      `;
   }
 
   private setUpListeners() {
-    const btnYearUp = this.shadowRoot!.querySelector("year-up");
+    const btnYearUp = this.shadowRoot!.querySelector("#year-up");
     btnYearUp?.addEventListener("click", () => this.year + 1);
     console.log('Button clicked', this.year)
   }
