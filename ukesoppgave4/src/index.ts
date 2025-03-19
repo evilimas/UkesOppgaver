@@ -1,3 +1,3 @@
-import DatoComponent from './components/Dato-intervall-komponent'
+import YearComponent from './components/Year-component'
 
-window.customElements.define('dato-component', DatoComponent)
+window.customElements.define('dato-component', YearComponent)
