@@ -14,7 +14,7 @@ export default class ValidateTimeComponent extends HTMLElement {
       } else {
         divValid.textContent = `<h2>From date is NOT valid!!!!</h2>`;
       }
-      document.querySelector('.validate')?.addEventListener('onchange', () => console.log('hello'))
+      document.body.addEventListener('click', () => console.log('hello'))
     });
   }
 }
