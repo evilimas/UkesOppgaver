@@ -1,15 +1,35 @@
 div {
-  display: inline-flex;
-  flex-direction: row;
+  /* display: inline-flex; */
+  flex-direction: column;
   align-items: center;
   column-gap: 6px;
 }
 
-.year {
-  font-size: 300%;
+.day {
+  font-size: 230%;
   margin-right: 0px;
 }
-.year1 {
-  display: flex;
+.day1 {
+  /* display: flex; */
   flex-direction: column;
+}
+
+.main-div {
+  justify-content: start;
+}
+
+.top-div {
+  display: flex;
+  flex-direction: row;
+}
+.top-div button:last-child {
+  margin-left: 2rem;
+}
+
+.bottom-div {
+  display: flex;
+  flex-direction: row;
+}
+.bottom-div button:last-child {
+  margin-left: 2rem;
 }
