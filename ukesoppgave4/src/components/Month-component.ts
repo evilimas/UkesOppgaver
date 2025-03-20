@@ -43,7 +43,7 @@ export default class DatoComponent extends HTMLElement {
 
       yearUpButton?.addEventListener('click', () => {
         if (month == 12) {
-          month = 0o0;
+          month = 0;
         }
         month++;
         divYear.textContent = month.toString();
