@@ -35,13 +35,26 @@ export default class ToTimeComponent extends HTMLElement {
         divDate.textContent = `${date.Day} ${date.Month} ${date.Year}`;
         if (date.Day > 31) {
           date.Day = 0;
+      const dayUpButton = div.querySelector(".day-up");
+      const dayDownButton = div.querySelector(".day-down");
+      dayUpButton?.addEventListener("click", () => {
+        date.Day++
+        if (date.Day > 31){
+          date.Day = 0
         }
+        divDate.textContent = `${date.Day} ${date.Month} ${date.Year}`;
+        
       });
 
       dayDownButton?.addEventListener('click', () => {
         date.Day--;
+      dayDownButton?.addEventListener("click", () => {
+        date.Day-- 
+        if (date.Day >= 0){
+          date.Day = 31
+        }
         divDate.textContent = `${date.Day} ${date.Month} ${date.Year}`;
-      });
+       });
     });
   }
 }
