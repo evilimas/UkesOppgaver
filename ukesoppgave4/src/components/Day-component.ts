@@ -36,7 +36,7 @@ export default class DayComponent extends HTMLElement {
         if (day >= 31){
             day = 1
         }
-        else if (day > 28 && dayMonth == 2) {
+        else if (day >= 28 && dayMonth == 2) {
             dayMonth++
             day = 1;
         } else {
@@ -50,7 +50,7 @@ export default class DayComponent extends HTMLElement {
           day = 31;
         }
         day--;
-        divDay.textContent = month.toString();
+        divDay.textContent = day.toString();
       });
     });
   }
