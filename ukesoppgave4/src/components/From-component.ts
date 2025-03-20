@@ -29,21 +29,21 @@ export default class FromTimeComponent extends HTMLElement {
       //
       // Month btns
       const monthUp = document.createElement('button');
-      btnUp.classList.add('month-up');
+      monthUp.classList.add('month-up');
       monthUp.textContent = '▲';
 
       const monthDown = document.createElement('button');
-      btnDown.classList.add('month-down');
+      monthDown.classList.add('month-down');
       monthDown.textContent = '▼';
       //
 
       // Year btns
       const yearUp = document.createElement('button');
-      btnUp.classList.add('year-up');
+      yearUp.classList.add('year-up');
       yearUp.textContent = '▲';
 
       const yearDown = document.createElement('button');
-      btnDown.classList.add('year-down');
+      yearDown.classList.add('year-down');
       yearDown.textContent = '▼';
       //
 
@@ -62,12 +62,18 @@ export default class FromTimeComponent extends HTMLElement {
       const dayDownButton = div.querySelector('.day-down');
       const monthUpButton = div.querySelector('.month-up');
       const monthDownButton = div.querySelector('.month-down');
+      const yearUpButton = div.querySelector('.year-up');
+      const yearDownButton = div.querySelector('.year-down');
       dayUpButton?.addEventListener('click', () => {
+        // if (!fromDate.checkDateIsValid(divDay.textContent)) {
+        //   console.log('date is not valid');
+        // }
         fromDate.Day++;
         divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
-        if (fromDate.Day >= 31) {
-          fromDate.Day = 0;
+        if (fromDate.Day > 31) {
+          fromDate.Day = 1;
         }
+
         // if (date.Day >= 31) {
         //   date.Day = 1;
         // } else if (date.Day >= 28 && date.Month == 2) {
@@ -84,19 +90,32 @@ export default class FromTimeComponent extends HTMLElement {
       dayDownButton?.addEventListener('click', () => {
         fromDate.Day--;
         divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
-        // if (day <= 1) {
-        //   day = 31;
-        // }
+        if (fromDate.Day <= 0) {
+          fromDate.Day = 31;
+        }
         // day--;
         // divDay.textContent = day.toString();
       });
 
       monthUpButton?.addEventListener('click', () => {
+        if (fromDate.Month == 12) {
+          fromDate.Month = 0;
+        }
         fromDate.Month++;
+        console.log(fromDate.Month);
         divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
       });
       monthDownButton?.addEventListener('click', () => {
         fromDate.Month--;
+        divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+      });
+      yearUpButton?.addEventListener('click', () => {
+        fromDate.Year++;
+        console.log(fromDate.Month);
+        divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+      });
+      yearDownButton?.addEventListener('click', () => {
+        fromDate.Year--;
         divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
       });
     });
