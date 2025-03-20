@@ -1,7 +1,7 @@
 // import { month } from "./Month-component";
-import { DateComponent } from "./Date-component";
+import { date } from "../index"
 
-let date = new DateComponent(1, 1, 2022);
+
 export default class FromTimeComponent extends HTMLElement {
   connectedCallback() {
     window.requestAnimationFrame(() => {
@@ -29,13 +29,14 @@ export default class FromTimeComponent extends HTMLElement {
       div.appendChild(divBtns);
 
       this.appendChild(div);
-
       const dayUpButton = div.querySelector(".day-up");
       const dayDownButton = div.querySelector(".day-down");
       dayUpButton?.addEventListener("click", () => {
         date.Day++
         divDay.textContent = date.Day.toString()
-        console.log(date.Day)
+        if (date.Day >= 31){
+          date.Day = 0
+        }
         // if (date.Day >= 31) {
         //   date.Day = 1;
         // } else if (date.Day >= 28 && date.Month == 2) {
@@ -50,7 +51,7 @@ export default class FromTimeComponent extends HTMLElement {
       });
 
       dayDownButton?.addEventListener("click", () => {
-        date.countDown(date.Day)
+        date.Day--
         divDay.textContent = date.Day.toString()
         // if (day <= 1) {
         //   day = 31;
