@@ -10,7 +10,7 @@ export default class FromTimeComponent extends HTMLElement {
       const divDay = document.createElement("div");
       divDay.classList.add("day");
       divDay.setAttribute("id", "day");
-      divDay.textContent = `${date.Day}`;
+      divDay.textContent = `${date.Day} ${date.Month} ${date.Year}`;
 
       const divBtns = document.createElement("div");
       divBtns.classList.add("day1");
@@ -33,7 +33,7 @@ export default class FromTimeComponent extends HTMLElement {
       const dayDownButton = div.querySelector(".day-down");
       dayUpButton?.addEventListener("click", () => {
         date.Day++
-        divDay.textContent = date.Day.toString()
+        divDay.textContent = `${date.Day} ${date.Month} ${date.Year}`;
         if (date.Day >= 31){
           date.Day = 0
         }
@@ -52,7 +52,7 @@ export default class FromTimeComponent extends HTMLElement {
 
       dayDownButton?.addEventListener("click", () => {
         date.Day--
-        divDay.textContent = date.Day.toString()
+        divDay.textContent = `${date.Day} ${date.Month} ${date.Year}`;
         // if (day <= 1) {
         //   day = 31;
         // }
