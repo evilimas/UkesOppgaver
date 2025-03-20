@@ -1,8 +1,9 @@
 export class DateComponent {
-    private Day: number
-    private Month: number
-    private Year: number
-    private DateString: string
+    public Day: number
+    public Month: number
+    public Year: number
+    public DateString: string
+    public DayMonthOrYear: number
     
     public constructor(day: number, month: number, year: number){
         this.Day = day
@@ -10,12 +11,17 @@ export class DateComponent {
         this.Year = year
         this.DateString = ""
     }
-
-    public makeDateString(day: number,month: number,year: number): string {
-        const date = `${day.toString()}-${month.toString()}-${year.toString()}`
-        return date
+    public countUp(): number{
+        return this.DayMonthOrYear++
     }
-    public checkDateIsValid(DateString: string){
+    public countDown(): number{
+        return this.DayMonthOrYear--
+    }
+    public makeDateString(day: number,month: number,year: number): string {
+        const dateString = `${day.toString()}-${month.toString()}-${year.toString()}`
+        return dateString
+    }
+    public checkDateIsValid(DateString: string): Boolean{
         const date = new Date(DateString)
         return !isNaN(date.getTime())
     }

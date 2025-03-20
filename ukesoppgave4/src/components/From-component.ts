@@ -1,8 +1,8 @@
-import { month } from "./Month-component";
-let day = 1;
-let dayMonth = month
+// import { month } from "./Month-component";
+import { DateComponent } from "./Date-component";
 
-export default class DayComponent extends HTMLElement {
+let date = new DateComponent(1, 1, 2022);
+export default class FromTimeComponent extends HTMLElement {
   connectedCallback() {
     window.requestAnimationFrame(() => {
       const div = document.createElement("div");
@@ -10,7 +10,7 @@ export default class DayComponent extends HTMLElement {
       const divDay = document.createElement("div");
       divDay.classList.add("day");
       divDay.setAttribute("id", "day");
-      divDay.textContent = `${day}`;
+      divDay.textContent = `${date.Day}`;
 
       const divBtns = document.createElement("div");
       divBtns.classList.add("day1");
@@ -33,24 +33,30 @@ export default class DayComponent extends HTMLElement {
       const dayUpButton = div.querySelector(".day-up");
       const dayDownButton = div.querySelector(".day-down");
       dayUpButton?.addEventListener("click", () => {
-        if (day >= 31){
-            day = 1
-        }
-        else if (day >= 28 && dayMonth == 2) {
-            dayMonth++
-            day = 1;
-        } else {
-          day++;
-          divDay.textContent = day.toString();
-        }
+        date.Day++
+        divDay.textContent = date.Day.toString()
+        console.log(date.Day)
+        // if (date.Day >= 31) {
+        //   date.Day = 1;
+        // } else if (date.Day >= 28 && date.Month == 2) {
+        //   date.Month++;
+        //   date.Day = 1;
+        // } else {
+        //   date.Day++;
+        //   divDay.textContent = date.Day.toString();
+        //   date.makeDateString(date.Day, date.Month, date.Year);
+        //   if (date.checkDateIsValid(date.DateString))
+        // }
       });
 
       dayDownButton?.addEventListener("click", () => {
-        if (day <= 1) {
-          day = 31;
-        }
-        day--;
-        divDay.textContent = day.toString();
+        date.countDown(date.Day)
+        divDay.textContent = date.Day.toString()
+        // if (day <= 1) {
+        //   day = 31;
+        // }
+        // day--;
+        // divDay.textContent = day.toString();
       });
     });
   }
