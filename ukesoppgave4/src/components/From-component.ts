@@ -65,8 +65,8 @@ export default class FromTimeComponent extends HTMLElement {
       dayUpButton?.addEventListener('click', () => {
         fromDate.Day++;
         divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
-        if (fromDate.Day >= 31) {
-          fromDate.Day = 0;
+        if (fromDate.Day > 31) {
+          fromDate.Day = 1;
         }
         // if (date.Day >= 31) {
         //   date.Day = 1;
@@ -84,6 +84,9 @@ export default class FromTimeComponent extends HTMLElement {
       dayDownButton?.addEventListener('click', () => {
         fromDate.Day--;
         divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+        if (fromDate.Day <= 0) {
+          fromDate.Day = 31;
+        }
         // if (day <= 1) {
         //   day = 31;
         // }

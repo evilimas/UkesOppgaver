@@ -16,8 +16,7 @@ export default class ValidateTimeComponent extends HTMLElement {
       div.appendChild(divValid);
       this.appendChild(div);
       document.body.addEventListener("click", () =>
-        fromDate.checkDateIsValid(
-          `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`
+        fromDate.checkDateIsValid(`${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`
         ) &&
         toDate.checkDateIsValid(`${toDate.Day} ${toDate.Month} ${toDate.Year}`)
           ? (divValid.textContent = `Date is valid`)
