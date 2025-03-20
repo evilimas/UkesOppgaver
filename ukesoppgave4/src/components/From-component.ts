@@ -1,5 +1,5 @@
 // import { month } from "./Month-component";
-import { date } from "../index"
+import { fromDate } from "../index"
 
 
 export default class FromTimeComponent extends HTMLElement {
@@ -10,7 +10,7 @@ export default class FromTimeComponent extends HTMLElement {
       const divDay = document.createElement("div");
       divDay.classList.add("day");
       divDay.setAttribute("id", "day");
-      divDay.textContent = `${date.Day} ${date.Month} ${date.Year}`;
+      divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
 
       const divBtns = document.createElement("div");
       divBtns.classList.add("day1");
@@ -32,10 +32,10 @@ export default class FromTimeComponent extends HTMLElement {
       const dayUpButton = div.querySelector(".day-up");
       const dayDownButton = div.querySelector(".day-down");
       dayUpButton?.addEventListener("click", () => {
-        date.Day++
-        divDay.textContent = `${date.Day} ${date.Month} ${date.Year}`;
-        if (date.Day >= 31){
-          date.Day = 0
+        fromDate.Day++
+        divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+        if (fromDate.Day >= 31){
+          fromDate.Day = 0
         }
         // if (date.Day >= 31) {
         //   date.Day = 1;
@@ -51,8 +51,8 @@ export default class FromTimeComponent extends HTMLElement {
       });
 
       dayDownButton?.addEventListener("click", () => {
-        date.Day--
-        divDay.textContent = `${date.Day} ${date.Month} ${date.Year}`;
+        fromDate.Day--
+        divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
         // if (day <= 1) {
         //   day = 31;
         // }
