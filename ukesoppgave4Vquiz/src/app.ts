@@ -1,4 +1,5 @@
-import FromToComponent  from "./components/fromTo-component";
+import { FromToComponent }  from "./components/fromTo-component";
 
-customElements.define("fromTo-container", FromToComponent);
+customElements.define("fromto-container", FromToComponent);
 
+document.addEventListener('load', () => { console.log('Hello')})
