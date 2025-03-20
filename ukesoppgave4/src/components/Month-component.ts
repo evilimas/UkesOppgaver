@@ -59,3 +59,5 @@ export default class DatoComponent extends HTMLElement {
     });
   }
 }
+
+export { month }
