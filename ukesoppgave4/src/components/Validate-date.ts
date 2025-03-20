@@ -6,6 +6,9 @@ export default class ValidateTimeComponent extends HTMLElement {
       const fromIsValid = fromDate.checkDateIsValid(
         `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`
       );
+      const toIsValid = toDate.checkDateIsValid(
+        `${toDate.Day} ${toDate.Month} ${toDate.Year}`
+      );
       const divValid = document.createElement("div");
       divValid.classList.add("validate");
       divValid.setAttribute("id", "validate");
@@ -14,7 +17,11 @@ export default class ValidateTimeComponent extends HTMLElement {
       } else {
         divValid.textContent = `<h2>From date is NOT valid!!!!</h2>`;
       }
-      document.body.addEventListener('click', () => console.log('hello'))
+      document.body.addEventListener("click", () =>
+        (fromIsValid || toIsValid)
+          ? (divValid.textContent = `<h2>From date is valid</h2>`)
+          : (divValid.textContent = `<h2>From date is NOT valid!!!!</h2>`)
+      );
     });
   }
 }

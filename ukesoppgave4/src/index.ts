@@ -10,7 +10,7 @@
 import { DateComponent } from "./components/Date-component";
 import FromTimeComponent from "./components/From-component";
 import ToTimeComponent from "./components/To-component";
-import ValidateTimeComponent from "./components/Valdiate-date";
+import ValidateTimeComponent from "./components/Validate-date";
 
 let fromDate = new DateComponent(1, 1, 2022);
 let toDate = new DateComponent(31,12,2030)
