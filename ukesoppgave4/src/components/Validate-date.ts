@@ -3,24 +3,25 @@ import { fromDate, toDate } from "../index";
 export default class ValidateTimeComponent extends HTMLElement {
   connectedCallback() {
     window.requestAnimationFrame(() => {
-      const fromIsValid = fromDate.checkDateIsValid(
-        `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`
-      );
-      const toIsValid = toDate.checkDateIsValid(
-        `${toDate.Day} ${toDate.Month} ${toDate.Year}`
-      );
+      // const fromIsValid = fromDate.checkDateIsValid(
+      //   `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`
+      // );
+      // const toIsValid = toDate.checkDateIsValid(
+      //   `${toDate.Day} ${toDate.Month} ${toDate.Year}`
+      // );
+      const div = document.createElement("div");
       const divValid = document.createElement("div");
       divValid.classList.add("validate");
       divValid.setAttribute("id", "validate");
-      if (fromIsValid) {
-        divValid.textContent = `<h2>From date is valid</h2>`;
-      } else {
-        divValid.textContent = `<h2>From date is NOT valid!!!!</h2>`;
-      }
+      div.appendChild(divValid);
+      this.appendChild(div);
       document.body.addEventListener("click", () =>
-        (fromIsValid || toIsValid)
-          ? (divValid.textContent = `<h2>From date is valid</h2>`)
-          : (divValid.textContent = `<h2>From date is NOT valid!!!!</h2>`)
+        fromDate.checkDateIsValid(
+          `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`
+        ) &&
+        toDate.checkDateIsValid(`${toDate.Day} ${toDate.Month} ${toDate.Year}`)
+          ? (divValid.textContent = `Date is valid`)
+          : (divValid.textContent = `Date is NOT valid!!!!`)
       );
     });
   }
