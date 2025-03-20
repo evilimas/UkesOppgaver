@@ -42,11 +42,17 @@ export default class DatoComponent extends HTMLElement {
       const yearDownButton = div.querySelector('.year-down');
 
       yearUpButton?.addEventListener('click', () => {
+        if (month == 12) {
+          month = 0o0;
+        }
         month++;
         divYear.textContent = month.toString();
       });
 
       yearDownButton?.addEventListener('click', () => {
+        if (month <= 1) {
+          month = 13;
+        }
         month--;
         divYear.textContent = month.toString();
       });
