@@ -1,4 +1,3 @@
-// import { month } from "./Month-component";
 import { fromDate } from '../index';
 
 export default class FromTimeComponent extends HTMLElement {
@@ -37,43 +36,26 @@ export default class FromTimeComponent extends HTMLElement {
       const divDay = document.querySelector('.day');
 
       dayUpButton?.addEventListener('click', () => {
-        if (fromDate.Day >= 31) {
-          fromDate.Day = 1;
-        } else {
-          fromDate.Day++;
-        }
+        fromDate.Day >= 31 ? (fromDate.Day = 1) : fromDate.Day++;
         divDay!.textContent = `${dateStr()}`;
       });
 
       dayDownButton?.addEventListener('click', () => {
-        if (fromDate.Day <= 1) {
-          fromDate.Day = 31;
-        } else {
-          fromDate.Day--;
-        }
+        fromDate.Day <= 1 ? (fromDate.Day = 31) : fromDate.Day--;
         divDay!.textContent = `${dateStr()}`;
       });
 
       monthUpButton?.addEventListener('click', () => {
-        if (fromDate.Month == 12) {
-          fromDate.Month = 1;
-        } else {
-          fromDate.Month++;
-        }
+        fromDate.Month == 12 ? (fromDate.Month = 1) : fromDate.Month++;
         divDay!.textContent = `${dateStr()}`;
       });
 
       monthDownButton?.addEventListener('click', () => {
-        if (fromDate.Month <= 1) {
-          fromDate.Month = 12;
-        } else {
-          fromDate.Month--;
-        }
+        fromDate.Month <= 1 ? (fromDate.Month = 12) : fromDate.Month--;
         divDay!.textContent = `${dateStr()}`;
       });
       yearUpButton?.addEventListener('click', () => {
         fromDate.Year++;
-        console.log(fromDate.Month);
         divDay!.textContent = `${dateStr()}`;
       });
       yearDownButton?.addEventListener('click', () => {
