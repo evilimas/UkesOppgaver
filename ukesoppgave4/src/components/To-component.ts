@@ -5,6 +5,7 @@ export default class ToTimeComponent extends HTMLElement {
   connectedCallback() {
     const div = document.createElement('div');
     div.classList.add('main-div');
+    const dateStr = () => toDate.makeDateString(toDate.Day,toDate.Month, toDate.Year)
 
     div.innerHTML = /*HTML*/ `
       <div class="top-div">
@@ -12,7 +13,7 @@ export default class ToTimeComponent extends HTMLElement {
         <button class="month-up">▲</button>
         <button class="year-up">▲</button>
       </div>
-      <div class="day" id="day">${toDate.Day} ${toDate.Month} ${toDate.Year}</div>
+      <div class="day" id="day">${dateStr()}</div>
       <div class="bottom-div">
         <button class="day-down">▼</button>
         <button class="month-down">▼</button>
@@ -35,7 +36,7 @@ export default class ToTimeComponent extends HTMLElement {
       } else {
         toDate.Day++;
       }
-      divDay!.textContent = `${toDate.Day} ${toDate.Month} ${toDate.Year}`;
+      divDay!.textContent = `${dateStr()}`;
     });
 
     dayDownButton?.addEventListener('click', () => {
@@ -44,7 +45,7 @@ export default class ToTimeComponent extends HTMLElement {
       } else {
         toDate.Day--;
       }
-      divDay!.textContent = `${toDate.Day} ${toDate.Month} ${toDate.Year}`;
+      divDay!.textContent = `${dateStr()}`;
     });
 
     monthUpButton?.addEventListener('click', () => {
@@ -54,7 +55,7 @@ export default class ToTimeComponent extends HTMLElement {
       } else {
         toDate.Month++;
       }
-      divDay!.textContent = `${toDate.Day} ${toDate.Month} ${toDate.Year}`;
+      divDay!.textContent = `${dateStr()}`;
     });
 
     monthDownButton?.addEventListener('click', () => {
@@ -63,18 +64,18 @@ export default class ToTimeComponent extends HTMLElement {
       } else {
         toDate.Month--;
       }
-      divDay!.textContent = `${toDate.Day} ${toDate.Month} ${toDate.Year}`;
+      divDay!.textContent = `${dateStr()}`;
     });
 
     yearUpButton?.addEventListener('click', () => {
       toDate.Year++;
       console.log(toDate.Month);
-      divDay!.textContent = `${toDate.Day} ${toDate.Month} ${toDate.Year}`;
+      divDay!.textContent = `${dateStr()}`;
     });
 
     yearDownButton?.addEventListener('click', () => {
       toDate.Year--;
-      divDay!.textContent = `${toDate.Day} ${toDate.Month} ${toDate.Year}`;
+      divDay!.textContent = `${dateStr()}`;
     });
   }
 }
