@@ -20,9 +20,10 @@ export default class ValidateTimeComponent extends HTMLElement {
           toDate.Month,
           toDate.Year
         );
-        divValid.textContent = 
+        divValid.textContent =
           fromIsValid && toIsValid ? `Date is valid` : `Date is NOT valid!!!!`;
-        divValid.style.backgroundColor = fromIsValid && toIsValid ? 'green' : 'red'
+        divValid.style.color =
+          fromIsValid && toIsValid ? "green" : "red";
       });
       this.appendChild(div);
     });
