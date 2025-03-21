@@ -65,48 +65,38 @@ export default class FromTimeComponent extends HTMLElement {
       const yearUpButton = div.querySelector('.year-up');
       const yearDownButton = div.querySelector('.year-down');
       dayUpButton?.addEventListener('click', () => {
-        // if (!fromDate.checkDateIsValid(divDay.textContent)) {
-        //   console.log('date is not valid');
-        // }
-        fromDate.Day++;
-        divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
-        if (fromDate.Day > 31) {
+        if (fromDate.Day >= 31) {
           fromDate.Day = 1;
+        } else {
+          fromDate.Day++;
         }
-
-        // if (date.Day >= 31) {
-        //   date.Day = 1;
-        // } else if (date.Day >= 28 && date.Month == 2) {
-        //   date.Month++;
-        //   date.Day = 1;
-        // } else {
-        //   date.Day++;
-        //   divDay.textContent = date.Day.toString();
-        //   date.makeDateString(date.Day, date.Month, date.Year);
-        //   if (date.checkDateIsValid(date.DateString))
-        // }
+        divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
       });
 
       dayDownButton?.addEventListener('click', () => {
-        fromDate.Day--;
-        divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
-        if (fromDate.Day <= 0) {
+        if (fromDate.Day <= 1) {
           fromDate.Day = 31;
+        } else {
+          fromDate.Day--;
         }
-        // day--;
-        // divDay.textContent = day.toString();
+        divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
       });
 
       monthUpButton?.addEventListener('click', () => {
         if (fromDate.Month == 12) {
-          fromDate.Month = 0;
+          fromDate.Month = 1;
+        } else {
+          fromDate.Month++;
         }
-        fromDate.Month++;
-        console.log(fromDate.Month);
         divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
       });
+
       monthDownButton?.addEventListener('click', () => {
-        fromDate.Month--;
+        if (fromDate.Month <= 1) {
+          fromDate.Month = 12;
+        } else {
+          fromDate.Month--;
+        }
         divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
       });
       yearUpButton?.addEventListener('click', () => {
