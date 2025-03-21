@@ -6,14 +6,14 @@ export default class FromTimeComponent extends HTMLElement {
     window.requestAnimationFrame(() => {
       const div = document.createElement('div');
       div.classList.add('main-div');
-
+      const dateStr = () => fromDate.makeDateString(fromDate.Day,fromDate.Month, fromDate.Year)
       div.innerHTML = /*HTML*/ `
       <div class="top-div">
         <button class="day-up">▲</button>
         <button class="month-up">▲</button>
         <button class="year-up">▲</button>
       </div>
-      <div class="day" id="day">${fromDate.Day} ${fromDate.Month} ${fromDate.Year}</div>
+      <div class="day" id="day">${dateStr()}</div>
       <div class="bottom-div">
         <button class="day-down">▼</button>
         <button class="month-down">▼</button>
@@ -36,7 +36,7 @@ export default class FromTimeComponent extends HTMLElement {
         } else {
           fromDate.Day++;
         }
-        divDay!.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+        divDay!.textContent = `${dateStr()}`;
       });
 
       dayDownButton?.addEventListener('click', () => {
@@ -45,7 +45,7 @@ export default class FromTimeComponent extends HTMLElement {
         } else {
           fromDate.Day--;
         }
-        divDay!.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+        divDay!.textContent = `${dateStr()}`;
       });
 
       monthUpButton?.addEventListener('click', () => {
@@ -54,7 +54,7 @@ export default class FromTimeComponent extends HTMLElement {
         } else {
           fromDate.Month++;
         }
-        divDay!.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+        divDay!.textContent = `${dateStr()}`;
       });
 
       monthDownButton?.addEventListener('click', () => {
@@ -63,16 +63,16 @@ export default class FromTimeComponent extends HTMLElement {
         } else {
           fromDate.Month--;
         }
-        divDay!.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+        divDay!.textContent = `${dateStr()}`;
       });
       yearUpButton?.addEventListener('click', () => {
         fromDate.Year++;
         console.log(fromDate.Month);
-        divDay!.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+        divDay!.textContent = `${dateStr()}`;
       });
       yearDownButton?.addEventListener('click', () => {
         fromDate.Year--;
-        divDay!.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+        divDay!.textContent = `${dateStr()}`;
       });
     });
   }

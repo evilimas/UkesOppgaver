@@ -26,6 +26,7 @@ export class FromToComponent extends HTMLElement {
   
     private setUpListeners() {
         const buttons = this.querySelectorAll("year-counter, month-counter, day-counter")
-      this.shadowRoot!.addEventListener('click', (e) => console.log('Hello', e))
+        for (let i = 0; i < buttons.length; i++)
+        this.shadowRoot!.addEventListener('click', (e) => console.log('Hello', e))
     }
   }
