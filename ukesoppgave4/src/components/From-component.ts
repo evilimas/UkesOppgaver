@@ -7,55 +7,19 @@ export default class FromTimeComponent extends HTMLElement {
       const div = document.createElement('div');
       div.classList.add('main-div');
 
-      const topDiv = document.createElement('div');
-      topDiv.classList.add('top-div');
-
-      const bottomDiv = document.createElement('div');
-      bottomDiv.classList.add('bottom-div');
-
-      const divDay = document.createElement('div');
-      divDay.classList.add('day');
-      divDay.setAttribute('id', 'day');
-      divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
-
-      // Day btns
-      const btnUp = document.createElement('button');
-      btnUp.classList.add('day-up');
-      btnUp.textContent = '▲';
-
-      const btnDown = document.createElement('button');
-      btnDown.classList.add('day-down');
-      btnDown.textContent = '▼';
-      //
-      // Month btns
-      const monthUp = document.createElement('button');
-      monthUp.classList.add('month-up');
-      monthUp.textContent = '▲';
-
-      const monthDown = document.createElement('button');
-      monthDown.classList.add('month-down');
-      monthDown.textContent = '▼';
-      //
-
-      // Year btns
-      const yearUp = document.createElement('button');
-      yearUp.classList.add('year-up');
-      yearUp.textContent = '▲';
-
-      const yearDown = document.createElement('button');
-      yearDown.classList.add('year-down');
-      yearDown.textContent = '▼';
-      //
-
-      topDiv.appendChild(btnUp);
-      topDiv.appendChild(monthUp);
-      topDiv.appendChild(yearUp);
-      bottomDiv.appendChild(btnDown);
-      bottomDiv.appendChild(monthDown);
-      bottomDiv.appendChild(yearDown);
-      div.appendChild(topDiv);
-      div.appendChild(divDay);
-      div.appendChild(bottomDiv);
+      div.innerHTML = /*HTML*/ `
+      <div class="top-div">
+        <button class="day-up">▲</button>
+        <button class="month-up">▲</button>
+        <button class="year-up">▲</button>
+      </div>
+      <div class="day" id="day">${fromDate.Day} ${fromDate.Month} ${fromDate.Year}</div>
+      <div class="bottom-div">
+        <button class="day-down">▼</button>
+        <button class="month-down">▼</button>
+        <button class="year-down">▼</button>
+      </div>
+  `;
 
       this.appendChild(div);
       const dayUpButton = div.querySelector('.day-up');
@@ -64,13 +28,15 @@ export default class FromTimeComponent extends HTMLElement {
       const monthDownButton = div.querySelector('.month-down');
       const yearUpButton = div.querySelector('.year-up');
       const yearDownButton = div.querySelector('.year-down');
+      const divDay = document.querySelector('.day');
+
       dayUpButton?.addEventListener('click', () => {
         if (fromDate.Day >= 31) {
           fromDate.Day = 1;
         } else {
           fromDate.Day++;
         }
-        divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+        divDay!.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
       });
 
       dayDownButton?.addEventListener('click', () => {
@@ -79,7 +45,7 @@ export default class FromTimeComponent extends HTMLElement {
         } else {
           fromDate.Day--;
         }
-        divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+        divDay!.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
       });
 
       monthUpButton?.addEventListener('click', () => {
@@ -88,7 +54,7 @@ export default class FromTimeComponent extends HTMLElement {
         } else {
           fromDate.Month++;
         }
-        divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+        divDay!.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
       });
 
       monthDownButton?.addEventListener('click', () => {
@@ -97,16 +63,16 @@ export default class FromTimeComponent extends HTMLElement {
         } else {
           fromDate.Month--;
         }
-        divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+        divDay!.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
       });
       yearUpButton?.addEventListener('click', () => {
         fromDate.Year++;
         console.log(fromDate.Month);
-        divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+        divDay!.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
       });
       yearDownButton?.addEventListener('click', () => {
         fromDate.Year--;
-        divDay.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
+        divDay!.textContent = `${fromDate.Day} ${fromDate.Month} ${fromDate.Year}`;
       });
     });
   }
