@@ -9,8 +9,9 @@ export class DateComponent {
     this.Year = year;
   }
   public makeDateString(day: number, month: number, year: number): string {
-    const dayStr = (day <= 9) ? `0${day.toString()}` : `${day.toString()}`;
-    let monthStr = (month <= 9) ? `0${month.toString()}` : `${month.toString()}`;
+    const dayStr = day <= 9 ? `0${day.toString()}` : `${day.toString()}`;
+    const monthStr =
+      month <= 9 ? `0${month.toString()}` : `${month.toString()}`;
     const dateString = `${dayStr} ${monthStr} ${year.toString()}`;
     return dateString;
   }
