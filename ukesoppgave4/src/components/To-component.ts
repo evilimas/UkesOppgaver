@@ -5,19 +5,25 @@ export default class ToTimeComponent extends HTMLElement {
   connectedCallback() {
     const div = document.createElement('div');
     div.classList.add('main-div');
-    const dateStr = () => toDate.makeDateString(toDate.Day,toDate.Month, toDate.Year)
+    const dateStr = () =>
+      toDate.makeDateString(toDate.Day, toDate.Month, toDate.Year);
 
     div.innerHTML = /*HTML*/ `
-      <div class="top-div">
-        <button class="day-up">▲</button>
-        <button class="month-up">▲</button>
-        <button class="year-up">▲</button>
+      <div>
+        <h1 class="to">To:</h1>
       </div>
-      <div class="day" id="day">${dateStr()}</div>
-      <div class="bottom-div">
-        <button class="day-down">▼</button>
-        <button class="month-down">▼</button>
-        <button class="year-down">▼</button>
+      <div>
+        <div class="top-div">
+          <button class="day-up">▲</button>
+          <button class="month-up">▲</button>
+          <button class="year-up">▲</button>
+        </div>
+        <div class="day" id="day">${dateStr()}</div>
+        <div class="bottom-div">
+          <button class="day-down">▼</button>
+          <button class="month-down">▼</button>
+          <button class="year-down">▼</button>
+        </div>
       </div>
   `;
 
