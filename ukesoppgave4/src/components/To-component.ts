@@ -1,5 +1,5 @@
-// import { month } from "./Month-component";
 import { toDate } from '../index';
+// const {Day, Month, Year} = toDate
 
 export default class ToTimeComponent extends HTMLElement {
   connectedCallback() {
@@ -28,54 +28,36 @@ export default class ToTimeComponent extends HTMLElement {
   `;
 
     this.appendChild(div);
-    const dayUpButton = div.querySelector('.day-up');
-    const dayDownButton = div.querySelector('.day-down');
-    const monthUpButton = div.querySelector('.month-up');
-    const monthDownButton = div.querySelector('.month-down');
-    const yearUpButton = div.querySelector('.year-up');
-    const yearDownButton = div.querySelector('.year-down');
-    const divDay = document.querySelector('.day');
+    const dayUpButton = div.querySelector<HTMLDivElement>('.day-up');
+    const dayDownButton = div.querySelector<HTMLDivElement>('.day-down');
+    const monthUpButton = div.querySelector<HTMLDivElement>('.month-up');
+    const monthDownButton = div.querySelector<HTMLDivElement>('.month-down');
+    const yearUpButton = div.querySelector<HTMLDivElement>('.year-up');
+    const yearDownButton = div.querySelector<HTMLDivElement>('.year-down');
+    const divDay = document.querySelector<HTMLDivElement>('.day');
 
     dayUpButton?.addEventListener('click', () => {
-      if (toDate.Day >= 31) {
-        toDate.Day = 1;
-      } else {
-        toDate.Day++;
-      }
+      toDate.Day >= 31 ? (toDate.Day = 1) : toDate.Day++;
       divDay!.textContent = `${dateStr()}`;
     });
 
     dayDownButton?.addEventListener('click', () => {
-      if (toDate.Day <= 1) {
-        toDate.Day = 31;
-      } else {
-        toDate.Day--;
-      }
+      toDate.Day <= 1 ? (toDate.Day = 31) : toDate.Day--;
       divDay!.textContent = `${dateStr()}`;
     });
 
     monthUpButton?.addEventListener('click', () => {
-      if (toDate.Month >= 12) {
-        toDate.Month = 1;
-        toDate.Year++;
-      } else {
-        toDate.Month++;
-      }
+      toDate.Month >= 12 ? (toDate.Month = 1) : toDate.Month++;
       divDay!.textContent = `${dateStr()}`;
     });
 
     monthDownButton?.addEventListener('click', () => {
-      if (toDate.Month <= 1) {
-        toDate.Month = 12;
-      } else {
-        toDate.Month--;
-      }
+      toDate.Month <= 1 ? (toDate.Month = 12) : toDate.Month--;
       divDay!.textContent = `${dateStr()}`;
     });
 
     yearUpButton?.addEventListener('click', () => {
       toDate.Year++;
-      console.log(toDate.Month);
       divDay!.textContent = `${dateStr()}`;
     });
 
