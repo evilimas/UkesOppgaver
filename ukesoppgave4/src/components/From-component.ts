@@ -3,7 +3,7 @@ import { fromDate } from '../index';
 export default class FromTimeComponent extends HTMLElement {
   connectedCallback() {
     window.requestAnimationFrame(() => {
-      const div = document.createElement('div');
+      const div: HTMLElement = document.createElement('div');
       div.classList.add('main-div');
       const dateStr = () =>
         fromDate.makeDateString(fromDate.Day, fromDate.Month, fromDate.Year);
@@ -27,13 +27,13 @@ export default class FromTimeComponent extends HTMLElement {
   `;
 
       this.appendChild(div);
-      const dayUpButton = div.querySelector('.day-up');
-      const dayDownButton = div.querySelector('.day-down');
-      const monthUpButton = div.querySelector('.month-up');
-      const monthDownButton = div.querySelector('.month-down');
-      const yearUpButton = div.querySelector('.year-up');
-      const yearDownButton = div.querySelector('.year-down');
-      const divDay = document.querySelector('.day');
+      const dayUpButton = div.querySelector<HTMLDivElement>('.day-up');
+      const dayDownButton = div.querySelector<HTMLDivElement>('.day-down');
+      const monthUpButton = div.querySelector<HTMLDivElement>('.month-up');
+      const monthDownButton = div.querySelector<HTMLDivElement>('.month-down');
+      const yearUpButton = div.querySelector<HTMLDivElement>('.year-up');
+      const yearDownButton = div.querySelector<HTMLDivElement>('.year-down');
+      const divDay = document.querySelector<HTMLDivElement>('.day');
 
       dayUpButton?.addEventListener('click', () => {
         fromDate.Day >= 31 ? (fromDate.Day = 1) : fromDate.Day++;

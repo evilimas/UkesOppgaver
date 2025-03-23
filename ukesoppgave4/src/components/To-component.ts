@@ -3,7 +3,7 @@ import { toDate } from '../index';
 
 export default class ToTimeComponent extends HTMLElement {
   connectedCallback() {
-    const div = document.createElement('div');
+    const div: HTMLDivElement = document.createElement('div');
     div.classList.add('main-div');
     const dateStr = () =>
       toDate.makeDateString(toDate.Day, toDate.Month, toDate.Year);
