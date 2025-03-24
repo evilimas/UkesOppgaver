@@ -1,5 +1,4 @@
 import { toDate } from '../index';
-// const {Day, Month, Year} = toDate
 
 export default class ToTimeComponent extends HTMLElement {
   connectedCallback() {
