@@ -1,9 +1,9 @@
 import createRouter from './router.ts';
 import createPages from './pages.ts';
 
-const container = document.querySelector('main');
+const container = document.querySelector<HTMLElement>('main');
 
-const pages = createPages(container);
+const pages = createPages(container!);
 
 const router = createRouter();
 
