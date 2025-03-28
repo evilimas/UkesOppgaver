@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .movie {
+        display: flex;
+        gap: 10px;
+        background-color: lightblue;
+        margin: 20px;
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .rating {
+        cursor: pointer;
+        user-select: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <header>
+        <a data-navigation href="/">Go To Index</a>
+        <br />
+        <a data-navigation href="/list">Go To List</a>
+        <br />
+        <a data-navigation href="/dummy">Dummy Page</a>
+      </header>
+      <main></main>
+      <script type="module" src="index.ts"></script>
+    </div>
+  </body>
+</html>
