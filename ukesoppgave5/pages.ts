@@ -25,7 +25,7 @@ export default (container: HTMLElement) => {
     container.innerHTML = html;
   };
 
-  const detail = (params) => {
+  const detail = (params: any) => {
     const { id } = params;
     let movieId = model.movies.find((x) => x.id == id);
     container.innerHTML = /*HTML*/ `
