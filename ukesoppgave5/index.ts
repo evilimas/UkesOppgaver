@@ -1,5 +1,5 @@
-import createRouter from './router.js';
-import createPages from './pages.js';
+import createRouter from './router.ts';
+import createPages from './pages.ts';
 
 const container = document.querySelector('main');
 

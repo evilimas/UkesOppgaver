@@ -1,8 +1,8 @@
 import model from './src/model';
 
-export default (container) => {
+export default (container: HTMLElement) => {
   const home = () => {
-    container.textContent = 'This is Home page';
+    container.innerHTML = 'This is Home page';
   };
 
   const list = () => {
@@ -47,7 +47,7 @@ export default (container) => {
   };
 
   const notFound = () => {
-    container.textContent = 'Page Not Found!';
+    container.innerHTML = 'Page Not Found!';
   };
 
   return {

@@ -1,9 +1,9 @@
-const ROUTE_PARAMETER_REGEXP = /:(\w+)/g
+const ROUTE_PARAMETER_REGEXP: RegExp = /:(\w+)/g
 const URL_FRAGMENT_REGEXP = '([^\\/]+)'
 const TICKTIME = 250
 const NAV_A_SELECTOR = 'a[data-navigation]'
 
-const extractUrlParams = (route, pathname) => {
+const extractUrlParams = (route, pathname: string) => {
   if (route.params.length === 0) {
     return {}
   }
@@ -13,9 +13,9 @@ const extractUrlParams = (route, pathname) => {
   const matches = pathname
     .match(route.testRegExp)
 
-  matches.shift()
+  matches?.shift()
 
-  matches.forEach((paramValue, index) => {
+  matches?.forEach((paramValue: any, index: string | number) => {
     const paramName = route.params[index]
     params[paramName] = paramValue
   })
@@ -26,7 +26,7 @@ const extractUrlParams = (route, pathname) => {
 export default () => {
   const routes = []
   let notFound = () => {}
-  let lastPathname
+  let lastPathname: string
 
   const router = {}
 
@@ -52,11 +52,11 @@ export default () => {
     currentRoute.callback(urlParams)
   }
 
-  router.addRoute = (path, callback) => {
+  router.addRoute = (path: string, callback: any) => {
     const params = []
 
     const parsedPath = path
-      .replace(ROUTE_PARAMETER_REGEXP, (match, paramName) => {
+      .replace(ROUTE_PARAMETER_REGEXP, (match: any, paramName: any) => {
         params.push(paramName)
         return URL_FRAGMENT_REGEXP
       }).replace(/\//g, '\\/')
@@ -70,12 +70,12 @@ export default () => {
     return router
   }
 
-  router.setNotFound = cb => {
+  router.setNotFound = (cb: () => void) => {
     notFound = cb
     return router
   }
 
-  router.navigate = path => {
+  router.navigate = (path: string | URL | null | undefined) => {
     window.history.pushState(null, null, path)
   }
 
