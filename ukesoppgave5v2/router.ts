@@ -3,7 +3,16 @@ const URL_FRAGMENT_REGEXP = '([^\\/]+)'
 const TICKTIME = 250
 const NAV_A_SELECTOR = 'a[data-navigation]'
 
-const extractUrlParams = (route, pathname: string) => {
+type Router = {
+  setNotFound: (cb: () => void) => Router
+  navigate: (path: string | URL | null | undefined) => void
+  start: () => Router
+  addRoute: (path: string, callback: any) => {},
+
+
+}
+
+const extractUrlParams = (route: string, pathname: string) => {
   if (route.params.length === 0) {
     return {}
   }
@@ -28,7 +37,21 @@ export default () => {
   let notFound = () => {}
   let lastPathname: string
 
-  const router = {}
+  
+  const router: Router = {
+    setNotFound: function (cb: () => void): Router {
+      throw new Error("Function not implemented.")
+    },
+    navigate: function (path: string | URL | null | undefined): void {
+      throw new Error("Function not implemented.")
+    },
+    start: function (): Router {
+      throw new Error("Function not implemented.")
+    },
+    addRoute: function (path: string, callback: any): {} {
+      throw new Error("Function not implemented.")
+    }
+  }
 
   const checkRoutes = () => {
     const { pathname } = window.location
@@ -87,9 +110,9 @@ export default () => {
       .body
       .addEventListener('click', e => {
         const { target } = e
-        if (target.matches(NAV_A_SELECTOR)) {
+        if (target?.matches(NAV_A_SELECTOR)) {
           e.preventDefault()
-          router.navigate(target.href)
+          router.navigate(target?.href)
         }
       })
 
