@@ -12,9 +12,9 @@ export default (container: HTMLElement) => {
       <a href="/list/${student.id}">
             <div class="student">
                 <div>
-                    <b>${movie.title}</b><br/>
-                    ${movie.year}<br/>
-                    ${movie.genre}
+                    <b>${student.name}</b><br/>
+                    ${student.emailPriv}<br/>
+                    ${student.telefonNummer}
                 </div>
             </div>
         </a>`;
@@ -24,21 +24,16 @@ export default (container: HTMLElement) => {
 
   const detail = (params) => {
     const { id } = params;
-    let movieId = model.movies.find((x) => x.id == id);
+    let studentId = model.students.find((x) => x.id == id);
     container.innerHTML = /*HTML*/ `
-    <h1>${movieId?.title}</h1>
+    <h1>${studentId?.name}</h1>
     <div>
-        <img src="${movieId?.imageUrl}" style="height: 120px"/>
+        <img src="${studentId?.profilBilde}" style="height: 120px"/>
     </div>
     <div>
         <b></b><br/>
-        ${movieId?.year}<br/>
-        ${movieId?.genre}
-    </div>
-    <h3>Rating</h3>
-    <h3>Gi din rating: </h3>
-    <div style="display: flex; font-size: 200%">
-      
+        ${studentId?.discordNavn}<br/>
+        ${studentId?.kurs}
     </div>
 `;
   };
