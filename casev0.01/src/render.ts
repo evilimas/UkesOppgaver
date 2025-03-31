@@ -2,22 +2,21 @@ import model from './model/model';
 
 export default (container: HTMLElement) => {
   const home = () => {
-    container.innerHTML = 'This is Home page - go to student list';
+    container.innerHTML = ` <header>Velkommen til Get Academy!</header>`;
   };
 
   const list = () => {
     let html = '';
     for (let student of model.students) {
       html += /*HTML*/ `
-      <a href="/list/${student.id}">
-            <div class="student">
-                <div>
-                    <b>${student.name}</b><br/>
+      <header>Velkommen til Get Academy!</header>
+      <div class="student">
+        <div>
+        <a href="/list/${student.id}"><b>${student.name} </b></a><br/>
                     ${student.emailPriv}<br/>
                     ${student.telefonNummer}
                 </div>
-            </div>
-        </a>`;
+            </div>`;
     }
     container.innerHTML = html;
   };

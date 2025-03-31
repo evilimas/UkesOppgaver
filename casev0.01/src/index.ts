@@ -8,8 +8,9 @@ const pages = createPages(container!);
 
 const router = createRouter();
 
-router.addRoute('/', pages.home);
-    .addRoute('/list', pages.list);
-    .addRoute('/list/:id', pages.detail);
-    .setNotFound(pages.notFound);
-    .start();
+router
+  .addRoute('/', pages.home)
+  .addRoute('/list', pages.list)
+  .addRoute('/list/:id', pages.detail)
+  .setNotFound(pages.notFound)
+  .start();

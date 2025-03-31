@@ -6,8 +6,32 @@
     <title>Get Academy Student-administrasjon</title>
   </head>
   <body>
+    <style>
+      .student {
+        display: flex;
+        gap: 10px;
+        background-color: lightblue;
+        margin: 20px;
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .rating {
+        cursor: pointer;
+        user-select: none;
+      }
+    </style>
+    <header>
+      <a data-navigation href="/">Go To Index</a>
+      <br />
+      <a data-navigation href="/list">Go To List</a>
+      <br />
+      <a data-navigation href="/dummy">Dummy Page</a>
+    </header>
+    <br />
     <div id="app">
-      <section id="header">
+      <main></main>
+      <!-- <section id="header">
         <header>Velkommen til Get Academy!</header>
       </section>
       <section id="main">
@@ -18,8 +42,9 @@
           <list-component></list-component>
           <detail-component></detail-component>
         </main>
-      </section>
+      </section> -->
     </div>
+
     <script type="module" src="/src/index.ts"></script>
   </body>
 </html>
