@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +7,25 @@
   </head>
   <body>
     <div id="app">
-
+      <section id="header">
+      <header>Velkommen til Get Academy!</header>
+      </section>
+      <section id ="sorting-algo">
+        <sorting-component>
+          <button data-update-all>Mark All To Completed</button>
+          <button data-delete-all>Delete All Todos</button>
+          <button data-list>Read Todos list</button>
+          <button data-add>Add Todo</button>
+          <button data-update>Update todo</button>
+          <button data-delete>Delete Todo</button>
+        </sorting-component>
+      </section>
+      <section id="main">
+        <header></header>
+        <main>
+        <list-component></list-component>
+        </main>
+      </section>
     </div>
     <script type="module" src="/src/index.ts"></script>
   </body>
