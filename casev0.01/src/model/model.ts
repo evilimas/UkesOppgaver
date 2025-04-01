@@ -1,17 +1,6 @@
+
 export default {
   app: {},
-  events: [
-    {
-      course: {
-        applied: false,
-        started: false,
-        completed: false,
-        quit: false,
-        paymentAdded: 0,
-      },
-      student: {},
-    },
-  ],
   candidates: [
     {
       id: 1,
@@ -25,7 +14,14 @@ export default {
       telefonNummer: "000 00 000",
       discordNavn: "per.spelmann",
       profilBilde: "../img/per_spelmann.png",
-      events: {}
+      events: {
+        courses: [],
+        applied: new Date(),
+        started: false,
+        completed: false,
+        quit: false,
+        paymentAdded: 0,
+      }
     },
   ],
   kurs: [
@@ -39,6 +35,7 @@ export default {
       id: 2,
       navn: "FrontEnd",
       pris: 55000,
+      events: {}
     },
   ],
 };
