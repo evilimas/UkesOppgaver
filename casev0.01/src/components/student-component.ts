@@ -19,6 +19,9 @@ export default class Student extends HTMLElement {
 
   connectedCallback() {
     window.requestAnimationFrame(() => {
+      this.innerHTML = /*HTML*/ `
+      
+      `;
       //   const div = document.createElement('div');
       //   div.classList.add('countdown-container');
       //   const p = document.createElement('p');
