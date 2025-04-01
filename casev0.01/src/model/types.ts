@@ -1,11 +1,11 @@
-interface Candidate {
+interface ICandidate {
     id: number
     name: string
-    emailPriv: string
-    emailGet: string 
-    phoneNumber: string
-    discordName: string
-    profilPicture: string
+    emailPriv: string 
+    emailGet?: string 
+    phoneNumber?: string
+    discordName?: string
+    profilPicture?: string
     events: [{
         course: string,
         applied: Date
@@ -15,7 +15,9 @@ interface Candidate {
         paymentAdded: number
     }]
 }
-
+const defaults: Pick<ICandidate, 'emailGet'> = {
+    emailGet: ''
+}
 interface Course {
     id: number
     name: string
@@ -29,4 +31,4 @@ interface AppState {
     courses: Course[]
 }
 
-export type { Candidate, Course, AppState}
+export type { ICandidate, Course, AppState}
