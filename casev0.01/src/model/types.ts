@@ -15,9 +15,9 @@ interface ICandidate {
         paymentAdded: number
     }]
 }
-const defaults: Pick<ICandidate, 'emailGet'> = {
-    emailGet: ''
-}
+// const defaults: Pick<ICandidate, 'emailGet'> = {
+//     emailGet: ''
+// }
 interface Course {
     id: number
     name: string
@@ -27,7 +27,7 @@ interface Course {
 
 interface AppState {
     app: any
-    candidates: Candidate[]
+    candidates: ICandidate[]
     courses: Course[]
 }
 
