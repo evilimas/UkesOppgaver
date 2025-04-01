@@ -1,31 +1,25 @@
 export default class Filter extends HTMLElement {
-  openFilter(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName('tabcontent');
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = 'none';
-    }
-    tablinks = document.getElementsByClassName('tablinks');
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(' active', '');
-    }
-    document.getElementById(cityName).style.display = 'block';
-    evt.currentTarget.className += ' active';
-  }
-
+  btns: NodeListOf<HTMLButtonElement>
+  filterName: string;
+  private openFilter(filterName: Event): HTMLElement ;
   constructor() {
     super();
+   
+    this.btns = document.querySelectorAll('button') 
   }
+  
 
   connectedCallback() {
-    const btns = this.querySelectorAll('button');
-    btns[0]?.addEventListener('click', () => console.log('clicked'));
+    // this.btns = document.querySelectorAll('button') 
+    // const btns = this.querySelectorAll('button');
+   
+    
     // this.addEventListener('click', this.openFilter(event, city));
     this.innerHTML = `
             <div class="tab">
                 <button class="tablinks">London</button>
-                <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+                <button class="tablinks">Paris</button>
+                <button class="tablinks">Tokyo</button>
             </div>
 
             <div id="London" class="tabcontent">
@@ -43,5 +37,11 @@ export default class Filter extends HTMLElement {
                 <p>Tokyo is the capital of Japan.</p>
             </div>
     `;
+    document.querySelectorAll('.tablinks').forEach((btn) => { 
+        btn.addEventListener('click', (event) =>
+          this.openFilter(event, btn.getAttribute('data-city'))
+        );
+    console.log(this.btns)
+    
   }
 }
