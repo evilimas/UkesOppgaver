@@ -8,26 +8,37 @@ export default (container: HTMLElement) => {
     `;
   };
 
-const list = () => {
-    let html = `<header>Velkommen til Get Academy!</header>`;
+  const list = () => {
+    let html = `
+    <filter-component></filter-component>
+    <header>Velkommen til Get Academy!</header>
+    <div class="list-header-coontainer">
+      <input type="checkbox"/>
+      <p>Navn</p>
+      <p>Betalt</p>
+      <p>Status</p>
+
+    </div>
+    `;
     for (let candidate of model.candidates) {
-        const candidateJson = JSON.stringify(candidate).replace('"', '"');
-        html += /*HTML*/ `
+      const candidateJson = JSON.stringify(candidate).replace('"', '"');
+      html += /*HTML*/ `
             <candidate-list-component candidate='${candidateJson}'></candidate-list-component>
          `;
     }
     container.innerHTML = html;
-};
+  };
 
-
-
-const detail = (params) => {
-  const { id } = params;
-  const candidate = model.candidates.find((x) => x.id == id);
-   container.innerHTML = /*HTML*/`
-      <candidate-component candidate='${JSON.stringify(candidate).replace('"', '"')}'></candidate-component>
+  const detail = (params) => {
+    const { id } = params;
+    const candidate = model.candidates.find((x) => x.id == id);
+    container.innerHTML = /*HTML*/ `
+      <candidate-component candidate='${JSON.stringify(candidate).replace(
+        '"',
+        '"'
+      )}'></candidate-component>
 `;
-};
+  };
 
   const notFound = () => {
     container.innerHTML = 'Page Not Found!';
