@@ -9,17 +9,12 @@ export default (container: HTMLElement) => {
   };
 
   const list = () => {
-    let html = '';
-    for (let student of model.candidates) {
+    let html = `<header>Velkommen til Get Academy!</header>`;
+    for (let candidate of model.candidates) {
+      const candidateJson = JSON.stringify(candidate).replace('"', '"');
       html += /*HTML*/ `
-      <header>Velkommen til Get Academy!</header>
-      <div class="student">
-        <div>
-        <a href="/list/${student.id}"><b>${student.name} </b></a><br/>
-                    ${student.emailPriv}<br/>
-                    ${student.telefonNummer}
-                </div>
-            </div>`;
+        <candidate-list-component candidate='${candidateJson}'></candidate-list-component>
+     `;
     }
     container.innerHTML = html;
   };
