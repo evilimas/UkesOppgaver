@@ -1,4 +1,3 @@
-
 export default {
   app: {},
   candidates: [
@@ -21,7 +20,49 @@ export default {
         completed: false,
         quit: false,
         paymentAdded: 0,
-      }
+      },
+    },
+    {
+      id: 2,
+      name: "Petter Nordmann",
+      emailPriv: "petter@mail.no",
+      emailGet: "petter.nordmann@getacademy.no",
+      kurs: "StartIT",
+      kursType: "Fagskole",
+      startDato: "2025-08-12",
+      sluttdato: null,
+      telefonNummer: "000 00 000",
+      discordNavn: "petter.nordmann",
+      profilBilde: "../img/per_spelmann.png",
+      events: {
+        courses: [],
+        applied: new Date(),
+        started: false,
+        completed: false,
+        quit: false,
+        paymentAdded: 0,
+      },
+    },
+    {
+      id: 3,
+      name: "Kari Spelmann",
+      emailPriv: "kari@mail.no",
+      emailGet: "kari.spelmann@getacademy.no",
+      kurs: "FrontEnd",
+      kursType: "Fagskole",
+      startDato: "2025-08-12",
+      sluttdato: null,
+      telefonNummer: "000 00 000",
+      discordNavn: "kari.spelmann",
+      profilBilde: "../img/per_spelmann.png",
+      events: {
+        courses: [],
+        applied: new Date(),
+        started: false,
+        completed: false,
+        quit: false,
+        paymentAdded: 0,
+      },
     },
   ],
   kurs: [
@@ -29,13 +70,13 @@ export default {
       id: 1,
       navn: "StartIT",
       pris: 55000,
-      events: {}
+      events: {},
     },
     {
       id: 2,
       navn: "FrontEnd",
       pris: 55000,
-      events: {}
+      events: {},
     },
   ],
 };
