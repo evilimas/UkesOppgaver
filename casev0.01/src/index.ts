@@ -1,5 +1,8 @@
 import createRouter from './router.ts';
 import createPages from './render.ts';
+import CandidateListComponent from './components/candidate-list-component.ts';
+
+customElements.define('candidate-list-component', CandidateListComponent);
 
 const container: HTMLElement | null =
   document.querySelector<HTMLElement>('#app');
