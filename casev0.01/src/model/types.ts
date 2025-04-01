@@ -1,7 +1,19 @@
 interface Candidate {
     id: number
     name: string
-    event: {}
+    emailPriv: string
+    emailGet: string 
+    phoneNumber: string
+    discordName: string
+    profilPicture: string
+    events: [{
+        course: string,
+        applied: Date
+        started: Date
+        completed: Date | boolean
+        quit: boolean 
+        paymentAdded: number
+    }]
 }
 
 interface Course {
