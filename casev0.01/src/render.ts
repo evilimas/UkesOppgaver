@@ -26,7 +26,7 @@ export default (container: HTMLElement) => {
 
   const detail = (params) => {
     const { id } = params;
-    let studentId = model.students.find((x) => x.id == id);
+    let studentId = model.candidates.find((x) => x.id == id);
     container.innerHTML = /*HTML*/ `
     <h1>${studentId?.name}</h1>
     <div>
