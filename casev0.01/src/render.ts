@@ -10,7 +10,7 @@ export default (container: HTMLElement) => {
 
   const list = () => {
     let html = '';
-    for (let student of model.students) {
+    for (let student of model.candidates) {
       html += /*HTML*/ `
       <header>Velkommen til Get Academy!</header>
       <div class="student">
