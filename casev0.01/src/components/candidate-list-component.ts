@@ -10,7 +10,7 @@ export default class Student extends HTMLElement {
         <input type="checkbox"/>
         <a href="/list/${candidate.id}"><b>${candidate.name} </b></a><br/>
         <p>Betalt :</p>
-        <p>Status :</p>
+        <p>${candidate.courses[0].course}</p>
       </div>
       
 
@@ -18,5 +18,11 @@ export default class Student extends HTMLElement {
       
       `;
     });
+  }
+  getStatus(candidate) {
+    return `
+    ${candidate.id}
+    `;
+    candidate.courses.filter((x) => x.semesterId == 1);
   }
 }
