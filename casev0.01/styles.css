@@ -1,6 +1,7 @@
 .list-header-container {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   border: 1px solid black;
 }
 /* .list-header-coontainer:nth-child(1),
@@ -48,8 +49,8 @@
 .tabcontent {
   outline: black solid 1px;
   justify-content: space-around;
+  align-items: center;
   display: flex;
-  margin: 5px;
   height: 80px;
   flex-direction: row;
   border: 1px solid #ccc;
