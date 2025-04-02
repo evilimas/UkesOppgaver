@@ -6,7 +6,8 @@
 /* .list-header-coontainer:nth-child(1),
 .list-header-coontainer:nth-child(2),
 .list-header-coontainer:nth-child(3) {
-  border-left: 1px solid black;
+  justify-self: start;
+  align-items: start;
 } */
 
 /* tabs styles */
@@ -22,7 +23,7 @@
 /* Style the buttons inside the tab */
 .tab button {
   background-color: inherit;
-  
+
   float: left;
   border: none;
   width: 50%;

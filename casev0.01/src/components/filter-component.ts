@@ -1,4 +1,4 @@
-
+import filterView from '../view/filterView';
 export default class Filter extends HTMLElement {
   btns: NodeListOf<HTMLButtonElement> | undefined;
   tabContent: HTMLElement | undefined | null;
@@ -8,8 +8,7 @@ export default class Filter extends HTMLElement {
     const btn = event.target as HTMLButtonElement;
     this.filterName = btn.innerHTML;
     this.render();
-  };
-
+  }
 
   connectedCallback() {
     this.innerHTML = `
@@ -23,20 +22,19 @@ export default class Filter extends HTMLElement {
     `;
     this.tabContent = this.querySelector<HTMLElement>('#tab-content');
     document.querySelectorAll('.tablinks').forEach((btn) => {
-      btn.addEventListener('click', this.openFilter.bind(this))
+      btn.addEventListener('click', this.openFilter.bind(this));
     });
   }
 
   render() {
     if (this.filterName == null) return '';
-    this.tabContent!.innerHTML = /*HTML*/`
-      <div id="${this.filterName}" class="tabcontent">
-        <label><h3>Velg ${this.filterName}</h3>
-            <input type="checkbox" value="FrontEnd"/>Front End
-            </label> 
+    this.tabContent!.innerHTML = /*HTML*/ `
+    <div id="${this.filterName}" class="tabcontent">
+    <h3>Velg ${this.filterName}</h3>
+         ${filterView(this.filterName)}
+      
         
       </div>    
     `;
   }
 }
-
