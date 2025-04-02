@@ -10,8 +10,9 @@ export default (container: HTMLElement) => {
 
   const list = () => {
     let html = `
-    <filter-component></filter-component>
     <header>Velkommen til Get Academy!</header>
+    <filter-component></filter-component>
+    
     <div class="list-header-coontainer">
       <input type="checkbox"/>
       <p>Navn</p>

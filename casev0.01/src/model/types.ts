@@ -31,8 +31,9 @@ interface AppState {
     courses: Course[]
 }
 interface ISemester {
+    id: number
     name: string
     fromDate: Date
     toDate: Date
 }
-export type { ICandidate, Course, AppState}
+export type { ICandidate, Course, AppState, ISemester }

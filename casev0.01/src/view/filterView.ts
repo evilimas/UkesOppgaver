@@ -1,11 +1,11 @@
-import model from '../model/model';
+import model from "../model/model";
 export default (filterName: string) => {
-  if (filterName == 'Kurs') {
+  if (filterName == "Kurs") {
     return createKursHtml();
-  } else if (filterName == 'Dato') {
+  } else if (filterName == "Dato") {
     return createDatoHtml();
-  } else if (filterName == 'Hendelser') {
-    return /*HTML*/ `Hello Hendelser`;
+  } else if (filterName == "Hendelser") {
+    return createEventHtml();
   }
 };
 
@@ -15,7 +15,7 @@ export default (filterName: string) => {
 //   </label>
 
 function createKursHtml() {
-  let html = '';
+  let html = "";
   for (let kurs of model.course) {
     html += `
         <label>
@@ -29,16 +29,30 @@ function createKursHtml() {
 
 function createDatoHtml() {
   let currentDate = new Date();
-  let toDate =  new Date(currentDate.getTime() + (60 * 60 * 24 * 1000));
+  let toDate = new Date(currentDate.getTime() + 60 * 60 * 24 * 1000);
   let html = /*HTML*/ `
         <label>Fra Dato:
-            <input type="date"/ value='${currentDate.toLocaleDateString('sv')}'>
+            <input type="date"/ value='${currentDate.toLocaleDateString("sv")}'>
         </label>
         <label>Til Dato:
-            <input type="date"/ value='${toDate.toLocaleDateString('sv')}'>
+            <input type="date"/ value='${toDate.toLocaleDateString("sv")}'>
         </label>
         <select name="semester" id="semester">
             <option>Hurtigvalg Semester</option>
         </select>`;
   return html;
+}
+
+function createEventHtml() {
+  const events = ["Søkt", "Godkjent","Startet", "Avbrutt", "Betalt", "Fullført"];
+  let html = "";
+  for (let event of events) {
+    html += /*HTML*/ `
+    <label>
+    <input type="checkbox" value="${event}" />
+    ${event}
+    </label>
+    `
+  }
+  return html
 }
