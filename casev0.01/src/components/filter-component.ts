@@ -32,9 +32,7 @@ export default class Filter extends HTMLElement {
     <div id="${this.filterName}" class="tabcontent">
     <h3>Velg ${this.filterName}</h3>
          ${filterView(this.filterName)}
-      
-        
-      </div>    
+    </div>    
     `;
   }
 }

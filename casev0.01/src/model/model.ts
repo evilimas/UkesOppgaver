@@ -56,15 +56,25 @@ export default {
       phoneNumber: '000 00 000',
       discordName: 'kari.spelmann',
       profilPicture: '../img/per_spelmann.png',
-      courses: {
+      courses: [{
         course: 'FrontEnd',
         applied: 2025 - 0o1 - 0o1,
         started: 2025 - 0o1 - 0o2,
-        semester: '',
+        semester: 'spring2025',
         completed: false,
         quit: false,
         paymentAdded: 0,
       },
+      {
+        course: 'Fagskolen',
+        applied: 2024 - 0o1 - 0o1,
+        startDate: 2024 - 0o1 - 0o2,
+        finishDate: "2024-12-24",
+        semester: 'fall2024',
+        completed: true,
+        quit: false,
+        paymentAdded: 0,
+      }],
     },
     {
       id: 4,
@@ -137,8 +147,14 @@ export default {
     {
       id: 1,
       name: 'spring2025',
-      fraDato: '20-01-2025',
-      tilDato: '26-06-2025',
+      fromDato: '20-01-2025',
+      toDato: '26-06-2025',
+    },
+    {
+      id: 2,
+      name: 'fall2024',
+      fromDato: '10-08-2024',
+      toDato: '10-01-2025',
     },
   ],
 };
