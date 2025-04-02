@@ -28,7 +28,14 @@ function createKursHtml() {
 }
 
 function createDatoHtml() {
-  let currentDate = new Date().toLocaleDateString('sv');
-  let html = `<input type="date"/ value='${currentDate}'>`;
+  let currentDate = new Date();
+  let toDate =  new Date(currentDate.getTime() + (60 * 60 * 24 * 1000));
+  let html = /*HTML*/ `
+        <label>Fra Dato:
+            <input type="date"/ value='${currentDate.toLocaleDateString('sv')}'>
+        </label>
+        <label>Til Dato:
+            <input type="date"/ value='${toDate.toLocaleDateString('sv')}'>
+        </label>`;
   return html;
 }
