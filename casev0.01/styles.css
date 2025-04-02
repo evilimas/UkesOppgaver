@@ -52,8 +52,9 @@
   align-items: center;
   display: flex;
   height: 80px;
+  margin-bottom: 10px;
   flex-direction: row;
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
   border-top: none;
 }
 
