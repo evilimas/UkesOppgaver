@@ -11,7 +11,7 @@ export default (container: HTMLElement) => {
   const list = () => {
     let html = `
     <img src="/img/logo.png" alt="logo" class="logo"/>
-    <header>Velkommen til Get Academy!</header>
+    <header>Velkommen til Get Academy Student Administrasjon!</header>
     <filter-component></filter-component>
     <your-filter-component></your-filter-component>
     <div class="list-header-container">
