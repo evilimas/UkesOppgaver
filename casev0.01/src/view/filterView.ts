@@ -29,7 +29,6 @@ function createKursHtml() {
 
 function createDatoHtml() {
   let currentDate = new Date().toLocaleDateString('sv');
-  console.log(new Date().toLocaleDateString('sv'));
   let html = `<input type="date"/ value='${currentDate}'>`;
   return html;
 }
