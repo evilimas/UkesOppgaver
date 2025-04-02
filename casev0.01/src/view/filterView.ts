@@ -36,6 +36,9 @@ function createDatoHtml() {
         </label>
         <label>Til Dato:
             <input type="date"/ value='${toDate.toLocaleDateString('sv')}'>
-        </label>`;
+        </label>
+        <select name="semester" id="semester">
+            <option>Spring 2025</option> 
+        </select>`;
   return html;
 }
