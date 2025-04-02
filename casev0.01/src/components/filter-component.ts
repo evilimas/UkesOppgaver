@@ -1,47 +1,44 @@
+:
 export default class Filter extends HTMLElement {
-  btns: NodeListOf<HTMLButtonElement>;
+  btns: NodeListOf<HTMLButtonElement> | undefined;
+  tabContent: HTMLElement | undefined | null;
   filterName!: string;
-  constructor() {
-    super();
-   
-    this.btns = document.querySelectorAll('button') 
-  }
-  private openFilter(filterName: Event): HTMLElement {};
-  
+
+  // constructor() {
+  //   super();
+  //   // this.btns = document.querySelectorAll('button') 
+  // }
+  private openFilter(event: Event): void {
+    const btn = event.target as HTMLButtonElement;
+    this.filterName = btn.innerHTML;
+    this.render();
+  };
+
 
   connectedCallback() {
-    // this.btns = document.querySelectorAll('button') 
-    // const btns = this.querySelectorAll('button');
-   
-    
-    // this.addEventListener('click', this.openFilter(event, city));
     this.innerHTML = `
-            <div class="tab">
-                <button class="tablinks">London</button>
-                <button class="tablinks">Paris</button>
-                <button class="tablinks">Tokyo</button>
-            </div>
-
-            <div id="London" class="tabcontent">
-                <h3>London</h3>
-                <p>London is the capital city of England.</p>
-            </div>
-
-            <div id="Paris" class="tabcontent">
-                <h3>Paris</h3>
-                <p>Paris is the capital of France.</p> 
-            </div>
-
-            <div id="Tokyo" class="tabcontent">
-                <h3>Tokyo</h3>
-                <p>Tokyo is the capital of Japan.</p>
-            </div>
+      <div class="tab">
+          <button class="tablinks">London</button>
+          <button class="tablinks">Paris</button>
+          <button class="tablinks">Tokyo</button>
+      </div>
+      <div id="tab-content">
+      </div>
     `;
-    document.querySelectorAll('.tablinks').forEach((btn) => { 
-        btn.addEventListener('click', (event) =>
-          this.openFilter(event, btn.getAttribute('data-city'))
-        );
-    console.log(this.btns)
-    
+    this.tabContent = this.querySelector<HTMLElement>('#tab-content');
+    document.querySelectorAll('.tablinks').forEach((btn) => {
+      btn.addEventListener('click', this.openFilter.bind(this))
+    });
+  }
+
+  render() {
+    if (this.filterName == null) return '';
+    this.tabContent!.innerHTML = /*HTML*/`
+      <div id="${this.filterName}" class="tabcontent">
+        <h3>${this.filterName}</h3>
+        <p>${this.filterName} is the capital city of </p>
+      </div>    
+    `;
   }
 }
+
