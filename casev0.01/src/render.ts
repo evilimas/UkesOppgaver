@@ -1,4 +1,4 @@
-import model from './model/model';
+import model from "./model/model";
 
 export default (container: HTMLElement) => {
   const home = () => {
@@ -12,6 +12,7 @@ export default (container: HTMLElement) => {
     let html = `
     <header>Velkommen til Get Academy!</header>
     <filter-component></filter-component>
+    <your-filter-component></your-filter-component>
     <div class="list-header-container">
       <input type="checkbox"/>
       <p>Navn</p>
@@ -19,6 +20,7 @@ export default (container: HTMLElement) => {
       <p>Status</p>
 
     </div>
+    
     `;
     for (let candidate of model.candidates) {
       const candidateJson = JSON.stringify(candidate).replace('"', '"');
@@ -41,7 +43,7 @@ export default (container: HTMLElement) => {
   };
 
   const notFound = () => {
-    container.innerHTML = 'Page Not Found!';
+    container.innerHTML = "Page Not Found!";
   };
 
   return {

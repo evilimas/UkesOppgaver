@@ -3,10 +3,13 @@ import createPages from './render.ts';
 import CandidateListComponent from './components/candidate-list-component.ts';
 import CandidateComponent from './components/candidate-component.ts';
 import FilterComponent from './components/filter-component.ts';
+import YourFiltersComponent from './components/your-filters-component.ts';
 
 customElements.define('candidate-list-component', CandidateListComponent);
 customElements.define('candidate-component', CandidateComponent);
 customElements.define('filter-component', FilterComponent);
+customElements.define('your-filter-component', YourFiltersComponent);
+
 
 const container: HTMLElement | null =
   document.querySelector<HTMLElement>('#app');
