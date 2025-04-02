@@ -101,7 +101,7 @@ export default {
       emailGet: 'don.spelmann@getacademy.no',
       phoneNumber: '000 00 000',
       discordName: 'don.spelmann',
-      profilPicture: '../img/per_spelmann.png',
+      profilPicture: '../img/roll.png',
       courses: {
         course: 'FrontEnd',
         applied: 2025 - 0o1 - 0o1,
