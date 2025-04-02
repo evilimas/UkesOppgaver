@@ -5,7 +5,7 @@ export default class Student extends HTMLElement {
     const candidateJson: string = this.getAttribute('candidate') ?? '{}';
     const candidate: ICandidate = JSON.parse(candidateJson);
     window.requestAnimationFrame(() => {
-        this.innerHTML = /*HTML*/`
+      this.innerHTML = /*HTML*/ `
         <h1>${candidate.name}</h1>
         <div>
           <img src="${candidate.profilPicture}" style="height: 120px"/>

@@ -10,8 +10,8 @@ export default class Student extends HTMLElement {
       <div class="list-header-coontainer">
         <input type="checkbox"/>
         <a href="/list/${candidate.id}"><b>${candidate.name} </b></a><br/>
-        <p>Betalt</p>
-        <p>Status</p>
+        <p>Betalt :</p>
+        <p>Status :</p>
       </div>
       
 
