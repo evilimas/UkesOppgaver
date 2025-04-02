@@ -1,12 +1,12 @@
 export default class Filter extends HTMLElement {
-  btns: NodeListOf<HTMLButtonElement>
-  filterName: string;
-  private openFilter(filterName: Event): HTMLElement ;
+  btns: NodeListOf<HTMLButtonElement>;
+  filterName!: string;
   constructor() {
     super();
    
     this.btns = document.querySelectorAll('button') 
   }
+  private openFilter(filterName: Event): HTMLElement {};
   
 
   connectedCallback() {
