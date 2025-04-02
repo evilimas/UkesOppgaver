@@ -1,4 +1,4 @@
-import model from "./model/model";
+import model from './model/model';
 
 export default (container: HTMLElement) => {
   const home = () => {
@@ -10,6 +10,7 @@ export default (container: HTMLElement) => {
 
   const list = () => {
     let html = `
+    <img src="/img/logo.png" alt="logo" class="logo"/>
     <header>Velkommen til Get Academy!</header>
     <filter-component></filter-component>
     <your-filter-component></your-filter-component>
@@ -25,6 +26,7 @@ export default (container: HTMLElement) => {
     for (let candidate of model.candidates) {
       const candidateJson = JSON.stringify(candidate).replace('"', '"');
       html += /*HTML*/ `
+        
             <candidate-list-component candidate='${candidateJson}'></candidate-list-component>
          `;
     }
@@ -35,6 +37,7 @@ export default (container: HTMLElement) => {
     const { id } = params;
     const candidate = model.candidates.find((x) => x.id == id);
     container.innerHTML = /*HTML*/ `
+    <img src="/img/logo.png" alt="logo" class="logo"/>
       <candidate-component candidate='${JSON.stringify(candidate).replace(
         '"',
         '"'
@@ -43,7 +46,7 @@ export default (container: HTMLElement) => {
   };
 
   const notFound = () => {
-    container.innerHTML = "Page Not Found!";
+    container.innerHTML = 'Page Not Found!';
   };
 
   return {

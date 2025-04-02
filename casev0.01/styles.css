@@ -64,9 +64,13 @@
   height: 80%;
   font-size: 160%;
 }
-.list-yourFilters-container{
-  ul li{
+.list-yourFilters-container {
+  ul li {
     list-style: none;
     display: inline-block;
   }
+}
+
+.logo {
+  width: 25%;
 }
