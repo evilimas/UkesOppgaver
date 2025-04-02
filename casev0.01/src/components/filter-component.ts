@@ -4,10 +4,6 @@ export default class Filter extends HTMLElement {
   tabContent: HTMLElement | undefined | null;
   filterName!: string;
 
-  // constructor() {
-  //   super();
-  //   // this.btns = document.querySelectorAll('button') 
-  // }
   private openFilter(event: Event): void {
     const btn = event.target as HTMLButtonElement;
     this.filterName = btn.innerHTML;
@@ -18,9 +14,9 @@ export default class Filter extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <div class="tab">
-          <button class="tablinks">London</button>
-          <button class="tablinks">Paris</button>
-          <button class="tablinks">Tokyo</button>
+          <button class="tablinks">Kurs</button>
+          <button class="tablinks">Dato</button>
+          <button class="tablinks">Hendelser</button>
       </div>
       <div id="tab-content">
       </div>
