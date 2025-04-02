@@ -31,8 +31,10 @@ export default class Filter extends HTMLElement {
     if (this.filterName == null) return '';
     this.tabContent!.innerHTML = /*HTML*/`
       <div id="${this.filterName}" class="tabcontent">
-        <h3>${this.filterName}</h3>
-        <p>${this.filterName} is the capital city of </p>
+        <label><h3>Velg ${this.filterName}</h3>
+            <input type="checkbox" value="FrontEnd"/>Front End
+            </label> 
+        
       </div>    
     `;
   }
