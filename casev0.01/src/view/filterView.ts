@@ -44,12 +44,14 @@ function createDatoHtml() {
 }
 
 function createEventHtml() {
-  const events = ["Søkt", "Godkjent","Startet", "Avbrutt", "Betalt", "Fullført"];
+  const events: {} = {"Søkt": "applied", "Godkjent":"approved", 
+                    "Startet": "started", "Avbrutt": "cancelled", 
+                    "Betalt": "payed", "Fullført": "completed"};
   let html = "";
-  for (let event of events) {
+  for (let event in events) {
     html += /*HTML*/ `
     <label>
-    <input type="checkbox" value="${event}" />
+    <input type="checkbox" value="${events[event]}" />
     ${event}
     </label>
     `

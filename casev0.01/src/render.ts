@@ -12,8 +12,7 @@ export default (container: HTMLElement) => {
     let html = `
     <header>Velkommen til Get Academy!</header>
     <filter-component></filter-component>
-    
-    <div class="list-header-coontainer">
+    <div class="list-header-container">
       <input type="checkbox"/>
       <p>Navn</p>
       <p>Betalt</p>

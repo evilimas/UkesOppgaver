@@ -141,5 +141,4 @@ export default {
       tilDato: '26-06-2025',
     },
   ],
-  events: {},
 };

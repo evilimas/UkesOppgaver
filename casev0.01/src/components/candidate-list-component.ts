@@ -7,7 +7,7 @@ export default class Student extends HTMLElement {
     window.requestAnimationFrame(() => {
       this.innerHTML = /*HTML*/ `
       
-      <div class="list-header-coontainer">
+      <div class="list-header-container">
         <input type="checkbox"/>
         <a href="/list/${candidate.id}"><b>${candidate.name} </b></a><br/>
         <p>Betalt :</p>
