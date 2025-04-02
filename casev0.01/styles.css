@@ -13,16 +13,20 @@
 
 .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #000000;
   background-color: #f1f1f1;
 }
 
 /* Style the buttons inside the tab */
 .tab button {
   background-color: inherit;
+  
   float: left;
   border: none;
-  outline: none;
+  width: 50%;
+  outline: black solid 1px;
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
@@ -41,7 +45,18 @@
 
 /* Style the tab content */
 .tabcontent {
-  padding: 6px 12px;
+  outline: black solid 1px;
+  justify-content: space-around;
+  display: flex;
+  margin: 5px;
+  flex-direction: row;
   border: 1px solid #ccc;
   border-top: none;
+}
+
+.tabcontentinside {
+  outline: black solid 1px;
+  width: 20%;
+  height: 80%;
+  font-size: 160%;
 }
