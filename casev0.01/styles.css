@@ -50,6 +50,7 @@
   justify-content: space-around;
   display: flex;
   margin: 5px;
+  height: 80px;
   flex-direction: row;
   border: 1px solid #ccc;
   border-top: none;
