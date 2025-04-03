@@ -6,8 +6,23 @@ interface ICandidate {
   phoneNumber?: string;
   discordName?: string;
   profilPicture?: string;
-  courses: [
-    {
+}
+
+interface ICourse {
+  id: number;
+  name: string;
+  startDate: string
+  endDate: string
+  price: number
+  semester: {
+    name: string
+    fromDate: string
+    toDate: string
+  }
+}
+interface ICourseCandidate {
+      courseId: number
+      candidateId: number
       course: string;
       applied: boolean;
       started: boolean;
@@ -16,28 +31,13 @@ interface ICandidate {
       semesterId: number;
       completed: boolean;
       quit: boolean;
-      paymentAdded: number;
+      paymentAdded: number | boolean;
     }
-  ];
-}
-// const defaults: Pick<ICandidate, 'emailGet'> = {
-//     emailGet: ''
-// }
-interface Course {
-  id: number;
-  name: string;
-  event: {};
-}
-
+  
 interface AppState {
   app: any;
   candidates: ICandidate[];
-  courses: Course[];
+  courses: ICourse[];
 }
-interface ISemester {
-  id: number;
-  name: string;
-  fromDate: Date;
-  toDate: Date;
-}
-export type { ICandidate, Course, AppState, ISemester };
+
+export type { ICandidate, ICourse, AppState, ICourseCandidate };
