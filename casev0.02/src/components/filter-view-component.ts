@@ -9,11 +9,6 @@ export default (filterName: string) => {
   }
 };
 
-//   <label>
-//     <input type="checkbox" value="FrontEnd" />
-//     Front End
-//   </label>
-
 function createKursHtml() {
   let html = '';
   for (let kurs of model.course) {

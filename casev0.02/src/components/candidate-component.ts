@@ -1,12 +1,11 @@
-import type { ICandidate } from '../model/types';
+import type { Candidate } from '../model/types';
 
 export default class Student extends HTMLElement {
   connectedCallback() {
     const candidateJson: string = this.getAttribute('candidate') ?? '{}';
-    const candidate: ICandidate = JSON.parse(candidateJson);
+    const candidate: Candidate = JSON.parse(candidateJson);
     window.requestAnimationFrame(() => {
       this.innerHTML = /*HTML*/ `
-      
         <h1>${candidate.name}</h1>
         <div>
           <img src="${candidate.profilPicture}" style="height: 120px"/>
@@ -14,7 +13,6 @@ export default class Student extends HTMLElement {
         <div>
           <b></b><br/>
           ${candidate.discordName}<br/>
-        
         </div>
         `;
     });

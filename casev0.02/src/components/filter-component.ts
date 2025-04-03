@@ -1,4 +1,4 @@
-import filterView from '../view/filterView';
+import filterView from './filter-view-component';
 export default class Filter extends HTMLElement {
   btns: NodeListOf<HTMLButtonElement> | undefined;
   tabContent: HTMLElement | undefined | null;
