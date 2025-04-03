@@ -1,7 +1,7 @@
-import { Candidate, Course, handleFiles } from "./classes";
+import { Candidate, Course, handleFiles } from "./handleFile";
 
 // export default class dataFactory
-export default () =>{
+export default () => {
   let candidates: Array<Candidate> = [];
   let courses: Array<Course> = [];
     candidates.push(new Candidate())
