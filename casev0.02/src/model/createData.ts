@@ -1,14 +1,9 @@
 import { Candidate, Course, handleFiles } from "./classes";
 
-export default class dataFactory{
-  Candidates: Array<Candidate> = [];
-  Courses: Array<Course> = [];
-
-  constructor() {   
-  }
-  CreateData(){
-    let candidates = this.Candidates
-    let courses = this.Courses
+// export default class dataFactory
+export default () =>{
+  let candidates: Array<Candidate> = [];
+  let courses: Array<Course> = [];
     candidates.push(new Candidate())
     candidates.push(new Candidate())
     candidates.push(new Candidate())
@@ -19,11 +14,8 @@ export default class dataFactory{
     courses.push(new Course())
     courses.push(new Course())
 
-    return candidates && courses
-  }
-  Run(){
-    handleFiles.writeFile
-  }
+    handleFiles.writeFile(candidates, courses)
+  
 }
 
 
