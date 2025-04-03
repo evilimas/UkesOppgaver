@@ -3,14 +3,6 @@ const URL_FRAGMENT_REGEXP = '([^\\/]+)'
 const TICKTIME = 250
 const NAV_A_SELECTOR = 'a[data-navigation]'
 
-type Router = {
-  setNotFound: (cb: () => void) => Router
-  navigate: (path: string | URL | null | undefined) => void
-  start: () => Router
-  addRoute: (path: string, callback: any) => {},
-
-
-}
 
 const extractUrlParams = (route: string, pathname: string) => {
   if (route.params.length === 0) {

@@ -1,4 +1,4 @@
-interface ICandidate {
+interface Candidate {
   id: number;
   name: string;
   emailPriv: string;
@@ -21,9 +21,8 @@ interface ICourse {
   }
 }
 interface ICourseCandidate {
-      courseId: number
+      courseId: number[]
       candidateId: number
-      course: string;
       applied: boolean;
       started: boolean;
       startDate: Date;
@@ -31,13 +30,18 @@ interface ICourseCandidate {
       semesterId: number;
       completed: boolean;
       quit: boolean;
-      paymentAdded: number | boolean;
+      paymentAdded: {
+        payDate: Date
+        amount: number
+        balance: number
+        payedInFull: boolean
+      };
     }
   
 interface AppState {
   app: any;
-  candidates: ICandidate[];
+  candidates: Candidate[];
   courses: ICourse[];
 }
 
-export type { ICandidate, ICourse, AppState, ICourseCandidate };
+export type { Candidate, ICourse, AppState, ICourseCandidate };
