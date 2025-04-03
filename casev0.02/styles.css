@@ -1,0 +1,76 @@
+.list-header-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+}
+/* .list-header-coontainer:nth-child(1),
+.list-header-coontainer:nth-child(2),
+.list-header-coontainer:nth-child(3) {
+  justify-self: start;
+  align-items: start;
+} */
+
+/* tabs styles */
+
+.tab {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid #000000;
+  /* background-color: #f1f1f1; */
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  /* background-color: inherit; */
+
+  float: left;
+  border: none;
+  width: 50%;
+  outline: black solid 1px;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  outline: black solid 1px;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  height: 80px;
+  margin-bottom: 10px;
+  flex-direction: row;
+  border: 1px solid #000000;
+  border-top: none;
+}
+
+.tabcontentinside {
+  outline: black solid 1px;
+  width: 20%;
+  height: 80%;
+  font-size: 160%;
+}
+.list-yourFilters-container {
+  ul li {
+    list-style: none;
+    display: inline-block;
+  }
+}
+
+.logo {
+  width: 25%;
+}
