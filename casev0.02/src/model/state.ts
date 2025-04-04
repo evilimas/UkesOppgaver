@@ -80,6 +80,13 @@ const state: AppState = {
       eventType: "applied",
       amountPayed: 0,
     },
+    {
+      courseId: "4",
+      candidateId: "2",
+      date: new Date("2025-01-01"),
+      eventType: "approved",
+      amountPayed: 0,
+    }
   ],
 };
 
