@@ -1,4 +1,4 @@
-interface Candidate {
+export type Candidate = {
   id: number;
   name: string;
   emailPriv: string;
@@ -8,19 +8,21 @@ interface Candidate {
   profilPicture?: string;
 }
 
-interface ICourse {
+export type Course = {
   id: number;
   name: string;
   startDate: string
   endDate: string
   price: number
-  semester: {
-    name: string
-    fromDate: string
-    toDate: string
-  }
+  semester: Semester
 }
-interface ICourseCandidate {
+
+export type Semester = {
+  name: string
+  fromDate: string
+  toDate: string
+}
+export type CourseCandidate = {
       courseId: number[]
       candidateId: number
       applied: boolean;
@@ -30,18 +32,19 @@ interface ICourseCandidate {
       semesterId: number;
       completed: boolean;
       quit: boolean;
-      paymentAdded: {
-        payDate: Date
-        amount: number
-        balance: number
-        payedInFull: boolean
-      };
+      paymentAdded: PaymentAdded
     }
+
+export type PaymentAdded = {
+  payDate: Date
+  amount: number
+  balance: number
+  payedInFull: boolean
+};
   
-interface AppState {
+export interface AppState {
   app: any;
   candidates: Candidate[];
-  courses: ICourse[];
+  courses: Course[];
 }
 
-export type { Candidate, ICourse, AppState, ICourseCandidate };
