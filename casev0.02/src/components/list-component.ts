@@ -3,7 +3,7 @@ export default class ListComponent extends HTMLElement {
   private getEventFromCourseCandidateEvent(id: string) {
     const events = state.courseCandidateUpdateEvents;
     let eventFound = events.find((x) => x.candidateId == id);
-    return `${eventFound?.eventType}`;
+    return /*HTML*/ `${eventFound?.courseId} ${eventFound?.eventType}`;
   }
   connectedCallback() {
     window.requestAnimationFrame(() => {
