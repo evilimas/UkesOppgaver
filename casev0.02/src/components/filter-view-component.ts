@@ -1,5 +1,4 @@
 import state from '../model/state';
-import CourseCandidateUpdateEvent from "../model/types"
 export default (filterName: string) => {
   if (filterName == 'Kurs') {
     return createKursHtml();
@@ -42,11 +41,12 @@ function createDatoHtml() {
 
 function createEventHtml() {
   let html = '';
-  for (let event in CourseCandidateUpdateEvent) {
+  const filterArray = ["applied","approved","started","droppedOut","completed", "Payment"]
+  for (let filter of filterArray ) {
     html += /*HTML*/ `
     <label>
-    <input type="checkbox" value="${CourseCandidateUpdateEvent[event]}" />
-    ${event}
+    <input type="checkbox" value="${filter}" />
+    ${filter}
     </label>
     `;
   }

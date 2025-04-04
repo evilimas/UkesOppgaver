@@ -14,7 +14,7 @@ export default (container: HTMLElement) => {
     <header>Velkommen til Get Academy Student Administrasjon!</header>
     <filter-component></filter-component>
     <your-filter-component></your-filter-component>
-    <div class="list-header-container">
+    <div class="list-header-container" >
       <input type="checkbox"/>
       <p>Navn</p>
       <p>Betalt</p>
@@ -32,7 +32,7 @@ export default (container: HTMLElement) => {
     container.innerHTML = html;
   };
 
-  const detail = (params) => {
+  const detail = (params: any) => {
     const { id } = params;
     const candidate = state.candidateUpdateEvents.find((x) => x.id == id);
     container.innerHTML = /*HTML*/ `
