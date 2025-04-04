@@ -14,7 +14,10 @@ function createKursHtml() {
   for (let kurs of state.courseAddedEvents) {
     html += `
         <label>
-        <input type="checkbox" value="${kurs.name}" />
+        <input type="checkbox" value='${JSON.stringify(kurs).replace(
+          '"',
+          '"'
+        )}' />
         ${kurs.name}
         </label>
         `;
@@ -41,8 +44,15 @@ function createDatoHtml() {
 
 function createEventHtml() {
   let html = '';
-  const filterArray = ["applied","approved","started","droppedOut","completed", "Payment"]
-  for (let filter of filterArray ) {
+  const filterArray = [
+    'applied',
+    'approved',
+    'started',
+    'droppedOut',
+    'completed',
+    'Payment',
+  ];
+  for (let filter of filterArray) {
     html += /*HTML*/ `
     <label>
     <input type="checkbox" value="${filter}" />
