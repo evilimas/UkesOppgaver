@@ -23,8 +23,7 @@ export default class ListComponent extends HTMLElement {
                 <p>Betalt :</p>
                 <p>${candidate.discordName}</p>
             </candidate-list-component>
-        </div>
-                   `;
+        </div>`;
       }
 
       this.innerHTML = html;
