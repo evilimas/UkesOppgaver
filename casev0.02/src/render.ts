@@ -1,4 +1,4 @@
-import model from "./model/model";
+import state from "./model/state";
 
 export default (container: HTMLElement) => {
   const home = () => {
@@ -23,7 +23,7 @@ export default (container: HTMLElement) => {
     </div>
     
     `;
-    for (let candidate of model.candidates) {
+    for (let candidate of state.candidateUpdateEvents) {
       const candidateJson = JSON.stringify(candidate).replace('"', '"');
       html += /*HTML*/ `
             <candidate-list-component candidate='${candidateJson}'></candidate-list-component>
@@ -34,7 +34,7 @@ export default (container: HTMLElement) => {
 
   const detail = (params) => {
     const { id } = params;
-    const candidate = model.candidates.find((x) => x.id == id);
+    const candidate = state.candidateUpdateEvents.find((x) => x.id == id);
     container.innerHTML = /*HTML*/ `
     <img src="/img/logo.png" alt="logo" class="logo"/>
       <candidate-component candidate='${JSON.stringify(candidate).replace(

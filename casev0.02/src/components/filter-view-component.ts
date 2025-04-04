@@ -1,4 +1,5 @@
-import model from '../model/model';
+import state from '../model/state';
+import CourseCandidateUpdateEvent from "../model/types"
 export default (filterName: string) => {
   if (filterName == 'Kurs') {
     return createKursHtml();
@@ -11,7 +12,7 @@ export default (filterName: string) => {
 
 function createKursHtml() {
   let html = '';
-  for (let kurs of model.course) {
+  for (let kurs of state.courseAddedEvents) {
     html += `
         <label>
         <input type="checkbox" value="${kurs.name}" />
@@ -34,25 +35,17 @@ function createDatoHtml() {
         </label>
         <select name="semester" id="semester">
             <option>Hurtigvalg Semester</option>
-            ${getSemesters()}
+            Dummy - semester is not a type
         </select>`;
   return html;
 }
 
 function createEventHtml() {
-  const events: {} = {
-    Søkt: 'applied',
-    Godkjent: 'approved',
-    Startet: 'started',
-    Avbrutt: 'cancelled',
-    Betalt: 'payed',
-    Fullført: 'completed',
-  };
   let html = '';
-  for (let event in events) {
+  for (let event in CourseCandidateUpdateEvent) {
     html += /*HTML*/ `
     <label>
-    <input type="checkbox" value="${events[event]}" />
+    <input type="checkbox" value="${CourseCandidateUpdateEvent[event]}" />
     ${event}
     </label>
     `;
@@ -60,10 +53,10 @@ function createEventHtml() {
   return html;
 }
 
-function getSemesters() {
-  let html = '';
-  for (let semester of model.semester) {
-    html += `<option>${semester.name}</option>`;
-  }
-  return html;
-}
+// function getSemesters() {
+//   let html = '';
+//   for (let semester of model.semester) {
+//     html += `<option>${semester.name}</option>`;
+//   }
+//   return html;
+// }

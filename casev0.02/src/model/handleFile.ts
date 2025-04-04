@@ -49,8 +49,8 @@ import { Candidate, Course } from "./types";
 //   quit!: boolean;
 // }
 
-export default (file: string) => {
-  if (file) {
+export default (filename: string) => {
+  if (filename) {
     const data = import(filename, {
       with: { type: "json" },
     });

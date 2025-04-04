@@ -1,16 +1,17 @@
-import type { Candidate } from '../model/types';
+import type {  CandidateUpdateEvent } from '../model/types';
+import state from '../model/state';
 
 export default class Student extends HTMLElement {
   connectedCallback() {
     const candidateJson: string = this.getAttribute('candidate') ?? '{}';
-    const candidate: Candidate = JSON.parse(candidateJson);
+    const candidate: CandidateUpdateEvent = JSON.parse(candidateJson);
     window.requestAnimationFrame(() => {
       this.innerHTML = /*HTML*/ `
       <div class="list-header-container">
         <input type="checkbox"/>
         <a href="/list/${candidate.id}"><b>${candidate.name} </b></a><br/>
         <p>Betalt :</p>
-        <p>${candidate.courses[0].course}</p>
+        <p>${candidate.discordName}</p>
       </div>
       
 
@@ -19,10 +20,10 @@ export default class Student extends HTMLElement {
       `;
     });
   }
-  getStatus(candidate) {
-    return `
-    ${candidate.id}
-    `;
-    candidate.courses.filter((x) => x.semesterId == 1);
-  }
+  // getStatus(candidate) {
+  //   return `
+  //   ${candidate.id}
+  //   `;
+  //   candidate.courses.filter((x) => x.semesterId == 1);
+  // }
 }
