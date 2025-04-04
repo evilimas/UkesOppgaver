@@ -17,7 +17,11 @@ export default class ListComponent extends HTMLElement {
       for (let candidate of state.candidateUpdateEvents) {
         const candidateJson = JSON.stringify(candidate).replace('"', '"');
         html += /*HTML*/ `
-                      <candidate-list-component candidate='${candidateJson}'></candidate-list-component>
+                      <candidate-list-component candidate='${candidateJson}'><input type="checkbox"/>
+                      <a href="/list/${candidate.id}"><b>${candidate.name} </b></a><br/>
+                      <p>Betalt :</p>
+                      <p>${candidate.discordName}</p>
+                    </div></candidate-list-component>
                    `;
       }
 
