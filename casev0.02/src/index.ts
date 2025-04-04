@@ -2,7 +2,7 @@ import createRouter from './router.ts';
 import createPages from './render.ts';
 // import dataFactory from '../src/model/createData.ts'
 import CandidateListComponent from './components/candidate-list-component.ts';
-import CandidateComponent from './components/candidate-component.ts';
+import CandidateComponent from './components/candidate-detail-component.ts';
 import FilterComponent from './components/filter-component.ts';
 import YourFiltersComponent from './components/your-filters-component.ts';
 import ListComponent from './components/list-component.ts';

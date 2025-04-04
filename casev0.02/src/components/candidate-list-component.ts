@@ -1,5 +1,5 @@
-import type {  CandidateUpdateEvent } from '../model/types';
-import state from '../model/state';
+import type { CandidateUpdateEvent } from '../model/types';
+// import state from '../model/state';
 
 export default class Student extends HTMLElement {
   connectedCallback() {
@@ -13,10 +13,6 @@ export default class Student extends HTMLElement {
         <p>Betalt :</p>
         <p>${candidate.discordName}</p>
       </div>
-      
-
-    
-      
       `;
     });
   }
