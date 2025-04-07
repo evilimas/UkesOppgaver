@@ -1,6 +1,6 @@
 import observableFactory from './observable.ts';
 import * as model from './state.ts';
-const INITIAL_STATE = model;
+const INITIAL_STATE = { ...model};
 // const candidate = state.candidateUpdateEvents
 
 export default (initialState = INITIAL_STATE) => {
