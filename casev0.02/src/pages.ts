@@ -1,6 +1,6 @@
 import state from './model/state';
 
-export default (container: HTMLElement) => {
+export default (container: HTMLElement, actions: any) => {
   const home = () => {
     container.innerHTML = `
         <header>Velkommen til Get Academy!</header><br/>
