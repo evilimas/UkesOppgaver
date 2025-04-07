@@ -10,7 +10,7 @@ export default (container: HTMLElement, actions: any) => {
 
   const list = () => {
     container.innerHTML = /*HTML*/ `
-    <list-component></list-component>
+    <list-component ></list-component>
     `;
     const candidateDivs = container.querySelectorAll('.candidate');
     for (let candidateDiv of candidateDivs) {

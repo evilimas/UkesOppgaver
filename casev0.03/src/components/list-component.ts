@@ -11,10 +11,12 @@ export default class ListComponent extends HTMLElement {
     return /*HTML*/ `${eventFound?.courseId} ${eventFound?.eventType}`;
   }
   private createCandidatesHtml() {
+    // const candidateJson: string = this.getAttribute('.candidate') ?? "{}";
+    // const candidateParsed: CandidateUpdateEvent = JSON.parse(candidateJson);
     let html = "";
     for (let candidate of state.candidateUpdateEvents) {
       html += /*HTML*/ `
-     <div id="${candidate.id}" class="candidate">
+     <div candidate='${JSON.stringify(candidate)}' id="${candidate.id}" class="candidate">
      <input type="checkbox"/>
          <div><b>${candidate.name}</b><br/>
          <p>${candidate.emailGet}</p>
@@ -29,8 +31,7 @@ export default class ListComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    const candidateJson: string = this.getAttribute('candidate') ?? "{}";
-    const candidate: CandidateUpdateEvent = JSON.parse(candidateJson);
+    
     window.requestAnimationFrame(() => {
       this.shadowRoot!.innerHTML = /*HTML*/ `
       <head>
@@ -60,6 +61,7 @@ export default class ListComponent extends HTMLElement {
                   <p>Betalt</p>
                   <p>Status</p>
               </div>
+
               ${this.createCandidatesHtml()}
             
             `;
