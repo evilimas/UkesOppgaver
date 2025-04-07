@@ -1,6 +1,8 @@
-const container = document.querySelector('main');
-container!.attachShadow({ mode: 'open', clonable: true });
-const freeze = (state) => Object.freeze(ShadowRoot);
+import { AppState } from "./types";
+
+const freeze = (state: AppState) => Object.freeze(window.structuredClone(state))
+
+
 export default (initialState) => {
   let listeners = [];
 
