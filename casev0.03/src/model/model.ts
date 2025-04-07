@@ -1,15 +1,12 @@
-import observableFactory from './observable.js'
+import observableFactory from './observable.ts'
+import state from './state.ts'
+const INITIAL_STATE = state
 
-// const INITIAL_STATE = { => appState
-//   todos: [],
-//   currentFilter: 'All'
-// }
 
-/*
 export default (initialState = INITIAL_STATE) => {
   const state = observableFactory(initialState)
 
-  const deleteItem = index => {
+  const deleteItem = (index: number) => {
     if (index < 0) {
       return
     }
@@ -18,11 +15,10 @@ export default (initialState = INITIAL_STATE) => {
       return
     }
 
-    state.movies = state.movies.filter((todo, i) => i !== index)
+    state.movies = state.movies.filter((state.movies, i) => i !== index)
   }
   return {
     addChangeListener: state.addChangeListener,
     deleteItem,
   }
 }
-  */
