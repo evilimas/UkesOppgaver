@@ -1,9 +1,9 @@
-import state from '../model/state';
-import { CandidateUpdateEvent } from '../model/types';
+import state from "../model/state";
+import { CandidateUpdateEvent } from "../model/types";
 export default class ListComponent extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: "open" });
   }
   private getEventFromCourseCandidateEvent(id: string) {
     const events = state.courseCandidateUpdateEvents;
@@ -11,7 +11,7 @@ export default class ListComponent extends HTMLElement {
     return /*HTML*/ `${eventFound?.courseId} ${eventFound?.eventType}`;
   }
   private createCandidatesHtml() {
-    let html = '';
+    let html = "";
     for (let candidate of state.candidateUpdateEvents) {
       html += /*HTML*/ `
      <div id="${candidate.id}" class="candidate">
@@ -29,7 +29,7 @@ export default class ListComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    const candidateJson: string = this.getAttribute('candidate') ?? '{}';
+    const candidateJson: string = this.getAttribute('candidate') ?? "{}";
     const candidate: CandidateUpdateEvent = JSON.parse(candidateJson);
     window.requestAnimationFrame(() => {
       this.shadowRoot!.innerHTML = /*HTML*/ `
@@ -64,15 +64,15 @@ export default class ListComponent extends HTMLElement {
             
             `;
 
-      this.shadowRoot!.querySelector('button')!.addEventListener(
-        'click',
+      this.shadowRoot!.querySelector("button")!.addEventListener(
+        "click",
         () => {
           const details = {
             detail: { id: candidate.id },
             bubbles: true,
             // composed: true, => bobler forbi shadow root
           };
-          const event = new CustomEvent('movie-deleted', details);
+          const event = new CustomEvent("movie-deleted", details);
           this.dispatchEvent(event);
         }
       );
