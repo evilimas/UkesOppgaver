@@ -1,6 +1,6 @@
 import state from './model/state';
 
-export default (container: HTMLElement) => {
+export default (container: HTMLElement, actions: any) => {
   const home = () => {
     container.innerHTML = `
         <header>Velkommen til Get Academy!</header><br/>
@@ -12,6 +12,20 @@ export default (container: HTMLElement) => {
     container.innerHTML = /*HTML*/ `
     <list-component></list-component>
     `;
+    const candidateDivs = container.querySelectorAll('.candidate');
+    for (let candidateDiv of candidateDivs) {
+      candidateDiv.addEventListener('click', (event: Event) => {
+        const target = event.target as HTMLElement;
+        if (target!.tagName !== 'BUTTON') {
+          location.hash = `/list/${candidateDiv.id}`;
+          // router.navigate(`/movies/${movieDiv.id}`)
+        }
+      });
+      container.addEventListener('movie-deleted', (event: CustomEvent) => {
+        console.log('movie-deleted', event.detail.id);
+        // actions.deleteMovie(event.detail.id);
+      });
+    }
   };
 
   const detail = (params: any) => {

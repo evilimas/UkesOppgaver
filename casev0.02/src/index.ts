@@ -16,7 +16,7 @@ customElements.define('list-component', ListComponent);
 const container: HTMLElement | null =
   document.querySelector<HTMLElement>('#app');
 
-const pages = createPages(container! , actions);
+const pages = createPages(container!);
 // const actions = actionsFactory()
 const router = createRouter();
 
