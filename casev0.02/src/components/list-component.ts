@@ -28,7 +28,6 @@ export default class ListComponent extends HTMLElement {
                 <p>${this.getEventFromCourseCandidateEvent(candidate.id)}</p>
             </candidate-list-component>`;
       }
-
       this.innerHTML = html;
     });
   }
