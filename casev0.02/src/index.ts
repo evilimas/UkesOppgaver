@@ -1,5 +1,5 @@
 import createRouter from './router.ts';
-import createPages from './render.ts';
+import createPages from './pages.ts';
 // import dataFactory from '../src/model/createData.ts'
 // import CandidateListComponent from './components/candidate-list-component.ts/index.ts';
 import CandidateComponent from './components/candidate-detail-component.ts';
@@ -16,8 +16,8 @@ customElements.define('list-component', ListComponent);
 const container: HTMLElement | null =
   document.querySelector<HTMLElement>('#app');
 
-const pages = createPages(container!);
-
+const pages = createPages(container! , actions);
+// const actions = actionsFactory()
 const router = createRouter();
 
 router
