@@ -67,7 +67,7 @@ export default () => {
     currentRoute.callback(urlParams)
   }
 
-  router.addRoute = (path: string, callback: any) => {
+  router.addRoute = (path: string, callback: () => void) => {
     const params = []
 
     const parsedPath = path

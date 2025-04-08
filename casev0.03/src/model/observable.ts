@@ -1,20 +1,21 @@
-import { AppState } from "./types";
+import { AppState, callbackFunction } from "./types";
 
 const freeze = (state: AppState) => Object.freeze(window.structuredClone(state))
 
 
-export default (initialState: any) => {
-  let listeners: any[] = [];
+
+export default (initialState: AppState) => {
+  let listeners: callbackFunction[]  = [];
 
   const proxy = new Proxy(window.structuredClone(initialState), {
-    set: (target, name, value) => {
+    set: (target: any, name: string, value: callbackFunction) => {
       target[name] = value;
       listeners.forEach((l) => l(freeze(proxy)));
       return true;
     },
   });
 
-  proxy.addChangeListener = (cb: (arg0: any) => void) => {
+  proxy.addChangeListener = (cb: callbackFunction) => {
     listeners.push(cb);
     cb(freeze(proxy));
     return () => {

@@ -1,9 +1,10 @@
-
+export type callbackFunction = (state: AppState) => void;
 
 export interface AppState {
     candidateUpdateEvents: CandidateUpdateEvent[];
     courseAddedEvents: CourseUpdateEvent[];
     courseCandidateUpdateEvents: CourseCandidateEvent[];
+    addChangeListener: (cb: callbackFunction) => void;
   }
   
   export type CandidateUpdateEvent = {

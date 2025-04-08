@@ -1,9 +1,9 @@
-import observableFactory from './observable.ts';
-import * as model from './state.ts';
-const INITIAL_STATE = { ...model};
-// const candidate = state.candidateUpdateEvents
+import observableFactory from './observable';
+import appState from './state.ts';
+import { AppState } from './types.ts';
+const INITIAL_STATE = appState;
 
-export default (initialState = INITIAL_STATE) => {
+export default (initialState: AppState = INITIAL_STATE) => {
   const state = observableFactory(initialState);
 
   const deleteItem = (index: number) => {
@@ -16,7 +16,7 @@ export default (initialState = INITIAL_STATE) => {
     }
 
     state.candidateUpdateEvents = state.candidateUpdateEvents.filter(
-      (candidate, i) => i !== index
+      (_candidate: any, i: number) => i !== index
     );
   };
   return {
