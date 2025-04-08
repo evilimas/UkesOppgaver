@@ -1,5 +1,5 @@
 import state from "../model/state";
-import { CandidateUpdateEvent } from "../model/types";
+
 export default class ListComponent extends HTMLElement {
   constructor() {
     super();
@@ -17,14 +17,17 @@ export default class ListComponent extends HTMLElement {
     for (let candidate of state.candidateUpdateEvents) {
       html += /*HTML*/ `
      <div candidate='${JSON.stringify(candidate)}' id="${candidate.id}" class="candidate">
-     <input type="checkbox"/>
-         <div><b>${candidate.name}</b><br/>
-         <p>${candidate.emailGet}</p>
-         <p>${this.getEventFromCourseCandidateEvent(candidate.id)}</p>
+     <div style="width: 100%;">
+             <input  style= "text-align: left;" type="checkbox"/>
+             <button style= "float: right;">x</button>
+             
      </div>
-     <div style="width: 100%; text-align: right;">
-             <button>x</button>
+     <div style="align-text: center">
+        <b>${candidate.name}</b><br/>
+        <p>${candidate.emailGet}</p>
+        <p>${this.getEventFromCourseCandidateEvent(candidate.id)}</p>
      </div>
+     
      `;
     }
     return html;
@@ -55,7 +58,7 @@ export default class ListComponent extends HTMLElement {
         <header>Velkommen til Get Academy Student Administrasjon!</header>
           <filter-component></filter-component>
           <your-filter-component></your-filter-component>
-              <div class="candidate">
+              <div class="candidate-header" style="flex-direction: column">
                 <input type="checkbox"/>
                   <p>Navn</p>
                   <p>Betalt</p>
