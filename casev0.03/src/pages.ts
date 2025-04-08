@@ -1,5 +1,7 @@
-import state from './model/state';
+import model from './model/model';
+import router from "./router"
 import { AppState } from './model/types';
+import { createCandidatesHtml } from './view/listView';
 
 export default (container: HTMLElement, actions: any) => {
   const home = () => {
@@ -12,13 +14,15 @@ export default (container: HTMLElement, actions: any) => {
   const list = (papams:any, state: AppState) => {
     container.innerHTML = /*HTML*/ `
     <list-component ></list-component>
+    
+    ${createCandidatesHtml(state.candidateUpdateEvents)}
     `;
     const candidateDivs = container.querySelectorAll('.candidate');
     for (let candidateDiv of candidateDivs) {
       candidateDiv.addEventListener('click', (event: Event) => {
         const target = event.target as HTMLElement;
         if (target!.tagName !== 'BUTTON') {
-          location.hash = `/list/${candidateDiv.id}`;
+          location.hash = `#/list/${candidateDiv.id}`;
           // router.navigate(`/movies/${movieDiv.id}`)
         }
       });

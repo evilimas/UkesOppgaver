@@ -1,115 +1,94 @@
-const ROUTE_PARAMETER_REGEXP: RegExp = /:(\w+)/g
-const URL_FRAGMENT_REGEXP = '([^\\/]+)'
-const TICKTIME = 250
-const NAV_A_SELECTOR = 'a[data-navigation]'
+import { AppState } from "./model/types";
 
+const ROUTE_PARAMETER_REGEXP: RegExp = /:(\w+)/g;
+const URL_FRAGMENT_REGEXP = "([^\\/]+)";
 
-const extractUrlParams = (route: string, pathname: string) => {
+const extractUrlParams = (route, windowHash) => {
+  const params = {};
   if (route.params.length === 0) {
-    return {}
+    return params;
   }
+  const matches = windowHash.match(route.testRegExp);
 
-  const params = {}
+  matches.shift();
 
-  const matches = pathname
-    .match(route.testRegExp)
+  matches.forEach((paramValue, index) => {
+    const paramName = route.params[index];
+    params[paramName] = paramValue;
+  });
 
-  matches?.shift()
-
-  matches?.forEach((paramValue: any, index: string | number) => {
-    const paramName = route.params[index]
-    params[paramName] = paramValue
-  })
-
-  return params
+  return params;
+};
+type renderingFunctionType = (params: any, state: AppState) => void;
+interface Router {
+  addRoute: (hash: string, renderFunction: renderingFunctionType) => Router;
+  setNotFound: (renderFunction: renderingFunctionType) => Router;
+  start: () => {};
+  checkRoutes: (state: AppState) => void;
 }
+const mainRouterFunction: () => Router = () => {
+  const routes = [];
+  let notFound = () => {};
 
-export default () => {
-  const routes = []
-  let notFound = () => {}
-  let lastPathname: string
+  const router: Router = {};
 
-  
-  const router: Router = {
-    setNotFound: function (cb: () => void): Router {
-      throw new Error("Function not implemented.")
-    },
-    navigate: function (path: string | URL | null | undefined): void {
-      throw new Error("Function not implemented.")
-    },
-    start: function (): Router {
-      throw new Error("Function not implemented.")
-    },
-    addRoute: function (path: string, callback: any): {} {
-      throw new Error("Function not implemented.")
-    }
-  }
+  router.checkRoutes = (state: AppState, actions: any) => {
+    const { hash } = window.location;
 
-  const checkRoutes = () => {
-    const { pathname } = window.location
-    if (lastPathname === pathname) {
-      return
-    }
-
-    lastPathname = pathname
-
-    const currentRoute = routes.find(route => {
-      return route.testRegExp.test(pathname)
-    })
+    const currentRoute = routes.find((route) => {
+      const { testRegExp } = route;
+      return testRegExp.test(hash);
+    });
 
     if (!currentRoute) {
-      notFound()
-      return
+      notFound();
+      return;
     }
 
-    const urlParams = extractUrlParams(currentRoute, pathname)
+    const urlParams = extractUrlParams(currentRoute, window.location.hash);
 
-    currentRoute.callback(urlParams)
-  }
+    currentRoute.component(urlParams, state, actions);
+  };
 
-  router.addRoute = (path: string, callback: () => void) => {
-    const params = []
+  router.addRoute = (fragment, component) => {
+    const params = [];
 
-    const parsedPath = path
-      .replace(ROUTE_PARAMETER_REGEXP, (match: any, paramName: any) => {
-        params.push(paramName)
-        return URL_FRAGMENT_REGEXP
-      }).replace(/\//g, '\\/')
+    const parsedFragment = fragment
+      .replace(ROUTE_PARAMETER_REGEXP, (match, paramName) => {
+        params.push(paramName);
+        return URL_FRAGMENT_REGEXP;
+      })
+      .replace(/\//g, "\\/");
 
     routes.push({
-      testRegExp: new RegExp(`^${parsedPath}$`),
-      callback,
-      params
-    })
+      testRegExp: new RegExp(`^${parsedFragment}$`),
+      component,
+      params,
+    });
 
-    return router
-  }
+    return router;
+  };
 
-  router.setNotFound = (cb: () => void) => {
-    notFound = cb
-    return router
-  }
+  router.setNotFound = (cb) => {
+    notFound = cb;
+    return router;
+  };
 
-  router.navigate = (path: string | URL | null | undefined) => {
-    window.history.pushState(null, null, path)
-  }
+  router.navigate = (fragment) => {
+    window.location.hash = fragment;
+  };
 
   router.start = () => {
-    checkRoutes()
-    window.setInterval(checkRoutes, TICKTIME)
+    window.addEventListener("hashchange", router.checkRoutes.bind(router));
 
-    document
-      .body
-      .addEventListener('click', e => {
-        const { target } = e
-        if (target?.matches(NAV_A_SELECTOR)) {
-          e.preventDefault()
-          router.navigate(target?.href)
-        }
-      })
+    if (!window.location.hash) {
+      window.location.hash = "#/";
+    }
 
-    return router
-  }
+    // checkRoutes()
+  };
 
-  return router
-}
+  return router;
+};
+
+export default mainRouterFunction;

@@ -4,7 +4,6 @@ export interface AppState {
     candidateUpdateEvents: CandidateUpdateEvent[];
     courseAddedEvents: CourseUpdateEvent[];
     courseCandidateUpdateEvents: CourseCandidateEvent[];
-    addChangeListener: (cb: callbackFunction) => void;
   }
   
   export type CandidateUpdateEvent = {

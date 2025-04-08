@@ -1,4 +1,4 @@
-import state from '../model/state';
+import state from '../model/model';
 export default (filterName: string) => {
   if (filterName == 'Kurs') {
     return createKursHtml();
