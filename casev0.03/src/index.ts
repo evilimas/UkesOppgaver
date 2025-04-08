@@ -1,6 +1,5 @@
 import createRouter from "./router.ts";
-import createPages from "./pages.ts";
-
+import createPages from "./pages.ts"; 
 import FilterComponent from "./components/filter-component.ts";
 import YourFiltersComponent from "./components/your-filters-component.ts";
 import ListComponent from "./components/list-component.ts";

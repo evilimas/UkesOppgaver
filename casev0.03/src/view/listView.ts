@@ -6,25 +6,19 @@ import { CandidateUpdateEvent } from "../model/types";
 //     return /*HTML*/ `${eventFound?.courseId} ${eventFound?.eventType}`;
 //   }
 export function createCandidatesHtml(candidates: CandidateUpdateEvent[]) {
-    // const candidateJson: string = this.getAttribute('.candidate') ?? "{}";
-    // const candidateParsed: CandidateUpdateEvent = JSON.parse(candidateJson);
-    let html = '';
-    for (let candidate of candidates) {
-      html += /*HTML*/ `
-     <div candidate='${JSON.stringify(candidate)}' id="${
-        candidate.id
-      }" class="candidate">
-     <div style="width: 100%; ">
-             <input  style= "text-align: left;" type="checkbox"/>
-             <button style= "float: right;">x</button>
-             
-     </div>
-     <div style="align-text: center">
-        <b>${candidate.name}</b><br/>
-        <p>${candidate.emailGet}</p>  
-     </div>
-     
-     `;
-    }
-    return html;
+  // const candidateJson: string = this.getAttribute('.candidate') ?? "{}";
+  // const candidateParsed: CandidateUpdateEvent = JSON.parse(candidateJson);
+  let html = `<div class="candidate-header" style="width: 100%; display: flex; flex-direction: row; justify-content: space-around;">
+                <input type="checkbox"/>
+                  <p>Navn</p>
+                  <p>Betalt</p>
+                  <p>Status</p>
+              </div>`;
+  for (let candidate of candidates) {
+    
+    html += /*HTML*/ `
+        <list-component candidate="${JSON.stringify(candidate)}"></list-component>
+    `;
   }
+  return html;
+}

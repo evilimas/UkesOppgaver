@@ -1,5 +1,4 @@
 
-import { createCandidatesHtml } from '../view/listView';
 import { CandidateUpdateEvent } from '../model/types';
 
 export default class ListComponent extends HTMLElement {
@@ -15,9 +14,6 @@ export default class ListComponent extends HTMLElement {
       const candidate: CandidateUpdateEvent = JSON.parse(candidateJson);
 
       this.shadowRoot!.innerHTML = /*HTML*/ `
-      <head>
-      <link rel="stylesheet" href="styles.css" />
-      </head>
       <style>
         .candidate {
           display: flex;
@@ -32,28 +28,7 @@ export default class ListComponent extends HTMLElement {
         }
 
       </style>
-      <img src="/img/logo.png" alt="logo" class="logo"/>
-        <header>Velkommen til Get Academy Student Administrasjon!</header>
-          <filter-component></filter-component>
-          <your-filter-component></your-filter-component>
-              <div class="candidate-header" style="width: 100%; display: flex; flex-direction: row; justify-content: space-around;">
-                <input type="checkbox"/>
-                  <p>Navn</p>
-                  <p>Betalt</p>
-                  <p>Status</p>
-              </div>
-              <div candidate='${JSON.stringify(candidate)}' id="${
-                 candidate.id
-               }" class="candidate">
-              <div style="width: 100%; ">
-                      <input  style= "text-align: left;" type="checkbox"/>
-                      <button style= "float: right;">x</button>
-                      
-              </div>
-              <div style="align-text: center">
-                 <b>${candidate.name}</b><br/>
-                 <p>${candidate.emailGet}</p>  
-              </div>
+      <candidate-info-short></candidate-info-short>
             `;
 
       this.shadowRoot!.querySelector('button')!.addEventListener(
