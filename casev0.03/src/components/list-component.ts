@@ -1,9 +1,9 @@
-import state from "../model/state";
+import state from '../model/state';
 
 export default class ListComponent extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: 'open' });
   }
   private getEventFromCourseCandidateEvent(id: string) {
     const events = state.courseCandidateUpdateEvents;
@@ -13,11 +13,13 @@ export default class ListComponent extends HTMLElement {
   private createCandidatesHtml() {
     // const candidateJson: string = this.getAttribute('.candidate') ?? "{}";
     // const candidateParsed: CandidateUpdateEvent = JSON.parse(candidateJson);
-    let html = "";
+    let html = '';
     for (let candidate of state.candidateUpdateEvents) {
       html += /*HTML*/ `
-     <div candidate='${JSON.stringify(candidate)}' id="${candidate.id}" class="candidate">
-     <div style="width: 100%;">
+     <div candidate='${JSON.stringify(candidate)}' id="${
+        candidate.id
+      }" class="candidate">
+     <div style="width: 100%; ">
              <input  style= "text-align: left;" type="checkbox"/>
              <button style= "float: right;">x</button>
              
@@ -34,7 +36,6 @@ export default class ListComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    
     window.requestAnimationFrame(() => {
       this.shadowRoot!.innerHTML = /*HTML*/ `
       <head>
@@ -58,7 +59,7 @@ export default class ListComponent extends HTMLElement {
         <header>Velkommen til Get Academy Student Administrasjon!</header>
           <filter-component></filter-component>
           <your-filter-component></your-filter-component>
-              <div class="candidate-header" style="flex-direction: column">
+              <div class="candidate-header" style="width: 100%; display: flex; flex-direction: row; justify-content: space-around;">
                 <input type="checkbox"/>
                   <p>Navn</p>
                   <p>Betalt</p>
@@ -69,15 +70,15 @@ export default class ListComponent extends HTMLElement {
             
             `;
 
-      this.shadowRoot!.querySelector("button")!.addEventListener(
-        "click",
+      this.shadowRoot!.querySelector('button')!.addEventListener(
+        'click',
         () => {
           const details = {
             detail: { id: candidate.id },
             bubbles: true,
             // composed: true, => bobler forbi shadow root
           };
-          const event = new CustomEvent("movie-deleted", details);
+          const event = new CustomEvent('movie-deleted', details);
           this.dispatchEvent(event);
         }
       );
