@@ -17,12 +17,11 @@ export default (container: HTMLElement, actions: any) => {
     <header>Velkommen til Get Academy Student Administrasjon!</header>
       <filter-component></filter-component>
       <your-filter-component></your-filter-component>
-      <list-component></list-component>
       ${createCandidatesHtml(state.candidateUpdateEvents)}
       `;
 
 
-    const candidateDivs = container.querySelectorAll(".candidate");
+    const candidateDivs = container.querySelectorAll("candidate");
     for (let candidateDiv of candidateDivs) {
       candidateDiv.addEventListener("click", (event: Event) => {
         const target = event.target as HTMLElement;

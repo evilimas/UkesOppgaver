@@ -10,7 +10,7 @@ export default class ListComponent extends HTMLElement {
 
   connectedCallback() {
     window.requestAnimationFrame(() => {
-      const candidateJson: string = this.getAttribute('.candidate') ?? '{}';
+      const candidateJson: string = this.getAttribute('candidate') ?? '{}';
       const candidate: CandidateUpdateEvent = JSON.parse(candidateJson);
 
       this.shadowRoot!.innerHTML = /*HTML*/ `
