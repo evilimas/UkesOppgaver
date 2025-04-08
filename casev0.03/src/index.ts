@@ -31,6 +31,4 @@ router
   .setNotFound(pages.notFound)
   .start();
 
-actions.addChangeListener(() => {
-  router.checkRoutes();
-});
+actions.addChangeListener(router.checkRoutes.bind(router));
