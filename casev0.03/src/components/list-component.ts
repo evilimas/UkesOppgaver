@@ -10,7 +10,7 @@ export default class ListComponent extends HTMLElement {
 
   connectedCallback() {
     window.requestAnimationFrame(() => {
-      const candidateJson: string = this.getAttribute('candidate') ?? '{}';
+      const candidateJson: string = this.getAttribute('.candidate') ?? '{}';
       const candidate: CandidateUpdateEvent = JSON.parse(candidateJson);
 
       this.shadowRoot!.innerHTML = /*HTML*/ `
@@ -28,7 +28,16 @@ export default class ListComponent extends HTMLElement {
         }
 
       </style>
-      <candidate-info-short></candidate-info-short>
+      <div id="${candidate.id}" class="candidate">
+      
+      <div>
+          <b>${candidate.name}</b><br/>
+          ${candidate.phoneNumber}<br/>
+          ${candidate.discordName}
+      </div>
+      <div style="width: 100%; text-align: right;">
+      <button>x</button>
+  </div>
             `;
 
       this.shadowRoot!.querySelector('button')!.addEventListener(

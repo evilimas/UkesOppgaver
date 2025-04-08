@@ -17,6 +17,7 @@ export default (container: HTMLElement, actions: any) => {
     <header>Velkommen til Get Academy Student Administrasjon!</header>
       <filter-component></filter-component>
       <your-filter-component></your-filter-component>
+      <list-component></list-component>
       ${createCandidatesHtml(state.candidateUpdateEvents)}
       `;
 
