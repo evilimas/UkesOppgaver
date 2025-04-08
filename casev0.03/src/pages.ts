@@ -1,4 +1,5 @@
 import state from './model/state';
+import { AppState } from './model/types';
 
 export default (container: HTMLElement, actions: any) => {
   const home = () => {
@@ -8,7 +9,7 @@ export default (container: HTMLElement, actions: any) => {
     `;
   };
 
-  const list = () => {
+  const list = (papams:any, state: AppState) => {
     container.innerHTML = /*HTML*/ `
     <list-component ></list-component>
     `;
@@ -28,7 +29,7 @@ export default (container: HTMLElement, actions: any) => {
     }
   };
 
-  const detail = (params: any) => {
+  const detail = (params: any, state: AppState) => {
     const { id } = params;
     const candidate = state.candidateUpdateEvents.find((x) => x.id == id);
     container.innerHTML = /*HTML*/ `
