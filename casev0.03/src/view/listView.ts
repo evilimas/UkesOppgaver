@@ -15,9 +15,9 @@ export function createCandidatesHtml(candidates: CandidateUpdateEvent[]) {
                   <p>Status</p>
               </div>`;
   for (let candidate of candidates) {
-    const candidateJson = JSON.stringify(candidate).replace('"', '\"')
+    const candidateJson = JSON.stringify(candidate).replace('"', '"')
     html += /*HTML*/ `
-        <list-component candidate="${candidateJson}"></list-component>
+        <list-component candidate='${candidateJson}'></list-component>
     `;
   }
   return html;
