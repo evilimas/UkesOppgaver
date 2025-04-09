@@ -50,6 +50,7 @@ export default class ListComponent extends HTMLElement {
           this.dispatchEvent(event);
         }
       );
+      this.shadowRoot!.querySelector('.candidate')!.addEventListener('dblclick', ()=> location.hash=`#/list/${candidate.id}`)
     });
   }
 }
