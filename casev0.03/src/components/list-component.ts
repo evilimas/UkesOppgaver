@@ -1,4 +1,3 @@
-
 import { CandidateUpdateEvent } from '../model/types';
 
 export default class ListComponent extends HTMLElement {
@@ -6,7 +5,6 @@ export default class ListComponent extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
   }
- 
 
   connectedCallback() {
     window.requestAnimationFrame(() => {
@@ -46,7 +44,7 @@ export default class ListComponent extends HTMLElement {
           const details = {
             detail: { id: candidate.id },
             bubbles: true,
-            // composed: true, => bobler forbi shadow root
+            composed: true,
           };
           const event = new CustomEvent('candidate-deleted', details);
           this.dispatchEvent(event);
