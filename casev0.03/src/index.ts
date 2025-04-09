@@ -10,8 +10,8 @@ import { AppState } from "./model/types.ts";
 
 import actionsFactory from "./model/model.ts";
 
-customElements.define("filter-component", FilterComponent);
-customElements.define("your-filter-component", YourFiltersComponent);
+// customElements.define("filter-component", FilterComponent);
+// customElements.define("your-filter-component", YourFiltersComponent);
 customElements.define("list-component", ListComponent);
 
 const container = document.querySelector<HTMLElement>("main")!;
