@@ -1,5 +1,6 @@
-export function getEventFromCourseCandidateEvent(id: string,) {
-    const events = candidate.id;
-     let eventFound = events.find((x) => x.candidateId == id);
-     return /*HTML*/ `${eventFound?.courseId} ${eventFound?.eventType}`;
-   }
+import { CandidateUpdateEvent, CourseCandidateEvent } from "../model/types";
+
+export default (event: CourseCandidateEvent, candidates: CandidateUpdateEvent[]) => {
+    const candidateFound = candidates.find((x) => x.id == event.candidateId)
+    return `${candidateFound?.name}`
+}
