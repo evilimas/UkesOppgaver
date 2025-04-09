@@ -48,7 +48,7 @@ export default class ListComponent extends HTMLElement {
             bubbles: true,
             // composed: true, => bobler forbi shadow root
           };
-          const event = new CustomEvent('movie-deleted', details);
+          const event = new CustomEvent('candidate-deleted', details);
           this.dispatchEvent(event);
         }
       );

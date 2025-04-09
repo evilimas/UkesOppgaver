@@ -30,8 +30,8 @@ export default (container: HTMLElement, actions: any) => {
           // router.navigate(`/movies/${movieDiv.id}`)
         }
       });
-      container.addEventListener("movie-deleted", (event: CustomEvent) => {
-        console.log("movie-deleted", event.detail.id);
+      container.addEventListener("candidate-deleted", (event: CustomEvent) => {
+        console.log("candidate-deleted", event.detail.id);
         // actions.deleteMovie(event.detail.id);
       });
     }
