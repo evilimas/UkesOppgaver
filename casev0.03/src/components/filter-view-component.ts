@@ -62,11 +62,3 @@ function createEventHtml() {
   }
   return html;
 }
-
-// function getSemesters() {
-//   let html = '';
-//   for (let semester of model.semester) {
-//     html += `<option>${semester.name}</option>`;
-//   }
-//   return html;
-// }
