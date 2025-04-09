@@ -13,14 +13,14 @@ export default (container: HTMLElement, actions: any) => {
 
   const list = (papams:any, state: AppState) => {
     container.innerHTML = /*HTML*/ `
-   
+    <filter-component></filter-component>
     
     ${createCandidatesHtml(state.candidateUpdateEvents)}
     `;
     const candidateDivs = container.querySelectorAll(".candidate");
     
     container.addEventListener("candidate-deleted", (event: CustomEvent) => {
-      console.log("candidate-deleted", event.detail.id);
+          actions.deleteCandidate(event.detail.id);
         // actions.deleteMovie(event.detail.id);
       });
     for (let candidateDiv of candidateDivs) {
