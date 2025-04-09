@@ -1,5 +1,4 @@
-import model from './model/model';
-import router from './router';
+
 import { AppState } from './model/types';
 import { createCandidatesHtml } from './view/listView';
 import { createCandidateDetailHtml } from './view/detailView';

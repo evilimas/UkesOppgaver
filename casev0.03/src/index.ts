@@ -23,7 +23,7 @@ const pages = createPages(container, actions);
 const router = createRouter();
 
 router
-  .addRoute('#/', pages.list)
+  .addRoute('#/', pages.home)
   .addRoute('#/list', pages.list)
   .addRoute('#/list/:id', pages.detail)
   .setNotFound(pages.notFound)

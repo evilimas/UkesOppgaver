@@ -23,7 +23,8 @@ type renderingFunctionType = (params: any, state: AppState) => void;
 interface Router {
   addRoute: (hash: string, renderFunction: renderingFunctionType) => Router;
   setNotFound: (renderFunction: renderingFunctionType) => Router;
-  start: () => {};
+  navigate: (fragment: string) => void;
+  start: () => void;
   checkRoutes: (state: AppState) => void;
 }
 const mainRouterFunction: () => Router = () => {
