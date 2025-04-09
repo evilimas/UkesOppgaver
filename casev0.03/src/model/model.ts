@@ -96,8 +96,13 @@ export default (initialState: AppState = INITIAL_STATE) => {
   const { state, addChangeListener } = observableFactory(initialState);
 
   const deleteCandidate = (id: string) => {
-    state.candidateUpdateEvents = state.candidateUpdateEvents.filter((candidate : CandidateUpdateEvent) => candidate.id !== id);
-  }
+    state.candidateUpdateEvents = state.candidateUpdateEvents.filter(
+      (candidate: CandidateUpdateEvent) => candidate.id !== id
+    );
+  };
+  const candidateDetail = (id: string) => {
+    location.hash = `#/list/${id}`;
+  };
 
-  return { addChangeListener, deleteCandidate };
-}
+  return { addChangeListener, deleteCandidate, candidateDetail };
+};

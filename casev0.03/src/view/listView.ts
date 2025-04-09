@@ -1,5 +1,4 @@
-import { CandidateUpdateEvent } from "../model/types";
-
+import { CandidateUpdateEvent } from '../model/types';
 
 export function createCandidatesHtml(candidates: CandidateUpdateEvent[]) {
   // const candidateJson: string = this.getAttribute('.candidate') ?? "{}";
@@ -10,8 +9,9 @@ export function createCandidatesHtml(candidates: CandidateUpdateEvent[]) {
                   <p>Betalt</p>
                   <p>Status</p>
               </div>`;
+  console.log(candidates);
   for (let candidate of candidates) {
-    const candidateJson = JSON.stringify(candidate).replace('"', '"')
+    const candidateJson = JSON.stringify(candidate).replace('"', '"');
     html += /*HTML*/ `
         <list-component candidate='${candidateJson}'></list-component>
     `;

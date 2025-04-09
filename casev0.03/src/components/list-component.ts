@@ -34,11 +34,12 @@ export default class ListComponent extends HTMLElement {
           ${candidate.discordName}
       </div>
       <div style="width: 100%; text-align: right;">
-      <button>x</button>
+      <button class="delete-btn">Delete</button>
+      <button class="details-btn">Details</button>
   </div>
             `;
 
-      this.shadowRoot!.querySelector('button')!.addEventListener(
+      this.shadowRoot!.querySelector('button.delete-btn')!.addEventListener(
         'click',
         () => {
           const details = {
@@ -50,7 +51,18 @@ export default class ListComponent extends HTMLElement {
           this.dispatchEvent(event);
         }
       );
-      this.shadowRoot!.querySelector('.candidate')!.addEventListener('dblclick', ()=> location.hash=`#/list/${candidate.id}`)
+      this.shadowRoot!.querySelector('button.details-btn')!.addEventListener(
+        'click',
+        () => {
+          const details = {
+            detail: { id: candidate.id },
+            bubbles: true,
+            composed: true,
+          };
+          const event = new CustomEvent('candidate-details', details);
+          this.dispatchEvent(event);
+        }
+      );
     });
   }
 }
