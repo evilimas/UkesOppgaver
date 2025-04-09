@@ -7,7 +7,7 @@ export default (container: HTMLElement, actions: any) => {
   const home = () => {
     container.innerHTML = `
         <header>Velkommen til Get Academy!</header><br/>
-          <a href="/list"><b>Liste</b></a>
+          <a href="#/list"><b>Liste</b></a>
     `;
   };
 
