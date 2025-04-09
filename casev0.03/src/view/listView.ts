@@ -1,10 +1,6 @@
 import { CandidateUpdateEvent } from "../model/types";
 
-// function getEventFromCourseCandidateEvent(id: string,) {
-//     const events = candidate.id;
-//     let eventFound = events.find((x) => x.candidateId == id);
-//     return /*HTML*/ `${eventFound?.courseId} ${eventFound?.eventType}`;
-//   }
+
 export function createCandidatesHtml(candidates: CandidateUpdateEvent[]) {
   // const candidateJson: string = this.getAttribute('.candidate') ?? "{}";
   // const candidateParsed: CandidateUpdateEvent = JSON.parse(candidateJson);

@@ -1,4 +1,4 @@
-import filterView from './filter-view-component';
+import filterView from '../view/filterView';
 
 export default class Filter extends HTMLElement {
   btns: NodeListOf<HTMLButtonElement> | undefined;
@@ -32,7 +32,7 @@ export default class Filter extends HTMLElement {
     this.tabContent!.innerHTML = /*HTML*/ `
     <div id="${this.filterName}" class="tabcontent">
     <h3>Velg ${this.filterName}</h3>
-         ${filterView(this.filterName)}
+         ${filterView(this.filterName, state)}
     </div>    
     `;
   }

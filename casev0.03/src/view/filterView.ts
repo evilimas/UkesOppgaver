@@ -1,7 +1,8 @@
-import state from '../model/model';
-export default (filterName: string) => {
+import { AppState, CourseUpdateEvent } from "../model/types";
+
+export default (filterName: string, state: AppState) => {
   if (filterName == 'Kurs') {
-    return createKursHtml();
+    return createKursHtml(state.courseAddedEvents);
   } else if (filterName == 'Dato') {
     return createDatoHtml();
   } else if (filterName == 'Hendelser') {
@@ -9,16 +10,16 @@ export default (filterName: string) => {
   }
 };
 
-function createKursHtml() {
+function createKursHtml(courses: CourseUpdateEvent[]) {
   let html = '';
-  for (let kurs of state.courseAddedEvents) {
+  for (let course of courses) {
     html += `
         <label>
-        <input type="checkbox" value='${JSON.stringify(kurs).replace(
+        <input type="checkbox" value='${JSON.stringify(course).replace(
           '"',
           '"'
         )}' />
-        ${kurs.name}
+        ${course.name}
         </label>
         `;
   }
