@@ -1,5 +1,7 @@
-import { AppState } from "./model/types";
-import { createCandidatesHtml } from "./view/listView";
+import model from './model/model';
+import router from "./router"
+import { AppState } from './model/types';
+import { createCandidatesHtml } from './view/listView';
 
 export default (container: HTMLElement, actions: any) => {
   const home = () => {
@@ -9,29 +11,27 @@ export default (container: HTMLElement, actions: any) => {
     `;
   };
 
-  const list = (papams: any, state: AppState) => {
+  const list = (papams:any, state: AppState) => {
     container.innerHTML = /*HTML*/ `
-    <img src="/img/logo.png" alt="logo" class="logo"/>
-    <header>Velkommen til Get Academy Student Administrasjon!</header>
-      <filter-component></filter-component>
-      <your-filter-component></your-filter-component>
-      ${createCandidatesHtml(state.candidateUpdateEvents)}
-      `;
-
-
-    const candidateDivs = container.querySelectorAll("candidate");
+    <list-component ></list-component>
+    
+    ${createCandidatesHtml(state.candidateUpdateEvents)}
+    `;
+    const candidateDivs = container.querySelectorAll(".candidate");
+    
+    container.addEventListener("candidate-deleted", (event: CustomEvent) => {
+      console.log("candidate-deleted", event.detail.id);
+        // actions.deleteMovie(event.detail.id);
+      });
     for (let candidateDiv of candidateDivs) {
-      candidateDiv.addEventListener("click", (event: Event) => {
+      candidateDiv.addEventListener('click', (event: Event) => {
         const target = event.target as HTMLElement;
-        if (target!.tagName !== "BUTTON") {
+        if (target!.tagName !== 'BUTTON') {
           location.hash = `#/list/${candidateDiv.id}`;
           // router.navigate(`/movies/${movieDiv.id}`)
         }
       });
-      container.addEventListener("candidate-deleted", (event: CustomEvent) => {
-        console.log("candidate-deleted", event.detail.id);
-        // actions.deleteMovie(event.detail.id);
-      });
+    
     }
   };
 
@@ -48,7 +48,7 @@ export default (container: HTMLElement, actions: any) => {
   };
 
   const notFound = () => {
-    container.innerHTML = "Page Not Found!";
+    container.innerHTML = 'Page Not Found!';
   };
 
   return {
