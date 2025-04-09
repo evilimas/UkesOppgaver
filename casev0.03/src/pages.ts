@@ -13,7 +13,7 @@ export default (container: HTMLElement, actions: any) => {
 
   const list = (papams:any, state: AppState) => {
     container.innerHTML = /*HTML*/ `
-    <list-component ></list-component>
+   
     
     ${createCandidatesHtml(state.candidateUpdateEvents)}
     `;
