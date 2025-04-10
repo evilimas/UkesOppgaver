@@ -5,6 +5,11 @@ export default class Filter extends HTMLElement {
   tabContent: HTMLElement | undefined | null;
   filterName!: string;
 
+  // constructor() {
+  //   super();
+  //   this.attachShadow({ mode: 'open' });
+  // }
+
   private openFilter(event: Event): void {
     const btn = event.target as HTMLButtonElement;
     this.filterName = btn.innerHTML;

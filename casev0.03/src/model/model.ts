@@ -1,4 +1,4 @@
-import { AppState, CandidateUpdateEvent } from './types';
+import { AppState, CandidateUpdateEvent, CourseCandidateEvent } from './types';
 import observableFactory from './observable';
 
 const INITIAL_STATE: AppState = {
@@ -103,6 +103,15 @@ export default (initialState: AppState = INITIAL_STATE) => {
   const candidateDetail = (id: string, state: AppState) => {
     location.hash = `#/list/${id}`;
   };
+
+  // const filterList = (filterNames: string[]) => {
+  //   for (let filter of filterNames) {
+  //     state.courseCandidateUpdateEvents =
+  //       state.courseCandidateUpdateEvents.filter(
+  //         (course: CourseCandidateEvent) => course.courseId == filter
+  //       );
+  //   }
+  // };
 
   return { addChangeListener, deleteCandidate, candidateDetail };
 };

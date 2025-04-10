@@ -16,13 +16,13 @@ function createKursHtml(courses: CourseUpdateEvent[]) {
   for (let course of courses) {
     html += `
         <label>
-        <input type="checkbox" value='${JSON.stringify(course).replace(
-          '"',
-          '"'
-        )}' />
+        <input type="checkbox" id='${course.id}' name='${
+      course.name
+    }' value='${JSON.stringify(course).replace('"', '"')}' />
         ${course.name}
         </label>
         `;
+    console.log(document.querySelector('#' + `${course.id}`));
   }
   return html;
 }
