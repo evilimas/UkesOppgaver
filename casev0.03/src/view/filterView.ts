@@ -1,6 +1,7 @@
-import { AppState, CourseUpdateEvent } from "../model/types";
+import { INITIAL_STATE } from '../model/model';
+import { AppState, CourseUpdateEvent } from '../model/types';
 
-export default (filterName: string, state: AppState) => {
+export default (filterName: string, state: AppState = INITIAL_STATE) => {
   if (filterName == 'Kurs') {
     return createKursHtml(state.courseAddedEvents);
   } else if (filterName == 'Dato') {
