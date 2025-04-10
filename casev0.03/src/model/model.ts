@@ -84,6 +84,13 @@ const INITIAL_STATE: AppState = {
     },
     {
       courseId: '4',
+      candidateId: '1',
+      date: new Date('2025-01-11'),
+      eventType: 'approved',
+      amountPayed: 0,
+    },
+    {
+      courseId: '4',
       candidateId: '2',
       date: new Date('2025-01-01'),
       eventType: 'approved',
