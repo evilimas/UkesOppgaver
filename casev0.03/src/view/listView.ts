@@ -6,7 +6,9 @@ export function createCandidatesHtml(
 ) {
   // const candidateJson: string = this.getAttribute('.candidate') ?? "{}";
   // const candidateParsed: CandidateUpdateEvent = JSON.parse(candidateJson);
-  let html = `<div class="candidate-header" style="width: 100%; display: flex; flex-direction: row; justify-content: space-around;">
+  let html = `
+    
+    <div class="candidate-header" style="width: 100%; display: flex; flex-direction: row; justify-content: space-around;">
                 <input type="checkbox"/>
                   <p>Navn</p>
                   <p>Betalt</p>

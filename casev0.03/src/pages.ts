@@ -13,6 +13,8 @@ export default (container: HTMLElement, actions: any) => {
 
   const list = (params: any, state: AppState) => {
     container.innerHTML = /*HTML*/ `
+    <img src="/img/logo.png" alt="logo" class="logo"/>
+      <header>Velkommen til Get Academy Student Administrasjon!</header>
     <filter-component></filter-component>
     ${createCandidatesHtml(state.candidateUpdateEvents)}
     `;
@@ -21,7 +23,7 @@ export default (container: HTMLElement, actions: any) => {
       actions.deleteCandidate(event.detail.id);
     });
     container.addEventListener(
-      'candidate-details',
+      'edit-candidate-details',
       (event: CustomEvent, state: AppState) => {
         actions.candidateDetail(event.detail.id);
       }

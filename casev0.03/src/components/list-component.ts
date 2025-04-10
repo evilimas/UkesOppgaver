@@ -13,8 +13,10 @@ export default class ListComponent extends HTMLElement {
 
       this.shadowRoot!.innerHTML = /*HTML*/ `
       <style>
+
         .candidate {
-          display: flex;
+          display: grid;
+          grid-template-columns:1fr 1fr 1fr; 
           flex-direction: column;
           justify-content: space-around;
           align-items: left;
@@ -23,6 +25,11 @@ export default class ListComponent extends HTMLElement {
         }
         .logo {
          width: 25%;
+        }
+        .eventById {
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
       </style>
@@ -33,9 +40,12 @@ export default class ListComponent extends HTMLElement {
           ${candidate.phoneNumber}<br/>
           ${candidate.discordName}
       </div>
+      <div class="eventById">${this.candidateEvent(candidate.id)}</div>
       <div style="width: 100%; text-align: right;">
+      <button class="edit-btn">Edit</button>
+      <button onclick="window.location.hash = '#/list/${candidate.id}'" class="details-btn">Details</button>
       <button class="delete-btn">Delete</button>
-      <button class="details-btn">Details</button>
+      
   </div>
             `;
 
@@ -51,7 +61,7 @@ export default class ListComponent extends HTMLElement {
           this.dispatchEvent(event);
         }
       );
-      this.shadowRoot!.querySelector('button.details-btn')!.addEventListener(
+      this.shadowRoot!.querySelector('button.edit-btn')!.addEventListener(
         'click',
         () => {
           const details = {
@@ -59,10 +69,15 @@ export default class ListComponent extends HTMLElement {
             bubbles: true,
             composed: true,
           };
-          const event = new CustomEvent('candidate-details', details);
+          const event = new CustomEvent('edit-candidate-details', details);
           this.dispatchEvent(event);
         }
       );
     });
+
+    
+  }
+  candidateEvent(id: string){
+    return `Hello ${id}`
   }
 }
