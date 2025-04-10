@@ -22,7 +22,7 @@ function createKursHtml(courses: CourseUpdateEvent[]) {
         ${course.name}
         </label>
         `;
-    console.log(document.querySelector('#' + `${course.id}`));
+    // console.log(document.querySelector('#' + `${course.id}`));
   }
   return html;
 }
