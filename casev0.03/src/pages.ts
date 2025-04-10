@@ -47,7 +47,7 @@ export default (container: HTMLElement, actions: any) => {
 
     container.innerHTML = /*HTML*/ `
     <img src="/img/logo.png" alt="logo" class="logo"/>
-    ${createCandidateDetailHtml(candidate)}
+    ${createCandidateDetailHtml(candidate!)}
       
 `;
   };
