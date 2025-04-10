@@ -100,9 +100,11 @@ export default (initialState: AppState = INITIAL_STATE) => {
       (candidate: CandidateUpdateEvent) => candidate.id !== id
     );
   };
-  const candidateDetail = (id: string) => {
+  const candidateDetail = (id: string, state: AppState) => {
     location.hash = `#/list/${id}`;
   };
 
   return { addChangeListener, deleteCandidate, candidateDetail };
 };
+
+export { INITIAL_STATE };

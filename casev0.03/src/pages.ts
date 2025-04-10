@@ -1,7 +1,7 @@
-
 import { AppState } from './model/types';
 import { createCandidatesHtml } from './view/listView';
 import { createCandidateDetailHtml } from './view/detailView';
+import { INITIAL_STATE } from './model/model';
 
 export default (container: HTMLElement, actions: any) => {
   const home = () => {
@@ -20,9 +20,12 @@ export default (container: HTMLElement, actions: any) => {
     container.addEventListener('candidate-deleted', (event: CustomEvent) => {
       actions.deleteCandidate(event.detail.id);
     });
-    container.addEventListener('candidate-details', (event: CustomEvent) => {
-      actions.candidateDetail(event.detail.id);
-    });
+    container.addEventListener(
+      'candidate-details',
+      (event: CustomEvent, state: AppState) => {
+        actions.candidateDetail(event.detail.id);
+      }
+    );
 
     // const candidates = container.querySelectorAll(".candidate");
     // for (let candidate of candidates) {
@@ -37,7 +40,9 @@ export default (container: HTMLElement, actions: any) => {
 
   const detail = (params: any, state: AppState) => {
     const { id } = params;
-    const candidate = state.candidateUpdateEvents.find((x) => x.id == id);
+    const candidate = INITIAL_STATE.candidateUpdateEvents.find(
+      (x) => x.id == id
+    );
     console.log(id, candidate);
 
     container.innerHTML = /*HTML*/ `

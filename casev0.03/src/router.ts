@@ -1,7 +1,8 @@
-import { AppState } from "./model/types";
+import { INITIAL_STATE } from './model/model';
+import { AppState } from './model/types';
 
 const ROUTE_PARAMETER_REGEXP: RegExp = /:(\w+)/g;
-const URL_FRAGMENT_REGEXP = "([^\\/]+)";
+const URL_FRAGMENT_REGEXP = '([^\\/]+)';
 
 const extractUrlParams = (route, windowHash) => {
   const params = {};
@@ -59,7 +60,7 @@ const mainRouterFunction: () => Router = () => {
         params.push(paramName);
         return URL_FRAGMENT_REGEXP;
       })
-      .replace(/\//g, "\\/");
+      .replace(/\//g, '\\/');
 
     routes.push({
       testRegExp: new RegExp(`^${parsedFragment}$`),
@@ -80,13 +81,13 @@ const mainRouterFunction: () => Router = () => {
   };
 
   router.start = () => {
-    window.addEventListener("hashchange", router.checkRoutes.bind(router));
+    window.addEventListener('hashchange', router.checkRoutes.bind(router));
 
     if (!window.location.hash) {
-      window.location.hash = "#/";
+      window.location.hash = '#/';
     }
 
-    // checkRoutes()
+    router.checkRoutes;
   };
 
   return router;
