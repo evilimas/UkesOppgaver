@@ -1,4 +1,5 @@
 import { AppState } from './model/types';
+import ListComponent from './components/list-component';
 // import { createCandidatesHtml } from './view/listView';
 // import { createCandidateDetailHtml } from './view/detailView';
 import { INITIAL_STATE } from './model/model';
@@ -15,11 +16,12 @@ export default (container: HTMLElement, actions: any) => {
     container.innerHTML = /*HTML*/ `
     <img src="/img/logo.png" alt="logo" class="logo"/>
       <header>Velkommen til Get Academy Student Administrasjon!</header>
-    <filter-component></filter-component>
-    <list-component state="${JSON.stringify(state).replace(/"/g, '&quot;')}"></list-component>
-    
-    
+    <filter-component></filter-component>        
     `;
+    // <list-component candidates="${JSON.stringify(state).replace(/"/g, '&quot;')}"></list-component>
+    const listComponent = document.createElement('list-component') as ListComponent;
+    listComponent.candidates = state.candidateUpdateEvents;
+    container.appendChild(listComponent);
 
     container.addEventListener('candidate-deleted', (event: CustomEvent) => {
       actions.deleteCandidate(event.detail.id);
@@ -47,8 +49,6 @@ export default (container: HTMLElement, actions: any) => {
     const candidate = INITIAL_STATE.candidateUpdateEvents.find(
       (x) => x.id == id
     );
-    console.log(id, candidate);
-
     container.innerHTML = /*HTML*/ `
     
     <details-component candidate="${JSON.stringify(candidate).replace(/"/g, '&quot;')}"></details-component>

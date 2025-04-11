@@ -80,8 +80,13 @@ const mainRouterFunction: () => Router = () => {
     window.location.hash = fragment;
   };
 
-  router.start = () => {
-    window.addEventListener('hashchange', router.checkRoutes.bind(router));
+  router.start = (actions) => {
+    window.addEventListener('hashchange', ()=>{
+      const removeChangeListener = actions.addChangeListener((state: AppState) => {
+        router.checkRoutes(state);
+      });
+      removeChangeListener();
+    });
 
     if (!window.location.hash) {
       window.location.hash = '#/';

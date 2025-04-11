@@ -21,7 +21,6 @@ customElements.define('candidate-component', CandidateComponent);
 const container = document.querySelector<HTMLElement>('main')!;
 const actions = actionsFactory();
 const pages = createPages(container, actions);
-
 const router = createRouter();
 
 router
@@ -29,7 +28,7 @@ router
   .addRoute('#/list', pages.list)
   .addRoute('#/list/:id', pages.detail)
   .setNotFound(pages.notFound)
-  .start();
+  .start(actions);
 
 actions.addChangeListener((state: AppState) => {
   router.checkRoutes(state);
