@@ -1,7 +1,5 @@
 import { AppState } from './model/types';
 import ListComponent from './components/list-component';
-// import { createCandidatesHtml } from './view/listView';
-// import { createCandidateDetailHtml } from './view/detailView';
 import { INITIAL_STATE } from './model/model';
 
 export default (container: HTMLElement, actions: any) => {
@@ -18,7 +16,6 @@ export default (container: HTMLElement, actions: any) => {
       <header>Velkommen til Get Academy Student Administrasjon!</header>
     <filter-component></filter-component>        
     `;
-    // <list-component candidates="${JSON.stringify(state).replace(/"/g, '&quot;')}"></list-component>
     const listComponent = document.createElement('list-component') as ListComponent;
     listComponent.candidates = state.candidateUpdateEvents;
     container.appendChild(listComponent);
