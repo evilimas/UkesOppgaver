@@ -4,6 +4,7 @@ import FilterComponent from './components/filter-component.ts';
 import YourFiltersComponent from './components/your-filters-component.ts';
 import DetailsComponent from './components/details-component.ts';
 import ListComponent from './components/list-component.ts';
+import CandidateComponent from './components/candidate-component.ts';
 import { AppState } from './model/types.ts';
 
 // customElements.define('candidate-list-component', CandidateListComponent);
@@ -11,10 +12,11 @@ import { AppState } from './model/types.ts';
 
 import actionsFactory from './model/model.ts';
 
-customElements.define('candidate-component', DetailsComponent);
+customElements.define('details-component', DetailsComponent);
 customElements.define('filter-component', FilterComponent);
-// customElements.define("your-filter-component", YourFiltersComponent);
+customElements.define('your-filter-component', YourFiltersComponent);
 customElements.define('list-component', ListComponent);
+customElements.define('candidate-component', CandidateComponent);
 
 const container = document.querySelector<HTMLElement>('main')!;
 const actions = actionsFactory();

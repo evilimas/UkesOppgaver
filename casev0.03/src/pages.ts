@@ -16,7 +16,9 @@ export default (container: HTMLElement, actions: any) => {
     <img src="/img/logo.png" alt="logo" class="logo"/>
       <header>Velkommen til Get Academy Student Administrasjon!</header>
     <filter-component></filter-component>
-    ${createCandidatesHtml(state.candidateUpdateEvents)}
+    <list-component></list-component>
+    
+    
     `;
 
     container.addEventListener('candidate-deleted', (event: CustomEvent) => {

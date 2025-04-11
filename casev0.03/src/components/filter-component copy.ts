@@ -5,7 +5,6 @@ export default class Filter extends HTMLElement {
   tabContent: HTMLElement | undefined | null;
   filterName!: string;
 
-
   // constructor() {
   //   super();
   //   this.attachShadow({ mode: 'open' });
@@ -27,6 +26,7 @@ export default class Filter extends HTMLElement {
           <button class="tablinks">Hendelser</button>
       </div>
       <div id="tab-content">
+
       </div>
     `;
     this.tabContent = this.querySelector<HTMLElement>('#tab-content');
@@ -46,17 +46,19 @@ export default class Filter extends HTMLElement {
     //   <div id="${this.filterName}" class="tabcontent">
     //   <h3>Velg ${this.filterName}</h3>
     //       ${filterView(this.filterName)}
-    //   </div>    
+    //   </div>
     // `;
   }
 
   renderKurs() {
     let html = '';
-    for (let course of this.courses) { // kommer fra html-attributt courses
+    for (let course of this.courses) {
+      // kommer fra html-attributt courses
       html += `
         <label>
-        <input type="checkbox" id='${course.id}' name='${course.name
-        }' value='${JSON.stringify(course).replace('"', '"')}' />
+        <input type="checkbox" id='${course.id}' name='${
+        course.name
+      }' value='${JSON.stringify(course).replace('"', '"')}' />
         ${course.name}
         </label>
         `;
@@ -65,16 +67,18 @@ export default class Filter extends HTMLElement {
 
     this.tabContent!.innerHTML = html;
 
-    const checkboxes = this.tabContent!.querySelectorAll('input[type="checkbox"]');
+    const checkboxes = this.tabContent!.querySelectorAll(
+      'input[type="checkbox"]'
+    );
     checkboxes.forEach((checkbox) => {
       checkbox.addEventListener('change', () => {
-          /* 
+        /* 
             1: dispatche event 
             2: fange opp på app-nivå
             3: endre state 
             4: rerendering av appen
             */
-          // this.dispatchEvent(new CustomEvent('filter-changed', {});               
+        // this.dispatchEvent(new CustomEvent('filter-changed', {});
       });
     });
   }

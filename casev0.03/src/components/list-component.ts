@@ -1,3 +1,4 @@
+import { INITIAL_STATE } from '../model/model';
 import { CandidateUpdateEvent } from '../model/types';
 
 export default class ListComponent extends HTMLElement {
@@ -33,20 +34,13 @@ export default class ListComponent extends HTMLElement {
         }
 
       </style>
-      <div id="${candidate.id}" class="candidate">
-      
-      <div>
-          <b>${candidate.name}</b><br/>
-          ${candidate.phoneNumber}<br/>
-          ${candidate.discordName}
-      </div>
-      <div class="eventById">${this.candidateEvent(candidate.id)}</div>
-      <div style="width: 100%; text-align: right;">
-      <button class="edit-btn">Edit</button>
-      <button onclick="window.location.hash = '#/list/${candidate.id}'" class="details-btn">Details</button>
-      <button class="delete-btn">Delete</button>
-      
-  </div>
+      <div class="candidate-header" style="width: 100%; display: flex; flex-direction: row; justify-content: space-around;">
+      <input type="checkbox"/>
+        <p>Navn</p>
+        <p>Betalt</p>
+        <p>Status</p>
+    </div>
+    ${this.renderCandidateList(INITIAL_STATE.candidateUpdateEvents)}
             `;
 
       this.shadowRoot!.querySelector('button.delete-btn')!.addEventListener(
@@ -74,10 +68,17 @@ export default class ListComponent extends HTMLElement {
         }
       );
     });
-
-    
   }
-  candidateEvent(id: string){
-    return `Hello ${id}`
+  renderCandidateList(
+    candidates: CandidateUpdateEvent[] = INITIAL_STATE.candidateUpdateEvents
+  ) {
+    let html = '';
+    for (let candidate of candidates) {
+      const candidateJson = JSON.stringify(candidate).replace(/"/g, '&quot;');
+      html += /*HTML*/ `
+      <candidate-component candidate="${candidateJson}"></candidate-component>
+        `;
+    }
+    return html;
   }
 }
