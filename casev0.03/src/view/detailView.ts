@@ -5,7 +5,7 @@ export function createCandidateDetailHtml(candidate: CandidateUpdateEvent) {
 
   const candidateJson = JSON.stringify(candidate).replace('"', '"');
   html += /*HTML*/ `
-    <candidate-component candidate='${candidateJson}'></candidate-component>
+    <details-component candidate='${candidateJson}'></details-component>
     `;
   return html;
 }

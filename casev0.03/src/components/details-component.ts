@@ -25,6 +25,8 @@ export default class DetailsComponent extends HTMLElement {
         }
 
       </style>
+      <img src="/img/logo.png" alt="logo" class="logo"/>
+      <h1>Detalj View</h1>
       <div id="${candidate.id}" class="candidate">
       
       <div>
@@ -38,4 +40,5 @@ export default class DetailsComponent extends HTMLElement {
             `;
     });
   }
+
 }

@@ -1,6 +1,6 @@
 import { AppState } from './model/types';
-import { createCandidatesHtml } from './view/listView';
-import { createCandidateDetailHtml } from './view/detailView';
+// import { createCandidatesHtml } from './view/listView';
+// import { createCandidateDetailHtml } from './view/detailView';
 import { INITIAL_STATE } from './model/model';
 
 export default (container: HTMLElement, actions: any) => {
@@ -16,7 +16,7 @@ export default (container: HTMLElement, actions: any) => {
     <img src="/img/logo.png" alt="logo" class="logo"/>
       <header>Velkommen til Get Academy Student Administrasjon!</header>
     <filter-component></filter-component>
-    <list-component></list-component>
+    <list-component state="${JSON.stringify(state).replace(/"/g, '&quot;')}"></list-component>
     
     
     `;
@@ -50,8 +50,9 @@ export default (container: HTMLElement, actions: any) => {
     console.log(id, candidate);
 
     container.innerHTML = /*HTML*/ `
-    <img src="/img/logo.png" alt="logo" class="logo"/>
-    ${createCandidateDetailHtml(candidate!)}
+    
+    <details-component candidate="${JSON.stringify(candidate).replace(/"/g, '&quot;')}"></details-component>
+
       
 `;
   };

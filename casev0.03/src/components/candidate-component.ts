@@ -12,7 +12,7 @@ export default class CandidateComponent extends HTMLElement {
     const candidate: string = this.getAttribute('candidate') ?? '{}';
     const candidateJson: CandidateUpdateEvent = JSON.parse(candidate);
     // console.log(candidateJson);
-    console.log(candidate);
+    
     this.shadowRoot!.innerHTML = /*HTML*/ `
         <div id="${candidateJson.id}" class="candidate" >
       <div>
@@ -36,7 +36,7 @@ export default class CandidateComponent extends HTMLElement {
             'click',
             () => {
               const details = {
-                detail: { id: candidate.id },
+                detail: { id: candidateJson.id },
                 bubbles: true,
                 composed: true,
               };
@@ -48,7 +48,7 @@ export default class CandidateComponent extends HTMLElement {
             'click',
             () => {
               const details = {
-                detail: { id: candidate.id },
+                detail: { id: candidateJson.id },
                 bubbles: true,
                 composed: true,
               };
@@ -59,6 +59,7 @@ export default class CandidateComponent extends HTMLElement {
         };
   
   candidateEvent(id: string) {
+    const lastEvent = ''
     return `Hello ${id}`;
   }
 }
