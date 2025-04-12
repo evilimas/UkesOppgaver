@@ -1,4 +1,5 @@
 import { CandidateUpdateEvent } from '../model/types';
+import styles from '../'
 
 export default class CandidateComponent extends HTMLElement {
   /**
@@ -28,6 +29,7 @@ export default class CandidateComponent extends HTMLElement {
 
   render() {
     this.shadowRoot!.innerHTML = /*HTML*/ `
+    <link rel="stylesheet" href="../styles.css" />
         <div id="${this.candidate.id}" class="candidate" >
       <div>
       <b>${this.candidate.name}</b><br/>
