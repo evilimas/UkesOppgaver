@@ -1,10 +1,7 @@
 import { CandidateUpdateEvent } from '../model/types';
-import styles from '../'
 
 export default class CandidateComponent extends HTMLElement {
-  /**
-   *
-   */
+  
   constructor() {
     super();
     this.attachShadow({ mode: 'open' })
