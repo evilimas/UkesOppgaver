@@ -43,7 +43,6 @@ export default class DetailsComponent extends HTMLElement {
       "details-component"
     ) as DetailsComponent;
     detailsComponent.candidate = candidate;
-    //candidateComponent.addEventListener();
     candidateDiv.appendChild(detailsComponent);
   }
 
@@ -61,7 +60,6 @@ export default class DetailsComponent extends HTMLElement {
     .logo {
      width: 25%;
     }
-
   </style>
     `;
   }
