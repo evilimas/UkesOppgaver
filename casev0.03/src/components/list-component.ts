@@ -72,7 +72,7 @@ export default class ListComponent extends HTMLElement {
     for (let candidate of candidates) {
       const candidateComponent = document.createElement('candidate-component') as CandidateComponent;
       candidateComponent.candidate = candidate;
-      //candidateComponent.addEventListener();
+      
       candidateDiv.appendChild(candidateComponent);
     }
   }
