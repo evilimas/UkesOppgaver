@@ -27,6 +27,7 @@ export default class DetailsComponent extends HTMLElement {
     const candidate: CandidateUpdateEvent = JSON.parse(candidateJson);
     window.requestAnimationFrame(() => {
       this.shadowRoot!.innerHTML = /*HTML*/ `
+      <link rel="stylesheet" href="../styles.css" />
       ${DetailsComponent.getComponentStyle()}
       <img src="/img/logo.png" alt="logo" class="logo"/>
       <h1>Detalj View</h1>
