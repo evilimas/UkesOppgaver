@@ -4,19 +4,7 @@ import { ref } from 'vue'
 defineProps<{ msg: string }>()
 
 
-
 const numbers = ref<(number | null)[]>([3, 5, 6, 8, 1, null, 2, 4, 7])
-// const numbers = ref({
-//   0: 3,
-//   1: 5,
-//   2: 6,
-//   3: 8,
-//   4: 1,
-//   5: null,
-//   6: 2,
-//   7: 4,
-//   8: 7 
-// })
 
 const count = ref<number>(0)
 
