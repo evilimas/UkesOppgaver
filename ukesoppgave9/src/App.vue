@@ -3,7 +3,6 @@ import SlidingPuzzle from './components/SlidingPuzzle.vue'
 </script>
 
 <template>
-
   <SlidingPuzzle msg="Sliding puzzle" />
 </template>
 
