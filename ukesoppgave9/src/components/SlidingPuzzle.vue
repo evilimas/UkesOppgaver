@@ -15,9 +15,6 @@ function clickedNumber(index : number) : void {
     if (blankIndex == null) return;
     numbers.value[blankIndex] = numbers.value[index];
     numbers.value[index] = null;
-   
-    
-    
 }
 
 function findBlankIndex(index : number) : number | null {
@@ -69,3 +66,4 @@ p.feilmelding {
             clear: left;
         }
 </style>
+
