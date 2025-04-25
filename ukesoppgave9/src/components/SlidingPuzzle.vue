@@ -35,7 +35,7 @@ function clickedNumber(index : number) : void {
 function findBlankIndex(index : number) : number | null {
     for (let delta of [-3, -1, 1, 3]) {
         let newIndex = index + delta;
-        if (newIndex < 0 || newIndex >= numbers) continue;
+        if (newIndex < 0 || newIndex >= numbers.value.length) continue;
         if (numbers.value[newIndex] == null) {
             return newIndex;
         }
