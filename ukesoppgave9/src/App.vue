@@ -5,7 +5,3 @@ import SlidingPuzzle from './components/SlidingPuzzle.vue'
 <template>
   <SlidingPuzzle msg="Sliding puzzle" />
 </template>
-
-<style scoped>
-
-</style>
