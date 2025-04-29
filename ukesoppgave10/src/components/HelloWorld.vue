@@ -3,12 +3,12 @@ import { ref } from 'vue';
 
 type Suit = 'Hearts' | 'Diamonds' | 'Clubs' | 'Spades';
 type Rank = 'Ace' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King';
-
-type Card = { suit: Suit; rank: Rank; };
+type Card = { suit: Suit; rank: Rank; seed: Number};
 
 const makeDeck = (): Card[] => {
   const suits: Suit[] = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
   const ranks: Rank[] = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
+  const seeds: number[] = generateRandomSequence(100,100) 
   return suits.flatMap(suit => ranks.map(rank => ({ suit, rank })));
 };
 
@@ -24,10 +24,18 @@ const generateRandomSequence = (seed: number, length: number): number[] => {
   }
   return result;
 };
-
+const shuffleDeck = (deck: Card[]) => { 
+  console.log(generateRandomSequence(Math.floor(Math.random() * 1000000), deck.length)
+  )
+  // map random to deck
+  // sort deck 
+  // return shuffled deck
+}
 const drawCard = (deck: Card[]): { remainingDeck: Card[]; card?: Card } => {
   if (deck.length === 0) return { remainingDeck: [], card: undefined };
   const [first, ...rest] = deck;
+  console.log(deck)
+  shuffleDeck(deck)
   return { remainingDeck: rest, card: first };
 };
 
@@ -43,14 +51,14 @@ function Draw() {
 </script>
 <template>
   <div>
-    <button @click="">mix kortstokk</button>
+    <button @click="shuffleDeck">mix kortstokk</button>
     <button @click="Draw" :disabled="deck.length === 0">Trek kort</button>
     <p v-if="drawnCard">Trekker: {{ drawnCard.rank }} av {{ drawnCard.suit }}</p>
-    <ul>
+    <!-- <ul>
       <li v-for="(card, index) in deck" :key="index">
         {{ card.rank }} av {{ card.suit }}
       </li>
-    </ul>
+    </ul> -->
   </div>
 </template>
 
