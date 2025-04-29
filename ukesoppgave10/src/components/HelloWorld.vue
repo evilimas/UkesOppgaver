@@ -6,13 +6,13 @@ type Rank = 'Ace' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'Jack
 
 type Card = { suit: Suit; rank: Rank; };
 
-const generateDeck = (): Card[] => {
+const makeDeck = (): Card[] => {
   const suits: Suit[] = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
   const ranks: Rank[] = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
   return suits.flatMap(suit => ranks.map(rank => ({ suit, rank })));
 };
 
-const deck = ref<Card[]>(generateDeck());
+const deck = ref<Card[]>(makeDeck());
 const drawnCard = ref<Card | null>(null);
 
 const generateRandomSequence = (seed: number, length: number): number[] => {
