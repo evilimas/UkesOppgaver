@@ -1,41 +1,62 @@
 <script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
-</script>
+import { ref } from 'vue';
 
+type Suit = 'Hearts' | 'Diamonds' | 'Clubs' | 'Spades';
+type Rank = 'Ace' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King';
+
+type Card = { suit: Suit; rank: Rank; };
+
+const generateDeck = (): Card[] => {
+  const suits: Suit[] = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
+  const ranks: Rank[] = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
+  return suits.flatMap(suit => ranks.map(rank => ({ suit, rank })));
+};
+
+const deck = ref<Card[]>(generateDeck());
+const drawnCard = ref<Card | null>(null);
+
+const generateRandomSequence = (seed: number, length: number): number[] => {
+  const result: number[] = [];
+  let current = seed;
+  for (let i = 0; i < length; i++) {
+    current = (current * 9301 + 49297) % 233280;
+    result.push(current / 233280);
+  }
+  return result;
+};
+
+const drawCard = (deck: Card[]): { remainingDeck: Card[]; card?: Card } => {
+  if (deck.length === 0) return { remainingDeck: [], card: undefined };
+  const [first, ...rest] = deck;
+  return { remainingDeck: rest, card: first };
+};
+
+function Draw() {
+  const { remainingDeck, card } = drawCard(deck.value);
+  deck.value = remainingDeck; 
+  if (card) {
+    drawnCard.value = card;
+  }
+}
+
+
+</script>
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
+  <div>
+    <button @click="">mix kortstokk</button>
+    <button @click="Draw" :disabled="deck.length === 0">Trek kort</button>
+    <p v-if="drawnCard">Trekker: {{ drawnCard.rank }} av {{ drawnCard.suit }}</p>
+    <ul>
+      <li v-for="(card, index) in deck" :key="index">
+        {{ card.rank }} av {{ card.suit }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
-}
-
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
+.read-the-docs {
+  color: #888;
 }
 </style>
+
