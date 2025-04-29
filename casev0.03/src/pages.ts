@@ -1,6 +1,7 @@
 import { AppState } from './model/types';
 import ListComponent from './components/list-component';
 import { INITIAL_STATE } from './model/model';
+import DetailsComponent from './components/details-component';
 
 export default (container: HTMLElement, actions: any) => {
   const home = () => {
@@ -43,15 +44,11 @@ export default (container: HTMLElement, actions: any) => {
 
   const detail = (params: any, state: AppState) => {
     const { id } = params;
-    const candidate = INITIAL_STATE.candidateUpdateEvents.find(
-      (x) => x.id == id
-    );
-    container.innerHTML = /*HTML*/ `
-    
-    <details-component candidate="${JSON.stringify(candidate).replace(/"/g, '&quot;')}"></details-component>
-
-      
-`;
+    container.innerHTML = /*HTML*/ `   
+    <details-component></details-component> `;
+    const detailsComponent = document.createElement('details-component') as DetailsComponent;
+    detailsComponent.candidates = state.candidateUpdateEvents;
+    container.appendChild(detailsComponent);
   };
 
   const notFound = () => {
