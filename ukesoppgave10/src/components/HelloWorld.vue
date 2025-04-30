@@ -4,7 +4,7 @@ import { ref, type Ref } from 'vue'
 type Suit = 'Hearts' | 'Diamonds' | 'Clubs' | 'Spades'
 type Rank = 'Ace' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King'
 type Card = { suit: Suit; rank: Rank; }
-type SeededCard = { seed:number; suit: Suit; rank: Rank;  }
+type SeededCard = { seed: number; suit: Suit; rank: Rank; }
 
 const makeDeck = (): Card[] => {
   const suits: Suit[] = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
@@ -45,14 +45,11 @@ const makeShuffledDeck = () => {
     shuffledDeck.push({ ...card, seed })
   }
 
-   return shuffledDeck.sort((a, b) => a.seed - b.seed)
+  return shuffledDeck.sort((a, b) => a.seed - b.seed)
 }
 const deck = ref<Card[]>(makeDeck())
 const shuffledDeck = ref<SeededCard[]>(makeShuffledDeck())
 const drawnCard = ref<Card | null>(null)
-
-
-
 
 const drawCard = (deck: SeededCard[]): { remainingDeck: SeededCard[]; card?: SeededCard } => {
   if (deck.length === 0) return { remainingDeck: [], card: undefined }
@@ -71,7 +68,7 @@ function Draw() {
 <template>
   <div>
     <button @click="makeShuffledDeck()">mix kortstokk</button>
-    <button @click="Draw" :disabled="deck.length === 0">Trek kort</button>
+    <button @click="Draw" :disabled="shuffledDeck.length === 0">Trek kort</button>
     <p v-if="drawnCard">Trekker: {{ drawnCard.rank }} av {{ drawnCard.suit }}</p>
     <!-- <ul>
       <li v-for="(card, index) in deck" :key="index">
