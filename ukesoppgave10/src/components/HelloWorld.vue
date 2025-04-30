@@ -70,11 +70,11 @@ function Draw() {
     <button @click="makeShuffledDeck()">mix kortstokk</button>
     <button @click="Draw" :disabled="shuffledDeck.length === 0">Trek kort</button>
     <p v-if="drawnCard">Trekker: {{ drawnCard.rank }} av {{ drawnCard.suit }}</p>
-    <!-- <ul>
-      <li v-for="(card, index) in deck" :key="index">
+    <ul>
+      <li v-for="(card, index) in shuffledDeck" :key="index">
         {{ card.rank }} av {{ card.suit }}
       </li>
-    </ul> -->
+    </ul>
   </div>
 </template>
 
