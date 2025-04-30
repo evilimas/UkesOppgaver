@@ -54,7 +54,6 @@ const drawnCard = ref<Card | null>(null)
 const drawCard = (deck: SeededCard[]): { remainingDeck: SeededCard[]; card?: SeededCard } => {
   if (deck.length === 0) return { remainingDeck: [], card: undefined }
   const [first, ...rest] = deck
-  console.log(deck)
   return { remainingDeck: rest, card: first }
 }
 
