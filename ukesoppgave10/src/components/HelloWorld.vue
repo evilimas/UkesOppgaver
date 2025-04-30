@@ -26,11 +26,6 @@ const makeDeck = (): Card[] => {
   return suits.flatMap((suit) => ranks.map((rank) => ({ suit, rank })))
   // return suits.flatMap((suit) => ranks.map((rank) => seeds.map((seed) => ({ suit, rank, seed }))))
 }
-
-const deck = ref<Card[]>(makeDeck())
-const shuffledDeck = ref<SeededCard[]>(makeShuffledDeck(deck))
-const drawnCard = ref<Card | null>(null)
-
 const generateRandomSequence = (seed: number, length: number): number[] => {
   const result: number[] = []
   let current = seed
@@ -40,7 +35,7 @@ const generateRandomSequence = (seed: number, length: number): number[] => {
   }
   return result
 }
-const makeShuffledDeck = (deck: Ref<{ suit: Suit; rank: Rank; }[], Card[] | { suit: Suit; rank: Rank; }[]>) => {
+const makeShuffledDeck = () => {
   let shuffledDeck = []
   const seeds = generateRandomSequence(Math.floor(Math.random() * 1000000), deck.value.length)
 
@@ -50,18 +45,14 @@ const makeShuffledDeck = (deck: Ref<{ suit: Suit; rank: Rank; }[], Card[] | { su
     shuffledDeck.push({ ...card, seed })
   }
 
-  shuffledDeck.sort((a, b) => a.seed - b.seed)
-  console.log(shuffledDeck)
-  return shuffledDeck
-
-  // console.log(generateRandomSequence(Math.floor(Math.random() * 1000000), deck.length))
-  // map random to deck
-  // sort deck
-  // return shuffled deck
+   return shuffledDeck.sort((a, b) => a.seed - b.seed)
 }
-// const shuffleDeck = (deck: Card[]) => {
-//   seededDeck(deck) => deck.sort((a, b) => a.seed - b.seed)
-// }
+const deck = ref<Card[]>(makeDeck())
+const shuffledDeck = ref<SeededCard[]>(makeShuffledDeck())
+const drawnCard = ref<Card | null>(null)
+
+
+
 
 const drawCard = (deck: SeededCard[]): { remainingDeck: SeededCard[]; card?: SeededCard } => {
   if (deck.length === 0) return { remainingDeck: [], card: undefined }
@@ -71,7 +62,7 @@ const drawCard = (deck: SeededCard[]): { remainingDeck: SeededCard[]; card?: See
 
 function Draw() {
   const { remainingDeck, card } = drawCard(shuffledDeck.value)
-  deck.value = remainingDeck
+  shuffledDeck.value = remainingDeck
   if (card) {
     drawnCard.value = card
   }
@@ -79,7 +70,7 @@ function Draw() {
 </script>
 <template>
   <div>
-    <button @click="makeShuffledDeck(deck)">mix kortstokk</button>
+    <button @click="makeShuffledDeck()">mix kortstokk</button>
     <button @click="Draw" :disabled="deck.length === 0">Trek kort</button>
     <p v-if="drawnCard">Trekker: {{ drawnCard.rank }} av {{ drawnCard.suit }}</p>
     <!-- <ul>
