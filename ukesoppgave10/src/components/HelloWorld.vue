@@ -3,7 +3,8 @@ import { ref } from 'vue'
 
 type Suit = 'Hearts' | 'Diamonds' | 'Clubs' | 'Spades'
 type Rank = 'Ace' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King'
-type Card = { suit: Suit; rank: Rank; seed: Number }
+type Card = { suit: Suit; rank: Rank; }
+
 
 const makeDeck = (): Card[] => {
   const suits: Suit[] = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
@@ -22,9 +23,8 @@ const makeDeck = (): Card[] => {
     'Queen',
     'King',
   ]
-  const seeds: number[] = generateRandomSequence(100, 100)
-  // return suits.flatMap(suit => ranks.map(rank => ({ suit, rank })));
-  return suits.flatMap((suit) => ranks.map((rank) => seeds.map((seed) => ({ suit, rank, seed }))))
+  return suits.flatMap(suit => ranks.map(rank => ({ suit, rank, })));
+  // return suits.flatMap((suit) => ranks.map((rank) => seeds.map((seed) => ({ suit, rank, seed }))))
 }
 
 const deck = ref<Card[]>(makeDeck())
@@ -63,7 +63,7 @@ function Draw() {
 </script>
 <template>
   <div>
-    <button @click="shuffleDeck">mix kortstokk</button>
+    <button @click="shuffleDeck(deck)">mix kortstokk</button>
     <button @click="Draw" :disabled="deck.length === 0">Trek kort</button>
     <p v-if="drawnCard">Trekker: {{ drawnCard.rank }} av {{ drawnCard.suit }}</p>
     <!-- <ul>
