@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, type Ref } from 'vue'
 
 type Suit = 'Hearts' | 'Diamonds' | 'Clubs' | 'Spades'
 type Rank = 'Ace' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'Jack' | 'Queen' | 'King'
 type Card = { suit: Suit; rank: Rank; }
-type SeededCard = { suit: Suit; rank: Rank; seed:number }
+type SeededCard = { seed:number; suit: Suit; rank: Rank;  }
 
 const makeDeck = (): Card[] => {
   const suits: Suit[] = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
@@ -28,7 +28,7 @@ const makeDeck = (): Card[] => {
 }
 
 const deck = ref<Card[]>(makeDeck())
-const shuffledDeck = ref<SeededCard[]>
+const shuffledDeck = ref<SeededCard[]>(makeShuffledDeck(deck))
 const drawnCard = ref<Card | null>(null)
 
 const generateRandomSequence = (seed: number, length: number): number[] => {
@@ -40,18 +40,19 @@ const generateRandomSequence = (seed: number, length: number): number[] => {
   }
   return result
 }
-const makeShuffledDeck = (deck: Card[]) => {
-  let shuffleDeck = []
-  const seeds = generateRandomSequence(Math.floor(Math.random() * 1000000), deck.length)
+const makeShuffledDeck = (deck: Ref<{ suit: Suit; rank: Rank; }[], Card[] | { suit: Suit; rank: Rank; }[]>) => {
+  let shuffledDeck = []
+  const seeds = generateRandomSequence(Math.floor(Math.random() * 1000000), deck.value.length)
 
-  for (let i = 0; i < deck.length; i++) {
-    const card = deck[i]
+  for (let i = 0; i < deck.value.length; i++) {
+    const card = deck.value[i]
     const seed = seeds[i]
-    shuffleDeck.push({ ...card, seed })
+    shuffledDeck.push({ ...card, seed })
   }
 
-  shuffleDeck.sort((a, b) => a.seed - b.seed)
-  return shuffleDeck
+  shuffledDeck.sort((a, b) => a.seed - b.seed)
+  console.log(shuffledDeck)
+  return shuffledDeck
 
   // console.log(generateRandomSequence(Math.floor(Math.random() * 1000000), deck.length))
   // map random to deck
@@ -62,14 +63,14 @@ const makeShuffledDeck = (deck: Card[]) => {
 //   seededDeck(deck) => deck.sort((a, b) => a.seed - b.seed)
 // }
 
-const drawCard = (deck: Card[]): { remainingDeck: Card[]; card?: Card } => {
+const drawCard = (deck: SeededCard[]): { remainingDeck: SeededCard[]; card?: SeededCard } => {
   if (deck.length === 0) return { remainingDeck: [], card: undefined }
   const [first, ...rest] = deck
   return { remainingDeck: rest, card: first }
 }
 
 function Draw() {
-  const { remainingDeck, card } = drawCard(deck.value)
+  const { remainingDeck, card } = drawCard(shuffledDeck.value)
   deck.value = remainingDeck
   if (card) {
     drawnCard.value = card
