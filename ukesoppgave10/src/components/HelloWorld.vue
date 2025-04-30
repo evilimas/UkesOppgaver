@@ -43,11 +43,17 @@ const generateRandomSequence = (seed: number, length: number): number[] => {
 const shuffleDeck = (deck: Card[]) => {
   let seededDeck = []
   const seeds = generateRandomSequence(Math.floor(Math.random() * 1000000), deck.length)
-  for (let card of deck) {
-    for (let seed of seeds) {
-      seededDeck.push(Object.assign(card, { seed }))
-    }
+
+  for (let i = 0; i < deck.length; i++) {
+    const card = deck[i]
+    const seed = seeds[i]
+    seededDeck.push({ ...card, seed })
   }
+  // for (let card of deck) {
+  //   for (let seed of seeds) {
+  //     seededDeck.push(Object.assign(card, { seed }))
+  //   }
+  // }
   console.log(seededDeck)
 
   // console.log(generateRandomSequence(Math.floor(Math.random() * 1000000), deck.length))
