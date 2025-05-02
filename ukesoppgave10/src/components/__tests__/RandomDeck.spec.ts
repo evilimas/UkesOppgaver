@@ -12,7 +12,7 @@ describe('RandomDeck', () => {
 })
 
 describe('RandomDeck', () => {
-  it('contains all 52 cards', () => {
+  it('make deck with all 52 cards', () => {
     const wrapper = mount(RandomDeck)
     const deck = wrapper.vm.makeDeck()
     expect(deck).toEqual([
