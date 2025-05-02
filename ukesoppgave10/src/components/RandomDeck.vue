@@ -52,9 +52,8 @@ const generateRandomSequence = (seed: number, length: number): number[] => {
 //     }
 //   return shuffledDeck
 // }
-const makeShuffledDeck = (deck: Card[]) => {
+const makeShuffledDeck = (deck: Card[], seed:number) => {
   let shuffledDeck = []
-  let seed = Math.floor(Math.random() * 1000000)
   console.log(seed)
   const seeds = generateRandomSequence(seed, deck.length)
 
@@ -68,7 +67,7 @@ const makeShuffledDeck = (deck: Card[]) => {
 }
 
 const deck = ref<Card[]>(makeDeck())
-const shuffledDeck = ref<Card[]>(makeShuffledDeck(deck.value))
+const shuffledDeck = ref<Card[]>(makeShuffledDeck(deck.value, Math.floor(Math.random() * 1000000)))
 const drawnCard = ref<Card | null>(null)
 
 const drawCard = (deck: Card[]): { remainingDeck: Card[]; card?: Card } => {
