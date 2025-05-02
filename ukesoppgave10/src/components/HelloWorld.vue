@@ -25,47 +25,49 @@ const makeDeck = (): Card[] => suits.flatMap(suit => ranks.map(rank => ({ suit, 
 const generateRandomSequence = (seed: number, length: number): number[] => {
   const result: number[] = []
   let current = seed
+
   for (let i = 0; i < length; i++) {
-    // current = (current * 9301 + 49297) % 233280
-    // result.push(current / 233280)
-    result.push(Math.floor(Math.random() * 51));
+    current = (current * 9301 + 49297) % 233280
+    result.push(current / 233280)
+
+    // result.push(Math.floor(Math.random() * 51));
   }
-  console.log(result)
   return result
 }
-const makeShuffledDeck = (deckOriginal: Card[]) => {
-  let deck = [...deckOriginal];
-  const cardCount = deck.length;
-  let shuffledDeck: Card[] = []
+// const makeShuffledDeck = (deckOriginal: Card[]) => {
+//   let deck = [...deckOriginal];
+//   const cardCount = deck.length;
+//   let shuffledDeck: Card[] = []
 
-  while (shuffledDeck.length < cardCount) {
-    // gen random index - from seeds
-    const random = Math.floor(Math.random() * 51);  
-    let cardToRemove = deck[random]
-    deck.slice(random)
-    // add to shuffledDeck
-    shuffledDeck.push(cardToRemove)
-    }
-  return shuffledDeck
-}
-// const makeShuffledDeck = () => {
-//   let shuffledDeck = []
-//   const seeds = generateRandomSequence(Math.floor(Math.random() * 1000000), deck.value.length)
-
-//   for (let i = 0; i < deck.value.length; i++) {
-//     const card = deck.value[i]
-//     const seed = seeds[i]
-//     shuffledDeck.push({ ...card, seed })
-//   }
-
-//   return shuffledDeck.sort((a, b) => a.seed - b.seed)
+//   while (shuffledDeck.length < cardCount) {
+//     // gen random index - from seeds
+//     const random = Math.floor(Math.random() * 51);  
+//     let cardToRemove = deck[random]
+//     deck.slice(random)
+//     // add to shuffledDeck
+//     shuffledDeck.push(cardToRemove)
+//     }
+//   return shuffledDeck
 // }
+const makeShuffledDeck = (deck: Card[]) => {
+  let shuffledDeck = []
+  let seed = Math.floor(Math.random() * 1000000)
+  console.log(seed)
+  const seeds = generateRandomSequence(seed, deck.length)
+
+  for (let i = 0; i < deck.length; i++) {
+    const card = deck[i]
+    const seed = seeds[i]
+    shuffledDeck.push({ ...card, seed })
+  }
+
+  return shuffledDeck.sort((a, b) => a.seed - b.seed)
+}
 const deck = ref<Card[]>(makeDeck())
 const shuffledDeck = ref<Card[]>(makeShuffledDeck(deck.value))
 const drawnCard = ref<Card | null>(null)
 
 const drawCard = (deck: Card[]): { remainingDeck: Card[]; card?: Card } => {
-  generateRandomSequence(2, 52)
   if (shuffledDeck.value.length === 0) return { remainingDeck: [], card: undefined }
   const [first, ...rest] = deck
   return { remainingDeck: rest, card: first }
