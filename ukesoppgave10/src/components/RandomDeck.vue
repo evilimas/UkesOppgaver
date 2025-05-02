@@ -1,7 +1,5 @@
 <script setup lang="ts">
-defineProps<{text:string}> (
-)
-
+defineProps<{ text: string }>()
 
 import { ref, type Ref } from 'vue'
 const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'] as const
@@ -20,11 +18,12 @@ const ranks = [
   'Queen',
   'King',
 ] as const
-type Suit = typeof suits[number]
-type Rank = typeof ranks[number]
-type Card = { suit: Suit; rank: Rank; }
+type Suit = (typeof suits)[number]
+type Rank = (typeof ranks)[number]
+type Card = { suit: Suit; rank: Rank }
 
-const makeDeck = (): Card[] => suits.flatMap(suit => ranks.map(rank => ({ suit, rank })))
+const makeDeck = (): Card[] => suits.flatMap((suit) => ranks.map((rank) => ({ suit, rank })))
+defineExpose({ makeDeck })
 
 const generateRandomSequence = (seed: number, length: number): number[] => {
   const result: number[] = []
@@ -45,7 +44,7 @@ const generateRandomSequence = (seed: number, length: number): number[] => {
 
 //   while (shuffledDeck.length < cardCount) {
 //     // gen random index - from seeds
-//     const random = Math.floor(Math.random() * 51);  
+//     const random = Math.floor(Math.random() * 51);
 //     let cardToRemove = deck[random]
 //     deck.slice(random)
 //     // add to shuffledDeck
@@ -54,7 +53,6 @@ const generateRandomSequence = (seed: number, length: number): number[] => {
 //   return shuffledDeck
 // }
 const makeShuffledDeck = (deck: Card[]) => {
-  
   let shuffledDeck = []
   let seed = Math.floor(Math.random() * 1000000)
   console.log(seed)
@@ -88,19 +86,16 @@ function Draw() {
 </script>
 <template>
   <div>
-    <h1>{{ text }}</h1><br>
+    <h1>{{ text }}</h1>
+    <br />
     <ul>
-      <li v-for="(card, index) in deck" :key="index">
-        {{ card.rank }} av {{ card.suit }}
-      </li>
+      <li v-for="(card, index) in deck" :key="index">{{ card.rank }} av {{ card.suit }}</li>
     </ul>
     <!-- <button @click="makeShuffledDeck()">mix kortstokk</button> -->
     <button @click="Draw" :disabled="deck.length === 0">Trek kort</button>
     <p v-if="drawnCard">Trekker: {{ drawnCard.rank }} av {{ drawnCard.suit }}</p>
     <ul>
-      <li v-for="(card, index) in shuffledDeck" :key="index">
-        {{ card.rank }} av {{ card.suit }}
-      </li>
+      <li v-for="(card, index) in shuffledDeck" :key="index">{{ card.rank }} av {{ card.suit }}</li>
     </ul>
   </div>
 </template>
