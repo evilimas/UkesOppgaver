@@ -54,7 +54,6 @@ const generateRandomSequence = (seed: number, length: number): number[] => {
 // }
 const makeShuffledDeck = (deck: Card[], seed:number) => {
   let shuffledDeck = []
-  console.log(seed)
   const seeds = generateRandomSequence(seed, deck.length)
 
   for (let i = 0; i < deck.length; i++) {
