@@ -54,6 +54,7 @@ const generateRandomSequence = (seed: number, length: number): number[] => {
 //   return shuffledDeck
 // }
 const makeShuffledDeck = (deck: Card[]) => {
+  
   let shuffledDeck = []
   let seed = Math.floor(Math.random() * 1000000)
   console.log(seed)
