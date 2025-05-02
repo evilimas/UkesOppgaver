@@ -89,6 +89,11 @@ function Draw() {
 <template>
   <div>
     <h1>{{ text }}</h1><br>
+    <ul>
+      <li v-for="(card, index) in deck" :key="index">
+        {{ card.rank }} av {{ card.suit }}
+      </li>
+    </ul>
     <!-- <button @click="makeShuffledDeck()">mix kortstokk</button> -->
     <button @click="Draw" :disabled="deck.length === 0">Trek kort</button>
     <p v-if="drawnCard">Trekker: {{ drawnCard.rank }} av {{ drawnCard.suit }}</p>
