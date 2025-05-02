@@ -1,4 +1,8 @@
 <script setup lang="ts">
+defineProps<{text:string}> (
+)
+
+
 import { ref, type Ref } from 'vue'
 const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'] as const
 const ranks = [
@@ -83,6 +87,7 @@ function Draw() {
 </script>
 <template>
   <div>
+    <h1>{{ text }}</h1><br>
     <!-- <button @click="makeShuffledDeck()">mix kortstokk</button> -->
     <button @click="Draw" :disabled="deck.length === 0">Trek kort</button>
     <p v-if="drawnCard">Trekker: {{ drawnCard.rank }} av {{ drawnCard.suit }}</p>

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import RandomDeck from './components/RandomDeck.vue'
 
 </script>
 
 <template>
   <header>
     <div>
-      <HelloWorld msg="You did it!" />
+      <RandomDeck text='Hello random'/>
     </div>
   </header>
 
