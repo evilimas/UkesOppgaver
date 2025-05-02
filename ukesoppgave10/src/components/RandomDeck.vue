@@ -60,12 +60,13 @@ const makeShuffledDeck = (deck: Card[]) => {
 
   for (let i = 0; i < deck.length; i++) {
     const card = deck[i]
-    const seed = seeds[i]
-    shuffledDeck.push({ ...card, seed })
+    const rnd = seeds[i]
+    shuffledDeck.push({ ...card, rnd })
   }
 
-  return shuffledDeck.sort((a, b) => a.seed - b.seed)
+  return shuffledDeck.sort((a, b) => a.rnd - b.rnd)
 }
+
 const deck = ref<Card[]>(makeDeck())
 const shuffledDeck = ref<Card[]>(makeShuffledDeck(deck.value))
 const drawnCard = ref<Card | null>(null)
@@ -92,7 +93,7 @@ function Draw() {
       <li v-for="(card, index) in deck" :key="index">{{ card.rank }} av {{ card.suit }}</li>
     </ul> -->
     <!-- <button @click="makeShuffledDeck()">mix kortstokk</button> -->
-    <button @click="Draw" :disabled="deck.length === 0">Trek kort</button>
+    <button @click="Draw" :disabled="shuffledDeck.length === 0">Trekk kort</button>
     <p v-if="drawnCard">Trekker: {{ drawnCard.rank }} av {{ drawnCard.suit }}</p>
     <!-- <ul>
       <li v-for="(card, index) in shuffledDeck" :key="index">{{ card.rank }} av {{ card.suit }}</li>
