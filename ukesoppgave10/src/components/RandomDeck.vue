@@ -63,7 +63,7 @@ const makeShuffledDeck = (deck: Card[], seed:number) => {
     shuffledDeck.push({ ...card, randomNumber })
   }
 
-  return shuffledDeck.sort((a, b) => a.rnd - b.rnd)
+  return shuffledDeck.sort((a, b) => a.randomNumber - b.randomNumber)
 }
 
 const deck = ref<Card[]>(makeDeck())
