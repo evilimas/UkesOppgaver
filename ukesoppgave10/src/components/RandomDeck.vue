@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps<{ text: string }>()
 
-import { ref, type Ref } from 'vue'
+import { ref } from 'vue'
 const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'] as const
 const ranks = [
   'Ace',
@@ -52,7 +52,7 @@ const generateRandomSequence = (seed: number, length: number): number[] => {
 //     }
 //   return shuffledDeck
 // }
-const makeShuffledDeck = (deck: Card[], seed:number) => {
+const makeShuffledDeck = (deck: Card[], seed: number) => {
   let shuffledDeck = []
   const seeds = generateRandomSequence(seed, deck.length)
 
@@ -90,7 +90,9 @@ function Draw() {
     <!-- <ul>
       <li v-for="(card, index) in deck" :key="index">{{ card.rank }} av {{ card.suit }}</li>
     </ul> -->
-    <button @click="makeShuffledDeck(makeDeck(), Math.floor(Math.random() * 1000000))">mix kortstokk</button>
+    <button @click="makeShuffledDeck(makeDeck(), Math.floor(Math.random() * 1000000))">
+      mix kortstokk
+    </button>
     <button @click="Draw" :disabled="shuffledDeck.length === 0">Trekk kort</button>
     <p v-if="drawnCard">Trekker: {{ drawnCard.rank }} av {{ drawnCard.suit }}</p>
     <!-- <ul>
