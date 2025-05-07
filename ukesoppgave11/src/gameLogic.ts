@@ -1,5 +1,6 @@
-let dice;
-let currentPoints;
+const dieSides = [1, 2, 3, 4, 5, 6]
+const throwDice = 
+const currentPoints = 
 
 function pointsOnePair() {
   currentPoints = nOfAKind(2);
@@ -75,4 +76,12 @@ function createFrequencyTable(numbers) {
     table[number]++;
   }
   return table;
+}
+
+// -------
+
+const nOfAKind = n =>
+
+function range(from: number, to: number): number[] {
+  return Array.from({ length: to - from + 1 }, (_, i) => from + i);
 }
