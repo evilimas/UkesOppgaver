@@ -1,10 +1,8 @@
-const dieSides = [1, 2, 3, 4, 5, 6]
-const throwDice = 
-const currentPoints = 
+const dieSides = [1, 2, 3, 4, 5, 6];
 
-function pointsOnePair() {
+const currentPoints = function pointsOnePair() {
   currentPoints = nOfAKind(2);
-}
+};
 
 function pointsThreeOfAKind() {
   currentPoints = nOfAKind(3);
@@ -80,8 +78,9 @@ function createFrequencyTable(numbers) {
 
 // -------
 
-const nOfAKind = n =>
+const throwDie = (die) => Math.floor(Math.random() * 6) + 1;
 
-function range(from: number, to: number): number[] {
-  return Array.from({ length: to - from + 1 }, (_, i) => from + i);
-}
+const nOfAKind = (n: number[]) => (arr) =>
+  function range(from: number, to: number): number[] {
+    return Array.from({ length: to - from + 1 }, (_, i) => from + i);
+  };
