@@ -30,6 +30,6 @@ const checkSmallStraight = (n: Dice) => {}
 const checkLargeStraight = (n: Dice) => {}
 const checkChance = (n: Dice) => n.reduce((a, b) => a + b, 0);
 
-const checkPoints = (n: Dice) => { n.reduce((a, b) => a + b, 0);}
+const checkPoints = (n: Dice) => { n.reduce((a, b) => a + b, 0)};
 
 export { rollDie, nOfAKind , checkPoints};
