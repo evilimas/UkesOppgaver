@@ -1,4 +1,7 @@
-const dieSides = [1, 2, 3, 4, 5, 6];
+type die = number; 
+type dice = die[];
+type currentPoints = number;
+type pointsFunction = () => void;
 
 const currentPoints = function pointsOnePair() {
   currentPoints = nOfAKind(2);
@@ -84,3 +87,4 @@ const nOfAKind = (n: number[]) => (arr) =>
   function range(from: number, to: number): number[] {
     return Array.from({ length: to - from + 1 }, (_, i) => from + i);
   };
+=
