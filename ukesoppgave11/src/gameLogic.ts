@@ -1,3 +1,5 @@
+import _ = require("lodash");
+
 type die = number; 
 type dice = die[];
 type currentPoints = number;
@@ -82,7 +84,6 @@ function createFrequencyTable(numbers) {
 // -------
 
 const throwDie = (die) => Math.floor(Math.random() * 6) + 1;
-
 const nOfAKind = (n: number[]) => (arr) =>
   function range(from: number, to: number): number[] {
     return Array.from({ length: to - from + 1 }, (_, i) => from + i);
