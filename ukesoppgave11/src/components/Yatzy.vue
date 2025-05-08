@@ -12,7 +12,7 @@ const mostPoints = ref<number[]>([]);
 const selectedIndex = ref<number[]>([]);
 
 const selectedDice = computed(() => {
-  selectedIndex.value!.map((index) => currentDice.value[index]);
+  selectedIndex.value!.map((index) => savedDice.value[index]);
 });
 
 const addtosavedDice = () => {
@@ -39,7 +39,7 @@ function updateNumberOfRolls() {
     <p v-for="(die, index) of currentDice" :key="index">
       <input type="checkbox" v-model="selectedIndex" :value="index" />{{ die }}
     </p>
-    {{}}
+    {{ savedDice }}
     <!-- <button @click="">Spar terninger</button> -->
     <br />
     <!-- <button @click="checkPoints(savedDice)">Finn kombo med mest poeng</button> -->
