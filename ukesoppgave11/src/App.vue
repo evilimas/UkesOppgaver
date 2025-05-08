@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import HelloWorld from './components/Yatzy.vue';
+import Yatzy from './components/Yatzy.vue';
 </script>
 
 <template>
   <header>
-    <HelloWorld msg="You did it!" />
+    <Yatzy/>
   </header>
 </template>
 
