@@ -4,6 +4,11 @@ import { rollDice } from '../gameLogic';
 
 const currentDice = ref<number[]>([]);
 const NumberOfDice = ref<number>(7);
+const savedDice = ref<number[]>([]);
+const addtosavedDice = () => {
+ currentDice.value.pop()
+  savedDice.value.push(currentDice.value[0]);
+};
 </script>
 
 <template>
