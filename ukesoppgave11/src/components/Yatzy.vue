@@ -40,12 +40,12 @@ function updateNumberOfRolls() {
     <button @click="updateNumberOfRolls" :disabled="numberOfRolls == 0">
       Kast terninger
     </button>
-    <div v-if="numberOfRolls > 0">{{ numberOfRolls }}</div>
+    <div v-if="numberOfRolls > 0">Antall Kast igjen {{ numberOfRolls }}</div>
     <div v-else>Du har brukt dine kast</div>
     <p v-for="(die, index) of currentDice" :key="index">
-      <Button v-model="currentDice[index].value" @click="addtosavedDice(die),removeFromCurrentDice()">Legg til {{ die }}</Button>
+      <Button v-model="currentDice[index].value" @click="addtosavedDice(die), NumberOfDice--">Legg til {{ die }}</Button>
     </p>
-    <span>{{ savedDice }}</span>
+    <span>Valgte terninger {{ savedDice }}</span>
     <span>{{ currentDice }}</span>
     <!-- <button @click="">Spar terninger</button> -->
     <br />
