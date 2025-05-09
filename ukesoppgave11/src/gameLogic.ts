@@ -1,5 +1,6 @@
 type Die = number;
 type Dice = Die[];
+type rollDie = () => number;
 // type count = ()=>
 
 const countDie = (dice: Dice[]): Record<Die, number> =>
