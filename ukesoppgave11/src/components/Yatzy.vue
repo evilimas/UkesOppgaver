@@ -36,7 +36,6 @@ function updateNumberOfRolls() {
       <Button v-model="currentDice[index].value" @click="addtosavedDice(die), NumberOfDice--">Legg til {{ die }}</Button>
     </p>
     <span>Valgte terninger {{ savedDice }}</span>
-    <span>{{ currentDice }}</span>
     <!-- <button @click="">Spar terninger</button> -->
     <br />
     <button @click="findCombos(savedDice)">Finn kombo med mest poeng</button> 
