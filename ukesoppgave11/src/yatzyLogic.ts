@@ -20,7 +20,7 @@ const nOfAKind = (numberOfAKind: number) => (dice: Die[]): number => {
         frequencyTable[dieValue] >= numberOfAKind ? dieValue * numberOfAKind : points;    
     return dieValues.reduce(reduceOne, 0);
 }
-
+const pointsUpper = () => {}
 const positiveToFixedNumber = (fixedNumber: number) => (n: number) => n > 0 ? fixedNumber : 0;
 const pointsOnePair = nOfAKind(2);
 const pointsThreeOfAKind = nOfAKind(3);
