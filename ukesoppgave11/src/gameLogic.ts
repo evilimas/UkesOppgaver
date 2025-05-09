@@ -4,7 +4,7 @@ type rollDie = () => number;
 // type count = ()=>
 
 export const countDie = (dice: Dice[]): Record<Die, number> =>
-const findCombos = (dice: Dice[]) => {}
+
 const countDie = (dice: Dice[]): Record<Die, number> =>
   dice.reduce((acc, val) => {
     acc[val] = (acc[val] || 0) + 1;
@@ -26,4 +26,3 @@ const hasTwoPairs = (dice: Dice[]) => {
   const counts = Object.values(countDie(dice));
   return counts.filter((n) => n === 2).length === 2;
 };
-export { findCombos }
