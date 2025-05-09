@@ -24,7 +24,7 @@ const addtosavedDice = (die) => {
   // savedDice.value.push(currentDice.value[0]);
 };
 const removeFromCurrentDice = (index) => {
-  currentDice.value = currentDice.value.splice(1, index);
+  currentDice.value.filter((item) => item == index);
   NumberOfDice.value = currentDice.value.length;
 };
 function updateNumberOfRolls() {
@@ -43,7 +43,7 @@ function updateNumberOfRolls() {
     <div v-if="numberOfRolls > 0">{{ numberOfRolls }}</div>
     <div v-else>Du har brukt dine kast</div>
     <p v-for="(die, index) of currentDice" :key="index">
-      <input type="checkbox" @click="addtosavedDice(die),removeFromCurrentDice(die)"/>{{ die }}
+      <input type="checkbox" v-model="currentDice[index]" @click="addtosavedDice(die),removeFromCurrentDice()"/>{{ die }}
     </p>
     <span>{{ savedDice }}</span>
     <span>{{ currentDice }}</span>
