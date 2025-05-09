@@ -1,36 +1,70 @@
-const compose = (...fns: Function[]) => (...args: any[]) => fns.reduceRight((res, fn) => [fn.call(null, ...res)], args)[0];
+const compose =
+  (...fns: Function[]) =>
+  (...args: any[]) =>
+    fns.reduceRight((res, fn) => [fn.call(null, ...res)], args)[0];
 
 const dieValues = [1, 2, 3, 4, 5, 6] as const;
-type Die = typeof dieValues[number];
+type Die = (typeof dieValues)[number];
 type DieFrequencyTable = {
-    [K in Die]: number;
-  };
+  [K in Die]: number;
+};
 
-const countOne = (table: DieFrequencyTable, number: Die): DieFrequencyTable => ({
-    ...table,
-    [number]: table[number] + 1,
+const countOne = (
+  table: DieFrequencyTable,
+  number: Die
+): DieFrequencyTable => ({
+  ...table,
+  [number]: table[number] + 1,
 });
 
-const createFrequencyTable = (numbers: Die[]) => 
-    numbers.reduce(countOne, { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 });
+const createFrequencyTable = (numbers: Die[]) =>
+  numbers.reduce(countOne, { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0 });
 
-const nOfAKind = (numberOfAKind: number) => (dice: Die[]): number => {
+const nOfAKind =
+  (numberOfAKind: number) =>
+  (dice: Die[]): number => {
     const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
-    const reduceOne = (points: number, dieValue: Die) => 
-        frequencyTable[dieValue] >= numberOfAKind ? dieValue * numberOfAKind : points;    
+    const reduceOne = (points: number, dieValue: Die) =>
+      frequencyTable[dieValue] >= numberOfAKind
+        ? dieValue * numberOfAKind
+        : points;
     return dieValues.reduce(reduceOne, 0);
-}
+  };
 
-const positiveToFixedNumber = (fixedNumber: number) => (n: number) => n > 0 ? fixedNumber : 0;
+const positiveToFixedNumber = (fixedNumber: number) => (n: number) =>
+  n > 0 ? fixedNumber : 0;
 const pointsOnePair = nOfAKind(2);
 const pointsThreeOfAKind = nOfAKind(3);
 const pointsFourOfAKind = nOfAKind(4);
 const pointsYatzy = compose(positiveToFixedNumber(50), nOfAKind(5));
 
-export { createFrequencyTable, nOfAKind, pointsOnePair, pointsThreeOfAKind, pointsFourOfAKind, pointsYatzy };
+export {
+  createFrequencyTable,
+  nOfAKind,
+  pointsOnePair,
+  pointsThreeOfAKind,
+  pointsFourOfAKind,
+  pointsYatzy,
+};
 export type { Die, DieFrequencyTable };
 
+const pointsToPairs =
+  (pairOfAKind: number) =>
+  (dice: Die[]): number => {
+    const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
+  };
 /*
+
+function nOfAKind(n) {
+    const frequencyTable = createFrequencyTable(dice);
+    let points = 0;
+    for (let number = 0; number < 6; number++) {
+        if (frequencyTable[number] >= n) {
+            points = number * n;
+        }
+    }
+    return points;
+}
 
 function pointsTwoPairs() {
     const frequencyTable = createFrequencyTable(dice);
