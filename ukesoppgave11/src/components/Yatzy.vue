@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import type { Dice, rollDie, findCombos } from '../gameLogic';
+import type { Dice, rollDie } from '../gameLogic';
+import { findCombos } from '../gameLogic';
 
 const rollDie = () => Math.floor(Math.random() * 6) + 1;
 const rollDice = (n: number): Dice => Array.from({ length: n }, rollDie);
@@ -11,22 +12,11 @@ const savedDice = ref<number[]>([]);
 const mostPoints = ref<number[]>([]);
 const selectedIndex = ref<number[]>([]);
 const points = ref<number>(0);
-const checkPoints = () => savedDice.reduce((a, b) => a + b, 0)
-const selectedDice = computed(() => {
-  selectedIndex.value!.map((index) => savedDice.value[index]);
-});
 
 const addtosavedDice = (die) => {
   savedDice.value.push(die)
-  // currentDice.value = currentDice.value.filter((item) => item !== die);
-  // return currentDice.map((index) => savedDice[index]);
-  // currentDice.value.unshift();
-  // savedDice.value.push(currentDice.value[0]);
 };
-const removeFromCurrentDice = (index) => {
-  currentDice.value.filter((item) => item == index);
-  NumberOfDice.value = currentDice.value.length;
-};
+
 function updateNumberOfRolls() {
   currentDice.value = rollDice(NumberOfDice.value);
   numberOfRolls.value--;
@@ -49,9 +39,9 @@ function updateNumberOfRolls() {
     <span>{{ currentDice }}</span>
     <!-- <button @click="">Spar terninger</button> -->
     <br />
-    <button @click="findCombos()">Finn kombo med mest poeng</button> 
+    <button @click="findCombos(savedDice)">Finn kombo med mest poeng</button> 
     <p v-for="(die, index) of savedDice" :key="index">{{ die }}</p>
-    <p>{{ points.value }}</p> 
+    <p>Dine poeng {{ points.value }}</p> 
   </div>
 </template>
 
