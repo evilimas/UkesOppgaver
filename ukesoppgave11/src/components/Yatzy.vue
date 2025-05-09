@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import type { Dice, rollDie } from '../gameLogic';
-import { findCombos } from '../gameLogic';
 
 const rollDie = () => Math.floor(Math.random() * 6) + 1;
 const rollDice = (n: number): Dice => Array.from({ length: n }, rollDie);
