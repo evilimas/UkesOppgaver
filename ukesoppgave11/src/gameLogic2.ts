@@ -1,5 +1,6 @@
-type Dice = Die[];
 type Die = number;
+type Dice = Die[];
+// type count = ()=>
 
 const countDie = (dice: Dice[]) =>
   dice.reduce((acc, val) => {
