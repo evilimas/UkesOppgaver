@@ -43,7 +43,7 @@ function updateNumberOfRolls() {
     <div v-if="numberOfRolls > 0">{{ numberOfRolls }}</div>
     <div v-else>Du har brukt dine kast</div>
     <p v-for="(die, index) of currentDice" :key="index">
-      <input type="checkbox" v-model="currentDice[index]" @click="addtosavedDice(die),removeFromCurrentDice()"/>{{ die }}
+      <input type="checkbox" v-model="currentDice[index].value" @click="addtosavedDice(die),removeFromCurrentDice()"/>{{ die }}
     </p>
     <span>{{ savedDice }}</span>
     <span>{{ currentDice }}</span>
