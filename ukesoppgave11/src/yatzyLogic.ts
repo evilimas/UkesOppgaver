@@ -29,10 +29,8 @@ const nOfAKind =
         ? dieValue * numberOfAKind
         : points;
     return dieValues.reduce(reduceOne, 0);
-}
-const pointsUpper = () => {}
-const positiveToFixedNumber = (fixedNumber: number) => (n: number) => n > 0 ? fixedNumber : 0;
   };
+const pointsUpper = () => {};
 
 const positiveToFixedNumber = (fixedNumber: number) => (n: number) =>
   n > 0 ? fixedNumber : 0;
@@ -48,6 +46,11 @@ export {
   pointsThreeOfAKind,
   pointsFourOfAKind,
   pointsYatzy,
+  pointsToPairs,
+  pointsHouse,
+  pointsSmallStraight,
+  pointsLargeStraight,
+  sum,
 };
 export type { Die, DieFrequencyTable };
 
@@ -55,62 +58,93 @@ const pointsToPairs =
   (pairOfAKind: number) =>
   (dice: Die[]): number => {
     const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
+    let pairCount = 0;
+
+    const reducePair = (points: number, dieValue: Die) => {
+      if (frequencyTable[dieValue] >= 2 && pairCount < pairOfAKind) {
+        pairCount++;
+        return points + dieValue * 2;
+      }
+      return points;
+    };
+
+    return dieValues.reduce(reducePair, 0);
   };
+
+const pointsHouse = (dice: Die[]): number => {
+  const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
+  const dieCounts = Object.values(frequencyTable);
+  const hasThree = dieCounts.includes(3);
+  const hasTwo = dieCounts.includes(2);
+
+  return hasThree && hasTwo ? dice.reduce((points, die) => points + die, 0) : 0;
+};
+
+const pointsSmallStraight =
+  () =>
+  (dice: Die[]): number => {
+    const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
+    const smallStraight = [1, 2, 3, 4, 5];
+    return smallStraight.every((die) => frequencyTable[die] === 1) ? 15 : 0;
+  };
+
+const pointsLargeStraight =
+  () =>
+  (dice: Die[]): number => {
+    const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
+    const smallStraight = [2, 3, 4, 5, 6];
+    return smallStraight.every((die) => frequencyTable[die] === 1) ? 20 : 0;
+  };
+
+const sum = (points: number[]): number =>
+  points.reduce((sum, point) => sum + point, 0);
+
 /*
 
-function nOfAKind(n) {
-    const frequencyTable = createFrequencyTable(dice);
-    let points = 0;
-    for (let number = 0; number < 6; number++) {
-        if (frequencyTable[number] >= n) {
-            points = number * n;
-        }
-    }
-    return points;
-}
-
-function pointsTwoPairs() {
-    const frequencyTable = createFrequencyTable(dice);
-    let points = 0;
-    let pairCount = 0;
-    for (let number = 6; number > 0; number--) {
-        if (frequencyTable[number] >= 2) {
-            points += number * 2;
-            pairCount++;
-        }
-    }
-    currentPoints = pairCount >= 2 ? points : 0;
-}
 
 
-function pointsHouse() {
-    const frequencyTable = createFrequencyTable(dice);
-    let has3 = false;
-    let has2 = false;
-    for (let frequency of frequencyTable) {
-        if (frequency === 3) has3 = true;
-        if (frequency === 2) has2 = true;
-    }
-    currentPoints = has2 && has3 ? sum(dice) : 0;
-}
-
-function sum(numbers) {
-    let sum = 0;
-    for (let number of numbers) {
-        sum += number;
-    }
-    return sum;
-}
 
 function pointsSmallStraight() {
     const frequencyTable = createFrequencyTable(dice);
     let hasSmallStraight = true;
     for (let number = 1; number < 6; number++) {
         if (frequencyTable[number] !== 1) hasSmallStraight = false;
-    }
-    currentPoints = hasSmallStraight ? 15 : 0;
-}
+        }
+        currentPoints = hasSmallStraight ? 15 : 0;
+        }
 
 
-
-*/
+function sum(numbers) {
+    let sum = 0;
+    for (let number of numbers) {
+        sum += number;
+        }
+        return sum;
+        }
+        
+                
+                function pointsHouse() {
+                    const frequencyTable = createFrequencyTable(dice);
+                    let has3 = false;
+                    let has2 = false;
+                    for (let frequency of frequencyTable) {
+                        if (frequency === 3) has3 = true;
+                        if (frequency === 2) has2 = true;
+                    }
+                    currentPoints = has2 && has3 ? sum(dice) : 0;
+                }
+                
+                
+                function pointsTwoPairs() {
+                    const frequencyTable = createFrequencyTable(dice);
+                    let points = 0;
+                    let pairCount = 0;
+                    for (let number = 6; number > 0; number--) {
+                        if (frequencyTable[number] >= 2) {
+                            points += number * 2;
+                            pairCount++;
+                            }
+                            }
+                            currentPoints = pairCount >= 2 ? points : 0;
+                            }
+                            */
