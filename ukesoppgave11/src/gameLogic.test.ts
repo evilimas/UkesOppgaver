@@ -120,4 +120,37 @@ describe('YatzyLogic', () => {
     // assert
     expect(points).toBe(20);
   });
+
+  it('Liten straight 2', () => {
+    // arrange
+    const dice: Die[] = [1, 2, 3, 4, 5];
+
+    // act
+    const points = Y.pointsStraight(dice);
+
+    // assert
+    expect(points).toBe(15);
+  });
+
+  it('Stor straight 2', () => {
+    // arrange
+    const dice: Die[] = [2, 3, 4, 5, 6];
+
+    // act
+    const points = Y.pointsStraight(dice);
+
+    // assert
+    expect(points).toBe(20);
+  });
+
+  it('Ikke stor straight', () => {
+    // arrange
+    const dice: Die[] = [2, 3, 3, 5, 6];
+
+    // act
+    const points = Y.pointsStraight(dice);
+
+    // assert
+    expect(points).toBe(0);
+  });
 });

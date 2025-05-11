@@ -5,9 +5,7 @@ const compose =
 
 const dieValues = [1, 2, 3, 4, 5, 6] as const;
 type Die = (typeof dieValues)[number];
-type DieFrequencyTable = {
-  [K in Die]: number;
-};
+type DieFrequencyTable = { [K in Die]: number };
 
 const countOne = (
   table: DieFrequencyTable,
@@ -50,6 +48,7 @@ export {
   pointsHouse,
   pointsSmallStraight,
   pointsLargeStraight,
+  pointsStraight,
   sum,
 };
 export type { Die, DieFrequencyTable };
@@ -90,6 +89,18 @@ const pointsLargeStraight = (dice: Die[]): number => {
   const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
   const largeStraight = [2, 3, 4, 5, 6];
   return largeStraight.every((die) => frequencyTable[die] === 1) ? 20 : 0;
+};
+
+const pointsStraight = (dice: Die[]): number => {
+  const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
+  const smallStraight: Die[] = [1, 2, 3, 4, 5];
+  const largeStraight: Die[] = [2, 3, 4, 5, 6];
+  const hasStraight = (dice: Die[]): boolean =>
+    dice.every((die) => frequencyTable[die] === 1);
+
+  if (hasStraight(smallStraight)) return 15;
+  else if (hasStraight(largeStraight)) return 20;
+  else return 0;
 };
 
 const sum = (points: number[]): number =>
