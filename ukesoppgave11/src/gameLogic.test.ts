@@ -16,9 +16,10 @@ describe('YatzyLogic', () => {
   it('tre enere', () => {
     const dice: Die[] = [1, 1, 1, 2, 3];
     const counts: DieFrequencyTable = Y.createFrequencyTable(dice);
-    const points = Y.pointsUpper(counts);
+    const points = Y.pointsThreeOfAKind(dice);
     expect(points).toBe(3);
   });
+
   it('Ikke ett par', () => {
     // arrange
     const dice: Die[] = [1, 2, 3, 4, 5];
@@ -76,26 +77,15 @@ describe('YatzyLogic', () => {
 
   //   ------------  //
 
-  it('par i 1 og 3 ', () => {
+  it('To par i 1 og 3 ', () => {
     // arrange
     const dice: Die[] = [1, 1, 2, 3, 3];
 
     // act
-    const points = Y.pointsToPairs(dice);
+    const points = Y.pointsToPairs(2)(dice);
 
     // assert
     expect(points).toBe(8);
-  });
-
-  it('Par i 3 og 5', () => {
-    // arrange
-    const dice: Die[] = [3, 5, 3, 4, 5];
-
-    // act
-    const points = Y.pointsToPairs(dice);
-
-    // assert
-    expect(points).toBe(16);
   });
 
   it('House', () => {
@@ -107,5 +97,27 @@ describe('YatzyLogic', () => {
 
     // assert
     expect(points).toBe(13);
+  });
+
+  it('Liten straight', () => {
+    // arrange
+    const dice: Die[] = [1, 2, 3, 4, 5];
+
+    // act
+    const points = Y.pointsSmallStraight(dice);
+
+    // assert
+    expect(points).toBe(15);
+  });
+
+  it('Stor straight', () => {
+    // arrange
+    const dice: Die[] = [2, 3, 4, 5, 6];
+
+    // act
+    const points = Y.pointsLargeStraight(dice);
+
+    // assert
+    expect(points).toBe(20);
   });
 });

@@ -80,21 +80,17 @@ const pointsHouse = (dice: Die[]): number => {
   return hasThree && hasTwo ? dice.reduce((points, die) => points + die, 0) : 0;
 };
 
-const pointsSmallStraight =
-  () =>
-  (dice: Die[]): number => {
-    const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
-    const smallStraight = [1, 2, 3, 4, 5];
-    return smallStraight.every((die) => frequencyTable[die] === 1) ? 15 : 0;
-  };
+const pointsSmallStraight = (dice: Die[]): number => {
+  const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
+  const smallStraight = [1, 2, 3, 4, 5];
+  return smallStraight.every((die) => frequencyTable[die] === 1) ? 15 : 0;
+};
 
-const pointsLargeStraight =
-  () =>
-  (dice: Die[]): number => {
-    const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
-    const smallStraight = [2, 3, 4, 5, 6];
-    return smallStraight.every((die) => frequencyTable[die] === 1) ? 20 : 0;
-  };
+const pointsLargeStraight = (dice: Die[]): number => {
+  const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
+  const largeStraight = [2, 3, 4, 5, 6];
+  return largeStraight.every((die) => frequencyTable[die] === 1) ? 20 : 0;
+};
 
 const sum = (points: number[]): number =>
   points.reduce((sum, point) => sum + point, 0);
