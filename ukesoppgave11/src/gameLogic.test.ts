@@ -153,4 +153,26 @@ describe('YatzyLogic', () => {
     // assert
     expect(points).toBe(0);
   });
+
+  it('large straight', () => {
+    // arrange
+    const dice: Die[] = [2, 3, 3, 5, 6];
+
+    // act
+    const points = Y.largeStraight(dice);
+
+    // assert
+    expect(points).toBe(20);
+  });
+
+  it('small straight', () => {
+    // arrange
+    const dice: Die[] = [1, 2, 3, 4, 5];
+
+    // act
+    const points = Y.smallStraight(dice);
+
+    // assert
+    expect(points).toBe(15);
+  });
 });

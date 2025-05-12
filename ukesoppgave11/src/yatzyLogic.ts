@@ -49,6 +49,8 @@ export {
   pointsSmallStraight,
   pointsLargeStraight,
   pointsStraight,
+  largeStraight,
+  smallStraight,
   sum,
 };
 export type { Die, DieFrequencyTable };
@@ -102,6 +104,24 @@ const pointsStraight = (dice: Die[]): number => {
   else if (hasStraight(largeStraight)) return 20;
   else return 0;
 };
+
+const pointsStraightB =
+  (arr: Die[]) =>
+  (dice: Die[]): number => {
+    const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
+    const smallStraight: Die[] = [1, 2, 3, 4, 5];
+    const largeStraight: Die[] = [2, 3, 4, 5, 6];
+    const hasStraight = (dice: Die[]): boolean =>
+      dice.every((die) => frequencyTable[die] === 1);
+
+    if (hasStraight(largeStraight) == hasStraight(arr)) return 20;
+    else if (hasStraight(smallStraight) == hasStraight(arr)) return 15;
+    else return 0;
+  };
+
+const largeStraight = pointsStraightB([2, 3, 4, 5, 6]);
+
+const smallStraight = pointsStraightB([1, 2, 3, 4, 5]);
 
 const sum = (points: number[]): number =>
   points.reduce((sum, point) => sum + point, 0);
