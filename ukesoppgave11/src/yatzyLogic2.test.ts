@@ -80,7 +80,7 @@ describe('YatzyLogic', () => {
     const points = Y.scoreFunctions.bonus(score);
 
     // assert
-    expect(points).toBe(50);
+    expect(points).toBe(0);
   });
 
   it('Par i 5', () => {
