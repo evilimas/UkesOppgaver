@@ -60,7 +60,6 @@ const pointsToPairs =
   (dice: Die[]): number => {
     const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
     let pairCount = 0;
-
     const reducePair = (points: number, dieValue: Die) => {
       if (frequencyTable[dieValue] >= 2 && pairCount < pairOfAKind) {
         pairCount++;
@@ -78,19 +77,25 @@ const pointsHouse = (dice: Die[]): number => {
   const hasThree = dieCounts.includes(3);
   const hasTwo = dieCounts.includes(2);
 
-  return hasThree && hasTwo ? dice.reduce((points, die) => points + die, 0) : 0;
+  return hasThree && hasTwo
+    ? dice.reduce((points: number, die: Die) => points + die, 0)
+    : 0;
 };
 
 const pointsSmallStraight = (dice: Die[]): number => {
   const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
   const smallStraight = [1, 2, 3, 4, 5];
-  return smallStraight.every((die) => frequencyTable[die] === 1) ? 15 : 0;
+  return smallStraight.every((die: number) => frequencyTable[die] === 1)
+    ? 15
+    : 0;
 };
 
 const pointsLargeStraight = (dice: Die[]): number => {
   const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
   const largeStraight = [2, 3, 4, 5, 6];
-  return largeStraight.every((die) => frequencyTable[die] === 1) ? 20 : 0;
+  return largeStraight.every((die: number) => frequencyTable[die] === 1)
+    ? 20
+    : 0;
 };
 
 const pointsStraight = (dice: Die[]): number => {
@@ -98,7 +103,7 @@ const pointsStraight = (dice: Die[]): number => {
   const smallStraight: Die[] = [1, 2, 3, 4, 5];
   const largeStraight: Die[] = [2, 3, 4, 5, 6];
   const hasStraight = (dice: Die[]): boolean =>
-    dice.every((die) => frequencyTable[die] === 1);
+    dice.every((die: Die) => frequencyTable[die] === 1);
 
   if (hasStraight(smallStraight)) return 15;
   else if (hasStraight(largeStraight)) return 20;
@@ -119,12 +124,12 @@ const pointsStraightB =
     else return 0;
   };
 
-const largeStraight = pointsStraightB([2, 3, 4, 5, 6]);
-
 const smallStraight = pointsStraightB([1, 2, 3, 4, 5]);
 
+const largeStraight = pointsStraightB([2, 3, 4, 5, 6]);
+
 const sum = (points: number[]): number =>
-  points.reduce((sum, point) => sum + point, 0);
+  points.reduce((sum: number, point: number) => sum + point, 0);
 
 /*
 
