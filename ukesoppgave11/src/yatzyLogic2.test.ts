@@ -47,19 +47,37 @@ describe('YatzyLogic', () => {
     expect(points).toBe(15);
   });
 
-  it('bonus ', () => {
+  it('bonus hvis ponts >= 63', () => {
     // arrange
     const score = {
       aces: 3,
       twos: 4,
-      threes: 6,
+      threes: 9,
       fours: 12,
-      fives: 10,
+      fives: 20,
       sixes: 18,
     };
 
     // act
-    const points = Y.sumPart(0, 6);
+    const points = Y.scoreFunctions.bonus.call(score);
+
+    // assert
+    expect(points).toBe(50);
+  });
+
+  it('ingen bonus hvis ponts < 63', () => {
+    // arrange
+    const score = {
+      aces: 2,
+      twos: 4,
+      threes: 6,
+      fours: 8,
+      fives: 10,
+      sixes: 12,
+    };
+
+    // act
+    const points = Y.scoreFunctions.bonus(score);
 
     // assert
     expect(points).toBe(50);
@@ -68,6 +86,17 @@ describe('YatzyLogic', () => {
   it('Par i 5', () => {
     // arrange
     const dice: Die[] = [1, 5, 3, 4, 5];
+
+    // act
+    const points = Y.scoreFunctions.onePair(dice);
+
+    // assert
+    expect(points).toBe(10);
+  });
+
+  it('Par i 3 og 5 - one pair', () => {
+    // arrange
+    const dice: Die[] = [3, 5, 3, 4, 5];
 
     // act
     const points = Y.scoreFunctions.onePair(dice);
@@ -109,6 +138,17 @@ describe('YatzyLogic', () => {
     expect(points).toBe(50);
   });
 
+  it('ikke Yatzy', () => {
+    // arrange
+    const dice: Die[] = [1, 2, 2, 2, 2];
+
+    // act
+    const points = Y.scoreFunctions.yatzy(dice);
+
+    // assert
+    expect(points).toBe(0);
+  });
+
   it('hus 3-3 og 2-5', () => {
     // arrange
     const dice: Die[] = [3, 5, 3, 3, 5];
@@ -140,17 +180,6 @@ describe('YatzyLogic', () => {
 
     // assert
     expect(points).toBe(20);
-  });
-
-  it('Yatzy', () => {
-    // arrange
-    const dice: Die[] = [2, 2, 2, 2, 2];
-
-    // act
-    const points = Y.scoreFunctions.yatzy(dice);
-
-    // assert
-    expect(points).toBe(50);
   });
 
   it('chanse', () => {

@@ -109,5 +109,5 @@ type YatzyCombination = keyof typeof scoreFunctions;
 //     return largeStraight.every((die) => frequencyTable[die] === 1) ? 20 : 0;
 // };
 
-export { scoreFunctions, createFrequencyTable, sumUpper, sumPart };
+export { scoreFunctions, createFrequencyTable };
 export type { Die, DieFrequencyTable, YatzyCombination };
