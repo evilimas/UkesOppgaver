@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import * as Y from './yatzyLogic2';
-import type { Die, DieFrequencyTable } from './yatzyLogic2';
+import * as Y from './yatzyLogic';
+import type { Die, DieFrequencyTable } from './yatzyLogic';
 
 describe('YatzyLogic', () => {
   it('Frekvenstabell for terninger 1, 1, 1, 2, 3', () => {
@@ -147,6 +147,17 @@ describe('YatzyLogic', () => {
 
     // assert
     expect(points).toBe(0);
+  });
+
+  it('hus 3-3 og 2-5', () => {
+    // arrange
+    const dice: Die[] = [3, 5, 3, 3, 5];
+
+    // act
+    const points = Y.scoreFunctions.house(dice);
+
+    // assert
+    expect(points).toBe(19);
   });
 
   it('hus 3-3 og 2-5', () => {
