@@ -27,7 +27,6 @@ const formatUsersFunctional = (user: User): string =>
     `${toTitleCaseFunc(user.name)} <${user.email}>`;
 
 
-const processUsers = x => toTitleCaseFunc(x.filter((user: { email: string; }) => isValidEmailFunc(user.email)))
-
+const processUsers = x => toTitleCaseFunc(map(filter<User>(user => isValidEmailFunc(user.email))))
 console.log(processUsers(users))
 export { isValidEmailFunc , toTitleCaseFunc, formatUsersFunctional }
