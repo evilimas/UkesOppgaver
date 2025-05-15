@@ -1,14 +1,6 @@
 import { describe, expect, it } from "vitest";
-import {
-  formatUsersImperative,
-  isValidEmail,
-  toTitleCase,
-} from "./DataLogic_imperativ";
-import { 
-  isValidEmailFunc,
-  toTitleCaseFunc,
-  formatUsersFunctional,
-} from "./DataLogic_functional";
+import { formatUsersImperative, isValidEmail, toTitleCase } from "./DataLogic_imperativ";
+import { isValidEmailFunc, toTitleCaseFunc, formatUsersFunctional } from "./DataLogic_functional";
 
 // Imperativ tests
 describe("toTitleCase imperative", () => {
@@ -24,7 +16,7 @@ describe("isValidEmail imperative", () => {
     expect(isValidEmail(validEmail)).toBe(true);
   });
   it("check if invaild email is valid", () => {
-    expect(isValidEmail(invalidEmail)).toBeFalsy();
+    expect(isValidEmail(invalidEmail)).toBe(false);
   });
 });
 
@@ -33,8 +25,7 @@ describe("formatUsers impoerative", () => {
     { name: "   anne   BErg  ", email: "anne.berg@example.com" },
     { name: "   LISA iversen", email: "lisa.iversen@example.com" },
   ];
-  const result =
-    "Anne Berg <anne.berg@example.com>, Lisa Iversen <lisa.iversen@example.com>";
+  const result = "Anne Berg <anne.berg@example.com>, Lisa Iversen <lisa.iversen@example.com>";
 
   it("check if user are formated correctly", () => {
     expect(formatUsersImperative(users)).toBe(result);
@@ -50,7 +41,7 @@ describe("isValidEmail functional", () => {
     expect(isValidEmailFunc(validEmail)).toBe(true);
   });
   it("check if invaild email is valid", () => {
-    expect(isValidEmailFunc(invalidEmail)).toBeFalsy();
+    expect(isValidEmailFunc(invalidEmail)).toBe(false);
   });
 });
 describe("toTitleCase functional", () => {
@@ -59,8 +50,8 @@ describe("toTitleCase functional", () => {
   });
 });
 describe("formatUsers functional", () => {
-  const user = { name: "Anne Berg", email: "anne.berg@example.com"}
+  const user = { name: "Anne Berg", email: "anne.berg@example.com" };
   it("check if user are formated correctly", () => {
-    expect(formatUsersFunctional(user)).toBe("Anne Berg <anne.berg@example.com>")
+    expect(formatUsersFunctional(user)).toBe("Anne Berg <anne.berg@example.com>");
   });
 });
