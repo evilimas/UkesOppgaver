@@ -21,4 +21,4 @@ export const compose =
 export const trim = 
     (str: string): string => str.trim();
 export const split = 
-    (str: string, sep: string): string[] => str.split(sep);
+    (str: string) => (sep: string): string[] => str.split(sep);
