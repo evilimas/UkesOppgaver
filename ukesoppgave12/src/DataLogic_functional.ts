@@ -5,7 +5,7 @@ interface User {
     email: string;
   }
   
-  const users = [
+const users = [
     { name: "   anne   bErg  ", email: "anne.berg@example.com" },
     { name: "karl hansen", email: "karl.hansen[at]example.com" },
     { name: "   LISA iversen", email: "lisa.iversen@example.com" },
@@ -27,13 +27,7 @@ const formatUsersFunctional = (user: User): string =>
     `${toTitleCaseFunc(user.name)} <${user.email}>`;
 
 
-// const processUsers = compose(
-//     (users: User[]): User[] => 
-//     users.filter((user) => isValidEmailFunc(user.email))
-//         .map((user) => ({
-//             ...user,
-//             name: toTitleCaseFunc(user.name),
-//         }));
+const processUsers = x => toTitleCaseFunc(x.filter((user: { email: string; }) => isValidEmailFunc(user.email)))
 
-
-export {isValidEmailFunc , toTitleCaseFunc, formatUsersFunctional}
+console.log(processUsers(users))
+export { isValidEmailFunc , toTitleCaseFunc, formatUsersFunctional }
