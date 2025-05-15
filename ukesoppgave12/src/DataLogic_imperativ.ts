@@ -5,15 +5,14 @@ interface User {
   email: string;
 }
 
-const users: User[] = [
+const users = [
   { name: "   anne   bErg  ", email: "anne.berg@example.com" },
   { name: "karl hansen", email: "karl.hansen[at]example.com" },
   { name: "   LISA iversen", email: "lisa.iversen@example.com" },
   { name: "Tore Tønnessen", email: "tore@example.com" },
   { name: " eva    nordmann", email: "eva.nordmann@example.com" },
   { name: " jonas    løvås", email: "jonas.lovaas.example.com" },
-];
-
+] 
 // Imperativ løsning
 
 function isValidEmail(email: string): boolean {
@@ -50,6 +49,7 @@ function formatUsersImperative(users: User[]): string {
 // Eksempel på bruk
 const output = formatUsersImperative(users);
 console.log(output);
+
 
 // Output:
 // Anne Berg <anne.berg@example.com>, Lisa Iversen <lisa.iversen@example.com>,
