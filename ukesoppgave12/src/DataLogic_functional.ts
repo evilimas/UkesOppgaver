@@ -16,9 +16,13 @@ const users = [
 
 const isValidEmailFunc = (email: string): boolean => email.includes("@");
 
-const toTitleCaseFunc = (x: User) => 
-    join(map(word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())(split(trim))(' ') 
-    // name 
+const toTitleCaseFunc = compose(
+    trim,
+    split(/\s+/),
+    map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()),
+    join(" "))
+
+    // (name: string): string =>
     //     .trim()
     //     .split(/\s+/)
     //     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
