@@ -18,3 +18,15 @@ describe("isNotValidEmail", () => {
     expect(toTitleCase("karl.hansen[at]example.com")).toBe(false);
   });
 });
+
+describe("formatUser", () => {
+  it("check if user are formated correctly", () => {
+    expect(toTitleCase("karl.hansen[at]example.com")).toBe(false);
+  });
+});
+
+describe("processUsers", () => {
+  it("check if user are formated correctly", () => {
+    expect(toTitleCase("karl.hansen[at]example.com")).toBe(false);
+  });
+});
