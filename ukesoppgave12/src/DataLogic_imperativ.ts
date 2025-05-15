@@ -47,35 +47,12 @@ function formatUsersImperative(users: User[]): string {
 }
 
 // Eksempel på bruk
+const outputEmail = isValidEmail(users[1].email);
+console.log(outputEmail);
 const output = formatUsersImperative(users);
 console.log(output);
 
 
-// Output:
-// Anne Berg <anne.berg@example.com>, Lisa Iversen <lisa.iversen@example.com>,
-// Tore Tønnessen <tore@example.com>, Eva Nordmann <eva.nordmann@example.com>
 
-// hjelpefunksjoner
-
-export const prop =
-  <T, K extends keyof T>(key: K) =>
-  (obj: T): T[K] =>
-    obj[key];
-export const map =
-  <T, U>(fn: (value: T) => U) =>
-  (array: T[]): U[] =>
-    array.map(fn);
-export const filter =
-  <T>(fn: (value: T) => boolean) =>
-  (array: T[]): T[] =>
-    array.filter(fn);
-export const join =
-  (sep: string) =>
-  (array: string[]): string =>
-    array.join(sep);
-export const compose =
-  <T>(...fns: Array<(x: T) => T>) =>
-  (x: T) =>
-    fns.reduceRight((v, f) => f(v), x);
 
 export { isValidEmail, toTitleCase, formatUsersImperative };

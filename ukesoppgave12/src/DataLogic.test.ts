@@ -1,32 +1,66 @@
-import { describe, it, expect } from "vitest";
-import { toTitleCase, isValidEmail, formatUse } from "./DataLogic";
+import { describe, expect, it } from "vitest";
+import {
+  formatUsersImperative,
+  isValidEmail,
+  toTitleCase,
+} from "./DataLogic_imperativ";
+import { 
+  isValidEmailFunc,
+  toTitleCaseFunc,
+  formatUsersFunctional,
+} from "./DataLogic_functional";
 
-describe("toTitleCase", () => {
+// Imperativ tests
+describe("toTitleCase imperative", () => {
   it("capitalizes words", () => {
     expect(toTitleCase("   anne   bErg  ")).toBe("Anne Berg");
   });
 });
 
-describe("isValidEmail", () => {
-  it("check if email is valid", () => {
-    expect(isValidEmail("anne.berg@example.com")).toBe(true);
+describe("isValidEmail imperative", () => {
+  const validEmail = "anne.berg@example.com";
+  const invalidEmail = "karl.hansen[at]example.com";
+  it("check if vaild email is valid", () => {
+    expect(isValidEmail(validEmail)).toBe(true);
+  });
+  it("check if invaild email is valid", () => {
+    expect(isValidEmail(invalidEmail)).toBeFalsy();
   });
 });
 
-describe("isNotValidEmail", () => {
-  it("check if email is valid or not", () => {
-    expect(toTitleCase("karl.hansen[at]example.com")).toBe(false);
-  });
-});
+describe("formatUsers impoerative", () => {
+  const users = [
+    { name: "   anne   BErg  ", email: "anne.berg@example.com" },
+    { name: "   LISA iversen", email: "lisa.iversen@example.com" },
+  ];
+  const result =
+    "Anne Berg <anne.berg@example.com>, Lisa Iversen <lisa.iversen@example.com>";
 
-describe("formatUser", () => {
   it("check if user are formated correctly", () => {
-    expect(toTitleCase("karl.hansen[at]example.com")).toBe(false);
+    expect(formatUsersImperative(users)).toBe(result);
   });
 });
 
-describe("processUsers", () => {
+// Functional tests
+
+describe("isValidEmail functional", () => {
+  const validEmail = "anne.berg@example.com";
+  const invalidEmail = "karl.hansen[at]example.com";
+  it("check if vaild email is valid", () => {
+    expect(isValidEmailFunc(validEmail)).toBe(true);
+  });
+  it("check if invaild email is valid", () => {
+    expect(isValidEmailFunc(invalidEmail)).toBeFalsy();
+  });
+});
+describe("toTitleCase functional", () => {
+  it("capitalizes words", () => {
+    expect(toTitleCaseFunc("   anne   bErg  ")).toBe("Anne Berg");
+  });
+});
+describe("formatUsers functional", () => {
+  const user = { name: "Anne Berg", email: "anne.berg@example.com"}
   it("check if user are formated correctly", () => {
-    expect(toTitleCase("karl.hansen[at]example.com")).toBe(false);
+    expect(formatUsersFunctional(user)).toBe("Anne Berg <anne.berg@example.com>")
   });
 });
