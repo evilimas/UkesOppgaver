@@ -15,7 +15,7 @@ const users = [
 ];
 
 const isValidEmailFunc = (email: string): boolean => email.includes("@");
-
+const filterValidEmail = filter<User>((user) => isValidEmailFunc(user.email));
 const toTitleCaseFunc = pipe(
   trim,
   split("/s+/"),
@@ -32,6 +32,8 @@ const toTitleCaseFunc = pipe(
 const formatUsersFunctional = (user: User): string =>
   `${toTitleCaseFunc(user.name)} <${user.email}>`;
 
-const processUsers = compose(filter<User>((user) => isValidEmailFunc(user.email)));
+const processUsers = compose(
+  toTitleCaseFunc,
+  filterValidEmail);
 console.log(processUsers(users));
 export { isValidEmailFunc, toTitleCaseFunc, formatUsersFunctional };
