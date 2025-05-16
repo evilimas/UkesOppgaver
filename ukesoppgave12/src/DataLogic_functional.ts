@@ -1,4 +1,4 @@
-import { prop, map, filter, join, compose, trim, split, pipe } from "./helpers.ts";
+import { prop, map, filter, join, compose, trim, split, pipe } from "./helpers";
 
 interface User {
   name: string;
