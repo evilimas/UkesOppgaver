@@ -64,7 +64,7 @@ describe("formatUsers functional", () => {
 });
 
 describe("proceses all users with correct email adress", () => {
-  const users: User = [
+  const users: User[] = [
     { name: "Anne Berg", email: "anne.berg@example.com" },
     { name: "karl hansen", email: "karl.hansen[at]example.com" },
     { name: "   LISA iversen", email: "lisa.iversen@example.com" },
