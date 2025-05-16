@@ -19,10 +19,16 @@ export const compose =
   (x: T) =>
     fns.reduceRight((v, f) => f(v), x);
 export const trim = (str: string): string => str.trim();
+
+// export const split =
+//   (str: string ) =>
+//   (sep: string): string[] =>
+//     str.split(sep);
+
 export const split =
-  (str: string) =>
-  (sep: string): string[] =>
-    str.split(sep);
+  (separator: string | RegExp) =>
+  (value: string): string[] =>
+    value.split(separator);
 
 export const pipe =
   <T>(...fns: Array<(arg: any) => any>) =>

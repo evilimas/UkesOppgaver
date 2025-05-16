@@ -1,6 +1,13 @@
 import { describe, expect, it } from "vitest";
+import type { User } from "./DataLogic_functional";
 import { formatUsersImperative, isValidEmail, toTitleCase } from "./DataLogic_imperativ";
-import { isValidEmailFunc, toTitleCaseFunc, formatUsersFunctional } from "./DataLogic_functional";
+
+import {
+  isValidEmailFunc,
+  toTitleCaseFunc,
+  formatUsersFunctional,
+  processUsers,
+} from "./DataLogic_functional";
 
 // Imperativ tests
 describe("toTitleCase imperative", () => {
@@ -53,5 +60,18 @@ describe("formatUsers functional", () => {
   const user = { name: "Anne Berg", email: "anne.berg@example.com" };
   it("check if user are formated correctly", () => {
     expect(formatUsersFunctional(user)).toBe("Anne Berg <anne.berg@example.com>");
+  });
+});
+
+describe("proceses all users with correct email adress", () => {
+  const users: User = [
+    { name: "Anne Berg", email: "anne.berg@example.com" },
+    { name: "karl hansen", email: "karl.hansen[at]example.com" },
+    { name: "   LISA iversen", email: "lisa.iversen@example.com" },
+  ];
+  it("check if user are formated correctly", () => {
+    expect(processUsers(users)).toBe(
+      "Anne Berg <anne.berg@example.com>, Lisa Iversen <lisa.iversen@example.com>"
+    );
   });
 });

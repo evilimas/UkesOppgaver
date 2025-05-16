@@ -15,26 +15,23 @@ const users = [
 ];
 
 const isValidEmailFunc = (email: string): boolean => email.includes("@");
-const filterValidEmail = filter<User>((user) => isValidEmailFunc(user.email));
+
 const toTitleCaseFunc = pipe(
   trim,
-  split("/s+/"),
+  split(/\s+/),
   map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()),
   join(" ")
 );
 
-// (name: string): string =>
-//     .trim()
-//     .split(/\s+/)
-//     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-//     .join(" ");
-
 const formatUsersFunctional = (user: User): string =>
   `${toTitleCaseFunc(user.name)} <${user.email}>`;
 
-const processUsers = compose(
-  filterValidEmail);
+const filterValidEmail = filter<User>((user) => isValidEmailFunc(user.email));
 
+const processUsers = pipe(filterValidEmail, map(formatUsersFunctional), join(", "));
 
 console.log(processUsers(users));
-export { isValidEmailFunc, toTitleCaseFunc, formatUsersFunctional };
+
+export { isValidEmailFunc, toTitleCaseFunc, formatUsersFunctional, processUsers };
+
+export type { User };
