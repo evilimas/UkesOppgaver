@@ -18,7 +18,13 @@ export const compose =
   <T>(...fns: Array<(x: T) => T>) =>
   (x: T) =>
     fns.reduceRight((v, f) => f(v), x);
-export const trim = 
-    (str: string): string => str.trim();
-export const split = 
-    (str: string) => (sep: string): string[] => str.split(sep);
+export const trim = (str: string): string => str.trim();
+export const split =
+  (str: string) =>
+  (sep: string): string[] =>
+    str.split(sep);
+
+export const pipe =
+  <T>(...fns: Array<(arg: any) => any>) =>
+  (x: T) =>
+    fns.reduce((v, f) => f(v), x);
