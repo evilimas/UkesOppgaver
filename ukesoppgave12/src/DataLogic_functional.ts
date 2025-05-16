@@ -5,7 +5,7 @@ interface User {
   email: string;
 }
 
-const users = [
+const users: User[] = [
   { name: "   anne   bErg  ", email: "anne.berg@example.com" },
   { name: "karl hansen", email: "karl.hansen[at]example.com" },
   { name: "   LISA iversen", email: "lisa.iversen@example.com" },
@@ -13,6 +13,11 @@ const users = [
   { name: " eva    nordmann", email: "eva.nordmann@example.com" },
   { name: " jonas    løvås", email: "jonas.lovaas.example.com" },
 ];
+
+const trace = (label: string) => (x: any) => {
+  console.log(label, x);
+  return x;
+};
 
 const isValidEmailFunc = (email: string): boolean => email.includes("@");
 
@@ -29,12 +34,6 @@ const formatUsersFunctional = (user: User): string =>
 const filterValidEmail = filter<User>((user) => isValidEmailFunc(user.email));
 
 // const filteredUsers = map(formatUsersFunctional)
-
-const processUsers = pipe(filterValidEmail, map(formatUsersFunctional), join(", "));
-const trace = (label: string) => (x: any) => {
-  console.log(label, x);
-  return x;
-};
 
 const processUsersPipe = pipe(filterValidEmail, map(formatUsersFunctional), join(", "));
 
