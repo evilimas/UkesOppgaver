@@ -37,10 +37,25 @@ const trace = (label: string) => (x: any) => {
 };
 
 const processUsersPipe = pipe(filterValidEmail, map(formatUsersFunctional), join(", "));
-const processUsersCompose = compose(map(prop("name")), trace("2"), filterValidEmail, trace("1"));
+
+const processUsersCompose = compose(
+  trace("4"),
+  join(", "),
+  trace("3"),
+  map(formatUsersFunctional),
+  trace("2"),
+  filterValidEmail,
+  trace("1")
+);
 console.log(processUsersPipe(users));
 console.log(processUsersCompose(users));
 
-export { isValidEmailFunc, toTitleCaseFunc, formatUsersFunctional, processUsersPipe };
+export {
+  isValidEmailFunc,
+  toTitleCaseFunc,
+  formatUsersFunctional,
+  processUsersPipe,
+  processUsersCompose,
+};
 
 export type { User };
