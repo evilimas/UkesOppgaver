@@ -14,36 +14,52 @@ const users: User[] = [
   { name: " jonas    løvås", email: "jonas.lovaas.example.com" },
 ];
 
-const trace = (label: string) => (x: any) => {
+const trace = <T>(label: string) => (x: T): T => {
   console.log(label, x);
   return x;
 };
 
-const isValidEmailFunc = (email: string): boolean => email.includes("@");
+const isValidEmailFunc = (user: User): boolean => user.email.includes("@");
+
+const toUpperCase = (text:string) => text.toLocaleUpperCase();
+const toLowerCase = (text:string) => text.toLocaleLowerCase();
+const charAt = (index:number) => (text:string) => text.charAt(index);
+const slice = (index:number) => (text:string) => text.slice(index);
+
+const fixCase = map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+// const fixCase = (word: string) =>
+//   compose(
+//     ([f, r]) => f + r,
+//     ([first, rest]) => [first.toUpper(), rest.toLower()],
+//     (s: string) => [s.charAt(0), s.slice(1)]
+//   )(word);
 
 const toTitleCaseFunc = pipe(
   trim,
   split(/\s+/),
-  map((word: string) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()),
+  fixCase,
   join(" ")
 );
 
 const formatUsersFunctional = (user: User): string =>
   `${toTitleCaseFunc(user.name)} <${user.email}>`;
 
-const filterValidEmail = filter<User>((user) => isValidEmailFunc(user.email));
-
 // const filteredUsers = map(formatUsersFunctional)
 
-const processUsersPipe = pipe(filterValidEmail, map(formatUsersFunctional), join(", "));
+const processUsersPipe = pipe(
+  filter<User>(isValidEmailFunc),
+  map(formatUsersFunctional),
+  join(", ")
+);
 
-const processUsersCompose = compose(
+type ProcessFunction = (user: User[]) => string;
+const processUsersCompose: ProcessFunction = compose(
   trace("4"),
   join(", "),
   trace("3"),
   map(formatUsersFunctional),
   trace("2"),
-  filterValidEmail,
+  filter<User>(isValidEmailFunc),
   trace("1")
 );
 console.log(processUsersPipe(users));
