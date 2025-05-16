@@ -28,6 +28,8 @@ const formatUsersFunctional = (user: User): string =>
 
 const filterValidEmail = filter<User>((user) => isValidEmailFunc(user.email));
 
+// const filteredUsers = map(formatUsersFunctional)
+
 const processUsers = pipe(filterValidEmail, map(formatUsersFunctional), join(", "));
 
 console.log(processUsers(users));
