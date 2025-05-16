@@ -33,7 +33,8 @@ const formatUsersFunctional = (user: User): string =>
   `${toTitleCaseFunc(user.name)} <${user.email}>`;
 
 const processUsers = compose(
-  toTitleCaseFunc,
   filterValidEmail);
+
+
 console.log(processUsers(users));
 export { isValidEmailFunc, toTitleCaseFunc, formatUsersFunctional };
