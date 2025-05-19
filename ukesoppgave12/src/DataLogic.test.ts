@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import type { User } from "./DataLogic_functional";
-import { formatUsersImperative, isValidEmail, toTitleCase } from "./DataLogic_imperativ";
 
 import {
   isValidEmailFunc,
