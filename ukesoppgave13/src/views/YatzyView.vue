@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue';
 import Scoreboard from '@/components/Scoreboard.vue';
 import Dice from '@/components/Dice.vue';
 // import type { Die } from "./yatzyLogic";
@@ -20,8 +20,12 @@ const diceStore = useDiceStore();
     <h3>Spillere: {{ store.players }}</h3>
     <Dice />
     <div>
-    <Scoreboard v-for="player of store.players"  :title="'Player ' + player"></Scoreboard>
-  </div>
+      <Scoreboard
+        v-for="i in store.playerCount"
+        :key="i"
+        :title="'Player ' + i"
+      ></Scoreboard>
+    </div>
   </div>
 </template>
 

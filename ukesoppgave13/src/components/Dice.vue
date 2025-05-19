@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useScoreboardStore} from '@/stores/useScoreboardStore';
+import { computed, ref } from 'vue';
+import { useScoreboardStore } from '@/stores/useScoreboardStore';
 import { useDiceStore } from '@/stores/useDiceStore';
 
-// import type { Die } from '../yatzyLogic';
+import type { Die } from '../yatzyLogic';
 
 // defineProps<{ msg: string }>()
 const diceStore = useDiceStore();
-const emit = defineEmits<{
-  (e: 'diceRolled', value: Die[]): void;
-}>();
 
 const dice = diceStore.dice;
 const diceChars = ' ⚀⚁⚂⚃⚄⚅';
@@ -18,15 +15,20 @@ const roll = () => {
     dice[i] = Math.ceil(Math.random() * 6) as Die;
   }
   diceStore.throwCount--;
-  emit('diceRolled', dice);
 };
+
+const trillText = computed(() =>
+  diceStore.throwCount <= 0 ? 'Ferdi' : 'Ganger igjen'
+);
 </script>
 
 <template>
   <fieldset>
     <legend>Terninger</legend>
-    <button @click="roll">Trill</button>{{ diceStore.throwCount }}
-    
+    <button @click="roll" :disabled="diceStore.throwCount <= 0">Trill</button>
+    <div>{{ diceStore.throwCount }}</div>
+    <h3>{{ trillText }}</h3>
+
     <div>
       <span v-for="(dieValue, index) of diceStore.dice" :key="index">
         {{ diceChars[dieValue] }}

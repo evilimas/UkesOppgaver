@@ -8,6 +8,10 @@ import { ref, computed } from 'vue';
 // import type { Die, Scoreboard, YatzyCombination } from '../yatzyLogic';
 import { useScoreboardStore } from '@/stores/useScoreboardStore';
 
+defineProps<{
+  title: string;
+}>();
+
 // const props = defineProps<{ dice: Die[] }>();
 // const scoreboard = ref<Scoreboard>(emptyScoreboard());
 const store = useScoreboardStore();
@@ -25,7 +29,7 @@ const store = useScoreboardStore();
 
 <template>
   <fieldset>
-    <legend>Scoreboard {{ store.players }}</legend>
+    <legend>Scoreboard {{ title }}</legend>
     <!-- <div v-for="(combination, index) in store.$state" :key="index"></div> -->
     <!-- <div v-for="(score, combination) of scoreboard" :key="combination">
       <button @click="select(combination)">

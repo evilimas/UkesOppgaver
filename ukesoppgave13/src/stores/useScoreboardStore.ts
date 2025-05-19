@@ -1,9 +1,10 @@
-import { ref, computed, hydrateOnIdle } from 'vue'
-import { defineStore } from 'pinia'
+import { ref, computed, hydrateOnIdle } from 'vue';
+import { defineStore } from 'pinia';
 
 export const useScoreboardStore = defineStore('yathzeeBoard', {
   state: () => ({
-    players: [{ playerName: "", playerNumber: 0 }], 
+    players: [{ playerName: '', playerNumber: 0 }],
+    playerCount: 1,
     ones: 0,
     twos: 0,
     threes: 0,
@@ -26,15 +27,15 @@ export const useScoreboardStore = defineStore('yathzeeBoard', {
     isGameWon: false,
     isGameLost: false,
   }),
-  actions: () => {}
-    // bonus: () => {
-    //   if (this.sum >= 63) {
-    //     this.bonus = 35
-    //   } else {
-    //     this.bonus = 0
-    //   }
-    // },
-    // sum: () => {
-    //   return 
-    // },
-})
+  actions: () => {},
+  // bonus: () => {
+  //   if (this.sum >= 63) {
+  //     this.bonus = 35
+  //   } else {
+  //     this.bonus = 0
+  //   }
+  // },
+  // sum: () => {
+  //   return
+  // },
+});
