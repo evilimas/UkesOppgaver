@@ -17,6 +17,7 @@ const roll = () => {
   for (let i = 0; i < 5; i++) {
     dice[i] = Math.ceil(Math.random() * 6) as Die;
   }
+  diceStore.throwCount--;
   emit('diceRolled', dice);
 };
 </script>
@@ -24,7 +25,8 @@ const roll = () => {
 <template>
   <fieldset>
     <legend>Terninger</legend>
-    <button @click="roll">Trill</button>
+    <button @click="roll">Trill</button>{{ diceStore.throwCount }}
+    
     <div>
       <span v-for="(dieValue, index) of diceStore.dice" :key="index">
         {{ diceChars[dieValue] }}
