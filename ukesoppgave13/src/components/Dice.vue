@@ -26,7 +26,7 @@ const roll = () => {
     <legend>Terninger</legend>
     <button @click="roll">Trill</button>
     <div>
-      <span v-for="(dieValue, index) of dice" :key="index">
+      <span v-for="(dieValue, index) of diceStore.dice" :key="index">
         {{ diceChars[dieValue] }}
       </span>
     </div>
