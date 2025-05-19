@@ -4,9 +4,10 @@ import Scoreboard from '@/components/Scoreboard.vue';
 import Dice from '@/components/Dice.vue';
 // import type { Die } from "./yatzyLogic";
 import { useScoreboardStore } from '@/stores/useScoreboardStore';
+import { useDiceStore } from '@/stores/useDiceStore';
 
 const store = useScoreboardStore();
-
+const diceStore = useDiceStore();
 // const dice = ref<Die[]>([]);
 // const handleDiceRolled = (rolledDice: Die[]) => {
 //   dice.value = rolledDice;
@@ -19,7 +20,7 @@ const store = useScoreboardStore();
     <h3>Spillere: {{ store.players }}</h3>
     <Dice />
     <div>
-    <Scoreboard v-for="i in store.players" :key="i" :title="'Player ' +i"></Scoreboard>
+    <Scoreboard v-for="player of store.players"  :title="'Player ' + player"></Scoreboard>
   </div>
   </div>
 </template>
