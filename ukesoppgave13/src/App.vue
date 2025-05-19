@@ -1,18 +1,17 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/yatzy">Spill Yatzy</RouterLink>
-      </nav>
-    </div>
-  </header>
+  <div>
+    <header>
+      <div class="wrapper">
+        <nav>
+          <RouterLink to="/yatzy">Spill Yatzy</RouterLink>
+        </nav>
+      </div>
+    </header>
 
-  <RouterView />
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
