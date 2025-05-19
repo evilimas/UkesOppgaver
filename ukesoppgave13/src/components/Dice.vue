@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { Die } from '../yatzyLogic';
+// import type { Die } from '../yatzyLogic';
 
 // defineProps<{ msg: string }>()
 

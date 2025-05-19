@@ -3,11 +3,7 @@
 <template>
   <div>
     <header>
-      <div class="wrapper">
-        <nav>
-          <RouterLink to="/yatzy">Spill Yatzy</RouterLink>
-        </nav>
-      </div>
+      
     </header>
 
     <RouterView />

@@ -1,31 +1,32 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import {
-  scoreFunctions,
-  scoreboardFunctions,
-  emptyScoreboard,
-} from '../yatzyLogic';
-import type { Die, Scoreboard, YatzyCombination } from '../yatzyLogic';
+// import {
+//    scoreFunctions,
+//       scoreboardFunctions,
+//   emptyScoreboard,
+// } from '../yatzyLogic';
+// import type { Die, Scoreboard, YatzyCombination } from '../yatzyLogic';
+import { useScoreboardStore } from '@/stores/useScoreboardStore';
 
-const props = defineProps<{ dice: Die[] }>();
-const scoreboard = ref<Scoreboard>(emptyScoreboard());
+// const props = defineProps<{ dice: Die[] }>();
+// const scoreboard = ref<Scoreboard>(emptyScoreboard());
+const store = useScoreboardStore();
+// const sum = computed(() => scoreboardFunctions.sum(store.sum));
+// // const bonus = computed(() => scoreboardFunctions.bonus(store.bonus));
+// const total = computed(() => scoreboardFunctions.totalSum(scoreboard.value));
 
-const sum = computed(() => scoreboardFunctions.sum(scoreboard.value));
-const bonus = computed(() => scoreboardFunctions.bonus(scoreboard.value));
-const total = computed(() => scoreboardFunctions.totalSum(scoreboard.value));
-
-const select = (combinationStr: string) => {
-  const combination = combinationStr as YatzyCombination;
-  const scoreFunction = scoreFunctions[combination];
-  const points = scoreFunction(props.dice);
-  scoreboard.value[combination] = points;
-};
+// const select = (combinationStr: string) => {
+//   const combination = combinationStr as YatzyCombination;
+//   const scoreFunction = scoreFunctions[combination];
+//   const points = scoreFunction(props.dice);
+//   scoreboard.value[combination] = points;
+// };
 </script>
 
 <template>
   <fieldset>
     <legend>Scoreboard</legend>
-    <div v-for="(score, combination) of scoreboard" :key="combination">
+    <!-- <div v-for="(score, combination) of scoreboard" :key="combination">
       <button @click="select(combination)">
         {{ combination }}
         {{ score }}
@@ -39,7 +40,7 @@ const select = (combinationStr: string) => {
     </div>
     <div>
       <button disabled>Totalsum {{ total }}</button>
-    </div>
+    </div> -->
   </fieldset>
 </template>
 

@@ -1,12 +1,25 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import Scoreboard from '@/components/Scoreboard.vue';
 import Dice from '@/components/Dice.vue';
+// import type { Die } from "./yatzyLogic";
+import { useScoreboardStore } from '@/stores/useScoreboardStore';
+
+const store = useScoreboardStore();
+// const dice = ref<Die[]>([]);
+// const handleDiceRolled = (rolledDice: Die[]) => {
+//   dice.value = rolledDice;
+// };
 </script>
 
 <template>
-  <div class="about">
+  <div id="game">
+    <h1>Yatzy</h1>
+    <h3>Spiller: {{ store.players }}</h3>
     <Dice />
-    <Scoreboard />
+    <div>
+    <Scoreboard v-for="i in store.players" :key="i" :title="'Player ' +i"></Scoreboard>
+  </div>
   </div>
 </template>
 
