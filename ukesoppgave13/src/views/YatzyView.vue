@@ -6,6 +6,7 @@ import Dice from '@/components/Dice.vue';
 import { useScoreboardStore } from '@/stores/useScoreboardStore';
 
 const store = useScoreboardStore();
+
 // const dice = ref<Die[]>([]);
 // const handleDiceRolled = (rolledDice: Die[]) => {
 //   dice.value = rolledDice;
@@ -15,7 +16,7 @@ const store = useScoreboardStore();
 <template>
   <div id="game">
     <h1>Yatzy</h1>
-    <h3>Spiller: {{ store.players }}</h3>
+    <h3>Spillere: {{ store.players }}</h3>
     <Dice />
     <div>
     <Scoreboard v-for="i in store.players" :key="i" :title="'Player ' +i"></Scoreboard>

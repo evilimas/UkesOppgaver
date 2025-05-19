@@ -25,7 +25,8 @@ const store = useScoreboardStore();
 
 <template>
   <fieldset>
-    <legend>Scoreboard</legend>
+    <legend>Scoreboard {{ store.players }}</legend>
+    <div v-for="(combination, index) in store.$state" :key="index"></div>
     <!-- <div v-for="(score, combination) of scoreboard" :key="combination">
       <button @click="select(combination)">
         {{ combination }}
