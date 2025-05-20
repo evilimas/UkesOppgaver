@@ -18,7 +18,7 @@ const roll = () => {
 };
 
 const trillText = computed(() =>
-  diceStore.throwCount <= 0 ? 'Ferdi' : 'Ganger igjen'
+  diceStore.throwCount <= 0 ? 'Ferdig' : 'Ganger igjen'
 );
 </script>
 
