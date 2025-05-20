@@ -8,7 +8,11 @@ const $diceStore = useDiceStore();
 <template>
   <main>
     <h1>Velkommen til det beste Yatzy-spillet!</h1>
-    <h2 v-for="(die,index) in $diceStore.diceChars" :key="index"> {{ die }}</h2>
+    <div>
+      <h2 v-for="(die, index) in $diceStore.diceChars" :key="index">
+        {{ die }}
+      </h2>
+    </div>
     <!-- <div>
       <label for="players"
         >Hvor Mange spillere ?
@@ -29,3 +33,12 @@ const $diceStore = useDiceStore();
     </div>
   </main>
 </template>
+
+<style scoped>
+div {
+  display: flex;
+}
+h2 {
+  font-size: 2rem;
+}
+</style>
