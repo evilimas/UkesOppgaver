@@ -8,9 +8,7 @@ import { ref, computed } from 'vue';
 // import type { Die, Scoreboard, YatzyCombination } from '../yatzyLogic';
 import { useScoreboardStore } from '@/stores/useScoreboardStore';
 
-defineProps<{
-  title: string;
-}>();
+
 
 // const props = defineProps<{ dice: Die[] }>();
 // const scoreboard = ref<Scoreboard>(emptyScoreboard());
