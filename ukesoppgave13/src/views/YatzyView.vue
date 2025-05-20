@@ -1,3 +1,4 @@
+
 <script setup lang="ts">
 import { ref } from 'vue';
 import Scoreboard from '@/components/Scoreboard.vue';
@@ -14,14 +15,10 @@ const $store = useScoreboardStore();
 <template>
   <div id="game">
     <h1>Yatzy</h1>
-    
+    <Player />
     <Dice />
     <div>
-      <Scoreboard
-        v-for="i in $store.playerCount"
-        :key="i"
-        :title="'Player ' + i"
-      ></Scoreboard>
+      <Scoreboard/>
     </div>
   </div>
 </template>
@@ -35,3 +32,6 @@ const $store = useScoreboardStore();
   }
 }
 </style>
+
+
+
