@@ -34,7 +34,7 @@ const trillText = computed(() =>
               $diceStore.holdDieColor(index)
           "
         >
-          {{ $diceStore.dice[index] + ' ' }}
+          {{ $diceStore.diceChars[$diceStore.dice[index] - 1] }}
         </div>
       </span>
     </div>
