@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useScoreboardStore } from '@/stores/useScoreboardStore';
-
+import { useDiceStore } from '@/stores/useDiceStore';
 
 const $scoreStore = useScoreboardStore();
-
+const $diceStore = useDiceStore();
 </script>
 
 <template>
@@ -14,6 +14,7 @@ const $scoreStore = useScoreboardStore();
     <button >{{ combination.name }}</button> 
     <span>{{ combination.score }}</span>
     </div>
+    {{ $diceStore.throwCount }}
   </fieldset>
 </template>
 
