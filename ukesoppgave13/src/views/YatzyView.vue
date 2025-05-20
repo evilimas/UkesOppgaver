@@ -4,19 +4,14 @@ import { ref } from 'vue';
 import Scoreboard from '@/components/Scoreboard.vue';
 import Dice from '@/components/Dice.vue';
 import Player from '@/components/Player.vue';
-// import type { Die } from "./yatzyLogic";
-import { useScoreboardStore } from '@/stores/useScoreboardStore';
-import { useDiceStore } from '@/stores/useDiceStore';
-
-const $store = useScoreboardStore();
 
 </script>
 
 <template>
   <div id="game">
     <h1>Yatzy</h1>
-    <Player />
-    <Dice />
+    <Player></Player>
+     <Dice />
     <div>
       <Scoreboard/>
     </div>
