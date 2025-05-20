@@ -19,9 +19,6 @@ export const useScoreboardStore = defineStore('scoreBoard', () => {
       { name: 'chance', score: 0 },
       { name: 'bonus', score: 0 },
       { name: 'total', score: 0 },
-      { name: 'totalUpper', score: 0 },
-      { name: 'totalLower', score: 0 },
-      { name: 'totalGame', score: 0 }
     ]);
   const isGameOver = ref<boolean>(false)
   const isGameWon = ref<boolean>(false)

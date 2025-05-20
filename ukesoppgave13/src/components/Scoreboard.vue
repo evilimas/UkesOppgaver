@@ -10,8 +10,17 @@ const $scoreStore = useScoreboardStore();
 <template>
   <fieldset>
     <legend>Scoreboard </legend>
-    <div v-for="(combination) of $scoreStore.board">{{ combination.name }}     {{ combination.score }}</div>
+    <div class="scoreboard" v-for="(combination) of $scoreStore.board">
+    <button >{{ combination.name }}</button> 
+    <span>{{ combination.score }}</span>
+    </div>
   </fieldset>
 </template>
 
-<style scoped></style>
+<style scoped>
+.scoreboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+</style>

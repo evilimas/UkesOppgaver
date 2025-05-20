@@ -25,7 +25,6 @@ const trillText = computed(() =>
       <span v-for="(dieValue, index) of $diceStore.dice" :key="index">
          <div @click="$diceStore.holdDie[index] = !$diceStore.holdDie[index], $diceStore.holdDieColor(index)">{{ $diceStore.dice[index] + ' '}} </div> 
       </span>
-      <!-- <span>{{ $diceStore.dice }}</span> -->
     </div>
   </fieldset>
 </template>
