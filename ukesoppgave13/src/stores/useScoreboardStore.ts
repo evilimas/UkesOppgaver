@@ -1,4 +1,4 @@
-import { ref, computed, hydrateOnIdle } from 'vue'
+import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useScoreboardStore = defineStore('scoreBoard', () => {
