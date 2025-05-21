@@ -3,9 +3,7 @@
 <template>
   <div>
     <header>
-      
     </header>
-
     <RouterView />
   </div>
 </template>

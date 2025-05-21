@@ -10,16 +10,16 @@ const playersNr = ref($store.playerNumber);
 </script>
 
 <template>
-  <div id="game" >
+  <div id="game">
     <div v-for="(index) in playersNr" :key="index">
       <h1>Yatzy</h1>
       <Player></Player>
-      <Dice />
-      <div>
-        <Scoreboard />
-      </div>
     </div>
-
+    <div><Dice />
+      </div>
+    <div>
+      <Scoreboard />
+    </div>
   </div>
 </template>
 
