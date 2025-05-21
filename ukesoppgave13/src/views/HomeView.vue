@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useDiceStore } from '@/stores/useDiceStore';
+import { usePlayerStore } from '@/stores/usePlayerStore';
 const $diceStore = useDiceStore();
-// const players = ref<number>(store.players);
+const $store = usePlayerStore();
 </script>
 
 <template>
@@ -13,7 +14,7 @@ const $diceStore = useDiceStore();
         {{ die }}
       </h2>
     </div>
-    <!-- <div>
+    <div>
       <label for="players"
         >Hvor Mange spillere ?
         <input
@@ -22,10 +23,10 @@ const $diceStore = useDiceStore();
           min="1"
           max="4"
           placeholder="Antall"
-          v-model="store.playerCount"
+          v-model="$store.playerNumber"
         />
       </label>
-    </div> -->
+    </div>
     <div class="wrapper">
       <nav>
         <RouterLink to="/yatzy">Spill Yatzy</RouterLink>
