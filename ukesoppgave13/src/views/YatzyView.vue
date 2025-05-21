@@ -34,7 +34,7 @@ const playersNr = ref($store.playerNumber);
 
 #game {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
 }
 </style>
