@@ -2,26 +2,38 @@
 import { ref, computed } from 'vue';
 import { useScoreboardStore } from '@/stores/useScoreboardStore';
 import { useDiceStore } from '@/stores/useDiceStore';
+import { usePlayerStore } from '@/stores/usePlayerStore';
 
 const $scoreStore = useScoreboardStore();
 const $diceStore = useDiceStore();
+const $store = usePlayerStore();
+const playersNr = ref($store.playerNumber);
+
 </script>
 
 <template>
   <fieldset>
-    <legend>Scoreboard </legend>
-    <div class="scoreboard" v-for="(combination) of $scoreStore.board">
-    <button >{{ combination.name }}</button> 
-    <span>{{ combination.score }}</span>
+    <div class="board">
+      <legend>Scoreboard </legend>
+      <div class="combinations" v-for="(combination) in $scoreStore.board">
+        <div>{{ combination }}</div>
+        <!-- <span>{{ combination }}</span> -->
+      </div>
+      <div v-for="player in playersNr">
+        <div class="player-score" v-for="(score) in $scoreStore.scores">
+          <div>{{ score }}</div>
+        </div>
+      </div>
+      {{ $diceStore.throwCount }}
     </div>
-    {{ $diceStore.throwCount }}
   </fieldset>
 </template>
 
 <style scoped>
-.scoreboard {
-  display: flex;
-  flex-direction: row;
+.board {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  flex-direction: column;
   justify-content: space-between;
 }
 </style>
