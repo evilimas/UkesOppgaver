@@ -85,7 +85,7 @@ const scoreFunctions = {
 } as const;
 
 type Scoreboard = {
-  [K in YatzyCombination]?: number;
+  [K in YatzyCombination]?: number | null;
 };
 
 const scoreboardFunctions = {
