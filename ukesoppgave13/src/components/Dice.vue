@@ -28,7 +28,7 @@ const trillText = computed(() =>
     <div class="dice" style="display: flex">
       <span v-for="(dieValue, index) of $diceStore.dice" :key="index">
         <div
-          :style="{ color: $diceStore.holdDie[index] ? 'red' : 'black' }"
+          :style="{ background: $diceStore.holdDie[index] ? 'lightblue' : 'black' , color: $diceStore.holdDie[index] ? 'black' : 'white' }"
           @click="
             ($diceStore.holdDie[index] = !$diceStore.holdDie[index]),
               $diceStore.holdDieColor(index)
@@ -44,8 +44,10 @@ const trillText = computed(() =>
 <style scoped>
 span {
   font-size: 300%;
+  background: lightblue;
 }
 .dice {
   cursor: pointer;
 }
+
 </style>
