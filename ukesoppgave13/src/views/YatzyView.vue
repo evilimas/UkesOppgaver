@@ -11,7 +11,7 @@ const playersNr = ref($store.playerNumber);
 </script>
 
 <template>
-  <div id="game">
+  <div id="game" v-for="(index) in playersNr" :key="index">
     <h1>Yatzy</h1>
     <Player></Player>
      <Dice />
