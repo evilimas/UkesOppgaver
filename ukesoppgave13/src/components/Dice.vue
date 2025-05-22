@@ -23,7 +23,7 @@ const trillText = computed(() =>
     <div>{{ $diceStore.throwCount }} {{ trillText }}</div>
     
 
-    <div :v-show="store.gameStarted == false" class="dice" style="display: flex">
+    <div :v-show="store.gameStarted" class="dice" style="display: flex">
       <span v-for="dieObject of $diceStore.diceObjects" :key="dieObject.index">
         <div :style="dieObject.style" @click="$diceStore.flip(dieObject.index)">
           {{ dieObject.char }}
