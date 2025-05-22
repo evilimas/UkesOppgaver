@@ -29,17 +29,50 @@ export const yatzyStore = defineStore('scoreBoard', () => {
     } else {
       activePlayer.value = 1;
     }
+    placeScore();
   };
-  const placeScore = (dice: Die[]) => {
-    const scoreFunction = scoreFunctions[dice];
-    const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
-    const score = scoreFunction(frequencyTable);
-    if (scoreBoard[dice] === null) {
-      scoreBoard[dice] = score;
-    }
-  };
-  const scoreBoards = computed(() =>
+  const placeScore = () => {};
+  const scoreBoards = reactive<Scoreboard[]>(
     Array.from({ length: Math.min(players.value, 4) }, emptyScoreboard)
+  );
+
+  //   Dice store
+
+  const diceChars = '⚀⚁⚂⚃⚄⚅';
+  const dice = ref<Die[]>([1, 2, 3, 4, 5]);
+  const holdDie = ref<boolean[]>(new Array(5).fill(false));
+  // const holdDie = ref<boolean[]>([false, false, false, false, false]);
+  const dieColor = ref<string[]>(['black', 'black', 'black', 'black', 'black']);
+  const throwCount = ref(3);
+  const throwDice = () => {
+    for (let i = 0; i < dice.value.length; i++) {
+      if (holdDie.value[i]) {
+        continue;
+      }
+      dice.value[i] = Math.floor(Math.random() * 6 + 1) as Die;
+    }
+    throwCount.value--;
+  };
+
+  const dieStyle = (index: number) => {
+    const isSelected = holdDie.value[index];
+    return {
+      background: isSelected ? 'lightblue' : 'black',
+      color: isSelected ? 'black' : 'white',
+    };
+  };
+
+  const flip = (index: number) => {
+    holdDie.value[index] = !holdDie.value[index];
+  };
+
+  const diceObjects = computed(() =>
+    dice.value.map((die: Die, index: number) => ({
+      value: die,
+      index: index,
+      char: diceChars[die - 1],
+      style: dieStyle(index),
+    }))
   );
 
   return {
@@ -48,5 +81,16 @@ export const yatzyStore = defineStore('scoreBoard', () => {
     nextTurn,
     scoreBoards,
     activePlayer,
+    placeScore,
+    // Dice store
+    dieColor,
+    holdDie,
+    dice,
+    diceChars,
+    throwCount,
+    throwDice,
+    flip,
+    dieStyle,
+    diceObjects,
   };
 });

@@ -31,6 +31,7 @@ defineProps<{
           @click="store.nextTurn()"
           v-for="(scoreBoard, index) of store.scoreBoards"
           :key="index"
+          :id="combination + index"
         >
           {{ scoreBoard[combination] }}
         </td>

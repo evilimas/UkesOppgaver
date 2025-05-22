@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useDiceStore } from '@/stores/useDiceStore';
 import { yatzyStore } from '@/stores/yatzyStore';
-const $diceStore = useDiceStore();
+
 const store = yatzyStore();
 </script>
 
@@ -10,7 +9,7 @@ const store = yatzyStore();
   <main>
     <h1>Velkommen til det beste Yatzy-spillet!</h1>
     <div>
-      <h2 v-for="(die, index) in $diceStore.diceChars" :key="index">
+      <h2 v-for="(die, index) in store.diceChars" :key="index">
         {{ die }}
       </h2>
     </div>
