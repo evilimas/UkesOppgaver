@@ -12,8 +12,7 @@ const playersNr = ref($store.playerNumber);
 <template>
   <div id="game">
     <h1>Yatzy</h1>
-    <div >
-      
+    <div>      
       <Player></Player>
     </div>
     <div><Dice />
