@@ -28,10 +28,10 @@ defineProps<{
       <tr v-for="(value, combination) in uiLabels" :key="combination">
         <td :id="combination">{{ value }}</td>
         <td
-          @click="store.nextTurn()"
+          @click="store.nextTurn(combination)"
           v-for="(scoreBoard, index) of store.scoreBoards"
           :key="index"
-          :id="combination + index"
+          :id="combination"
         >
           {{ scoreBoard[combination] }}
         </td>

@@ -23,27 +23,39 @@ export const yatzyStore = defineStore('scoreBoard', () => {
   // ideelt sett skal komponentene kun lese de reaktive variablene
   // - og bruke dem til rendering
   // - og at endring skjer via actions
-  const nextTurn = () => {
-    placeScore();
-    console.log('scoreplaced', scoreBoards[activePlayer.value - 1].aces);
+  const nextTurn = (combination: string) => {
+    placeScore(combination);
+    // console.log('scoreplaced', scoreBoards[activePlayer.value - 1][combination]);
+    // console.log(combination);
+
     if (activePlayer.value < players.value) {
       activePlayer.value++;
     } else {
       activePlayer.value = 1;
-    }    
-    
+    }
+    throwCount.value = 3;
+    holdDie.value = new Array(5).fill(false);
+    dice.value = [1, 2, 3, 4, 5];
   };
-  const placeScore = () => {scoreBoards[activePlayer.value - 1].aces = 1};
+  const placeScore = (combination: string) => {
+    let combo = combination as YatzyCombination;
+    console.log(scoreBoards[activePlayer.value - 1]);
+    scoreBoards[activePlayer.value - 1][combo] = scoreFunctions[combo](
+      dice.value
+    );
+  };
+
   const scoreBoards = reactive<Scoreboard[]>(
     Array.from({ length: Math.min(players.value, 4) }, emptyScoreboard)
   );
+
+  const scoreTable = reactive<number[]>();
 
   //   Dice store
 
   const diceChars = '⚀⚁⚂⚃⚄⚅';
   const dice = ref<Die[]>([1, 2, 3, 4, 5]);
   const holdDie = ref<boolean[]>(new Array(5).fill(false));
-  // const holdDie = ref<boolean[]>([false, false, false, false, false]);
   const dieColor = ref<string[]>(['black', 'black', 'black', 'black', 'black']);
   const throwCount = ref(3);
   const throwDice = () => {
