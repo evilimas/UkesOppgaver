@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { useScoreboardStore } from '@/stores/useScoreboardStore';
 import { yatzyStore } from '@/stores/yatzyStore';
 import type { Die } from '../yatzyLogic';
 
