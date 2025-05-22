@@ -1,30 +1,30 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { useScoreboardStore } from '@/stores/useScoreboardStore';
-import { useDiceStore } from '@/stores/useDiceStore';
-import { usePlayerStore } from '@/stores/usePlayerStore';
+import { ref, computed } from "vue";
+import { yatzyStore } from "@/stores/yatzyStore";
+import { uiLabels } from "../yatzyLogic";
 
-const $scoreStore = useScoreboardStore();
-const $diceStore = useDiceStore();
-const $store = usePlayerStore();
-const playersNr = ref($store.playerNumber);
-
+const scores = yatzyStore();
+scores.scoreBoards[0].yatzy = 50;
+scores.scoreBoards[1].fours = 50;
 </script>
 
 <template>
   <fieldset>
-    <div class="board">
-      <legend>Scoreboard </legend>
-      <div class="combinations" v-for="(combination) in $scoreStore.board">
-        <div>{{ combination }}</div>
-        <!-- <span>{{ combination }}</span> -->
-      </div>
-      <div v-for="player in playersNr">
-        <div class="player-score" v-for="(score) in $scoreStore.scores">
-          <div>{{ score }}</div>
-        </div>
-      </div>
-    </div>
+    <legend>Scoreboard</legend>
+    <table>
+      <tr>
+        <th>Kombinasjon</th>
+        <th>Player 1</th>
+        <th>Player 2</th>
+        <th>Player 3</th>
+      </tr>
+      <tr v-for="(value, combination) in uiLabels" :key="combination">
+        <td>{{ value }}</td>
+        <td v-for="(scoreBoard, index) of scores.scoreBoards" :key="index">
+          {{ scoreBoard[combination] }}
+        </td>
+      </tr>
+    </table>
   </fieldset>
 </template>
 
@@ -34,5 +34,14 @@ const playersNr = ref($store.playerNumber);
   grid-template-columns: repeat(5, 1fr);
   flex-direction: column;
   justify-content: space-between;
+}
+
+table,
+tr,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 4px;
 }
 </style>
