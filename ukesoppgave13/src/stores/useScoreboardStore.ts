@@ -15,7 +15,7 @@ export const useScoreboardStore = defineStore('scoreBoard', () => {
     }
     return bonus
   })
-
+  //const createScoreArray = () => { playrId.value = 0 : [scores.value] } // { playerNr: [scores.value] }
   const isGameOver = ref<boolean>(false)
   const isGameWon = ref<boolean>(false)
   const isGameLost = ref<boolean>(false)

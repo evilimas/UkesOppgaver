@@ -24,7 +24,6 @@ const playersNr = ref($store.playerNumber);
           <div>{{ score }}</div>
         </div>
       </div>
-      {{ $diceStore.throwCount }}
     </div>
   </fieldset>
 </template>
@@ -32,7 +31,7 @@ const playersNr = ref($store.playerNumber);
 <style scoped>
 .board {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
   flex-direction: column;
   justify-content: space-between;
 }
