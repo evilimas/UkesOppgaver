@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import { yatzyStore } from "@/stores/yatzyStore";
-import { uiLabels } from "../yatzyLogic";
+import { ref, computed } from 'vue';
+import { yatzyStore } from '@/stores/yatzyStore';
+import { uiLabels } from '../yatzyLogic';
 
 const store = yatzyStore();
+
+defineProps<{
+  activePlayer: number;
+}>();
 </script>
 
 <template>
@@ -11,13 +15,23 @@ const store = yatzyStore();
     <thead>
       <tr>
         <th>Kombinasjon</th>
-        <th v-for="player of store.players">Spiller: {{ player }}</th>
+        <th
+          v-for="player of store.players"
+          :key="player"
+          :style="{ background: activePlayer === player ? 'lightgreen' : '' }"
+        >
+          Spiller: {{ player }}
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="(value, combination) in uiLabels" :key="combination">
-        <td>{{ value }}</td>
-        <td v-for="(scoreBoard, index) of store.scoreBoards" :key="index">
+        <td :id="combination">{{ value }}</td>
+        <td
+          @click="store.nextTurn()"
+          v-for="(scoreBoard, index) of store.scoreBoards"
+          :key="index"
+        >
           {{ scoreBoard[combination] }}
         </td>
       </tr>
@@ -26,7 +40,6 @@ const store = yatzyStore();
 </template>
 
 <style scoped>
-
 table,
 tr,
 th,

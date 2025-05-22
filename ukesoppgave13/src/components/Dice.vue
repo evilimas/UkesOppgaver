@@ -16,26 +16,36 @@ const trillText = computed(() =>
 
 <template>
   <fieldset>
-    <legend>Spiller: 1</legend>
-    <button @click="$diceStore.throwDice()" :disabled="$diceStore.throwCount <= 0">
-      Trill
-    </button>
-    <div>{{ $diceStore.throwCount }} {{ trillText }}</div>
-    
+    <legend>Spiller: {{ store.activePlayer }}</legend>
+    <div v-show="store.gameStarted">
+      <button
+        @click="$diceStore.throwDice()"
+        :disabled="$diceStore.throwCount <= 0"
+      >
+        Trill
+      </button>
+      <div>{{ $diceStore.throwCount }} {{ trillText }}</div>
 
-    <div :v-show="store.gameStarted" class="dice" style="display: flex">
-      <span v-for="dieObject of $diceStore.diceObjects" :key="dieObject.index">
-        <div :style="dieObject.style" @click="$diceStore.flip(dieObject.index)">
-          {{ dieObject.char }}
-        </div>
-      </span>
-      <!-- <span v-for="(dieValue, index) of $diceStore.dice" :key="index">
-        <div
-          :style="$diceStore.dieStyle(index)"
-          @click="$diceStore.flip(index)">
-          {{ $diceStore.diceChars[$diceStore.dice[index] - 1] }}
-        </div>
-      </span> -->
+      <div class="dice" style="display: flex">
+        <span
+          v-for="dieObject of $diceStore.diceObjects"
+          :key="dieObject.index"
+        >
+          <div
+            :style="dieObject.style"
+            @click="$diceStore.flip(dieObject.index)"
+          >
+            {{ dieObject.char }}
+          </div>
+        </span>
+        <!-- <span v-for="(dieValue, index) of $diceStore.dice" :key="index">
+          <div
+            :style="$diceStore.dieStyle(index)"
+            @click="$diceStore.flip(index)">
+            {{ $diceStore.diceChars[$diceStore.dice[index] - 1] }}
+          </div>
+        </span> -->
+      </div>
     </div>
   </fieldset>
 </template>
@@ -50,5 +60,4 @@ span {
   user-select: none;
   cursor: pointer;
 }
-
 </style>

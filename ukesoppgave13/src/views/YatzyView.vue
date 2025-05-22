@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import Scoreboard from "@/components/Scoreboard.vue";
-import Dice from "@/components/Dice.vue";
-import Player from "@/components/Player.vue";
+import { ref } from 'vue';
+import Scoreboard from '@/components/Scoreboard.vue';
+import Dice from '@/components/Dice.vue';
+import Player from '@/components/Player.vue';
+import { yatzyStore } from '@/stores/yatzyStore';
+
+const store = yatzyStore();
 </script>
 
 <template>
@@ -13,7 +16,7 @@ import Player from "@/components/Player.vue";
     </div>
     <div><Dice /></div>
     <div>
-      <Scoreboard />
+      <Scoreboard :activePlayer="store.activePlayer" />
     </div>
   </div>
 </template>

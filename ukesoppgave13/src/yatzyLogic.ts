@@ -148,7 +148,7 @@ const uiLabels = {
   house: 'Hus',
   chance: 'Sjanse',
   yatzy: 'Yatzy',
-} as const; 
+} as const;
 
 type YatzyCombination = keyof typeof scoreFunctions;
 
@@ -164,5 +164,11 @@ type YatzyCombination = keyof typeof scoreFunctions;
 //     return largeStraight.every((die) => frequencyTable[die] === 1) ? 20 : 0;
 // };
 
-export { scoreFunctions, scoreboardFunctions, emptyScoreboard, uiLabels };
+export {
+  scoreFunctions,
+  scoreboardFunctions,
+  emptyScoreboard,
+  uiLabels,
+  createFrequencyTable,
+};
 export type { Die, DieFrequencyTable, YatzyCombination, Scoreboard };
