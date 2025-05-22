@@ -6,7 +6,8 @@ export const useDiceStore = defineStore('dice', () => {
     // const diceChars = ' ⚀⚁⚂⚃⚄⚅';
     const diceChars = '⚀⚁⚂⚃⚄⚅';
     const dice = ref<Die[]>([1, 2, 3, 4, 5]);
-    const holdDie = ref<boolean[]>([false, false, false, false, false]);
+    const holdDie = ref<boolean[]>(new Array(5).fill(false));
+    // const holdDie = ref<boolean[]>([false, false, false, false, false]);
     const dieColor = ref<string[]>(['black', 'black', 'black', 'black', 'black']);
     const throwCount = ref(3);
     const throwDice = () => {
@@ -16,7 +17,7 @@ export const useDiceStore = defineStore('dice', () => {
             }
             dice.value[i] = Math.floor(Math.random() * 6 + 1) as Die;
         }
-        throwCount.value--;        
+        throwCount.value--;
     }
 
     const dieStyle = (index: number) => {
@@ -34,7 +35,7 @@ export const useDiceStore = defineStore('dice', () => {
     const diceObjects = computed(() => dice.value.map((die: Die, index: number) => ({
         value: die,
         index: index,
-        char: diceChars[die-1],
+        char: diceChars[die - 1],
         style: dieStyle(index)
     })))
     /*
@@ -56,7 +57,7 @@ export const useDiceStore = defineStore('dice', () => {
         throwCount,
         throwDice,
         flip,
-        dieStyle, 
+        dieStyle,
         diceObjects
     }
 })
