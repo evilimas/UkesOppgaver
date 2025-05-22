@@ -10,18 +10,22 @@ scores.scoreBoards[1].fours = 50;
 
 <template>
   <table>
-    <tr>
-      <th>Kombinasjon</th>
-      <th>Player 1</th>
-      <th>Player 2</th>
-      <th>Player 3</th>
-    </tr>
-    <tr v-for="(value, combination) in uiLabels" :key="combination">
-      <td>{{ value }}</td>
-      <td v-for="(scoreBoard, index) of scores.scoreBoards" :key="index">
-        {{ scoreBoard[combination] }}
-      </td>
-    </tr>
+    <thead>
+      <tr>
+        <th>Kombinasjon</th>
+        <th>Player 1</th>
+        <th>Player 2</th>
+        <th>Player 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(value, combination) in uiLabels" :key="combination">
+        <td>{{ value }}</td>
+        <td v-for="(scoreBoard, index) of scores.scoreBoards" :key="index">
+          {{ scoreBoard[combination] }}
+        </td>
+      </tr>
+    </tbody>
   </table>
 </template>
 
