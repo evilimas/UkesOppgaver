@@ -10,12 +10,12 @@ const store = yatzyStore();
 
 <template>
   <div id="game">
-    <h1>Velkommen til det beste Yatzy-spillet!</h1>
-    <div>
+    <h1>Det beste Yatzy-spillet!</h1>
+    <!-- <div>
       <h2 v-for="(die, index) in store.diceChars" :key="index">
         {{ die }}
       </h2>
-    </div>
+    </div> -->
     <div>
       <Player></Player>
     </div>
