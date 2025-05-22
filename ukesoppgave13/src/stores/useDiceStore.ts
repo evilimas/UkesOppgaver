@@ -4,7 +4,7 @@ import type { Die, DieFrequencyTable } from '../yatzyLogic';
 // import { createFrequencyTable } from '../yatzyLogic';
 export const useDiceStore = defineStore('dice', () => {
     // const diceChars = ' ⚀⚁⚂⚃⚄⚅';
-    const diceChars = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅']
+    const diceChars = '⚀⚁⚂⚃⚄⚅';
     const dice = ref<Die[]>([1, 2, 3, 4, 5]);
     const holdDie = ref<boolean[]>([false, false, false, false, false]);
     const dieColor = ref<string[]>(['black', 'black', 'black', 'black', 'black']);
