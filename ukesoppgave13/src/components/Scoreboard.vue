@@ -3,9 +3,7 @@ import { ref, computed } from "vue";
 import { yatzyStore } from "@/stores/yatzyStore";
 import { uiLabels } from "../yatzyLogic";
 
-const scores = yatzyStore();
-scores.scoreBoards[0].yatzy = 50;
-scores.scoreBoards[1].fours = 50;
+const store = yatzyStore();
 </script>
 
 <template>
@@ -13,15 +11,13 @@ scores.scoreBoards[1].fours = 50;
     <thead>
       <tr>
         <th>Kombinasjon</th>
-        <th>Player 1</th>
-        <th>Player 2</th>
-        <th>Player 3</th>
+        <th v-for="player of store.players">Spiller: {{ player }}</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="(value, combination) in uiLabels" :key="combination">
         <td>{{ value }}</td>
-        <td v-for="(scoreBoard, index) of scores.scoreBoards" :key="index">
+        <td v-for="(scoreBoard, index) of store.scoreBoards" :key="index">
           {{ scoreBoard[combination] }}
         </td>
       </tr>
@@ -30,18 +26,12 @@ scores.scoreBoards[1].fours = 50;
 </template>
 
 <style scoped>
-.board {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  flex-direction: column;
-  justify-content: space-between;
-}
 
 table,
 tr,
 th,
 td {
-  border: 1px solid black;
+  border: 1px solid lightblue;
   border-collapse: collapse;
   padding: 4px;
 }

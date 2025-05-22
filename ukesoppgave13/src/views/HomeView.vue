@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useDiceStore } from '@/stores/useDiceStore';
-import { usePlayerStore } from '@/stores/usePlayerStore';
+import { yatzyStore } from '@/stores/yatzyStore';
 const $diceStore = useDiceStore();
-const $store = usePlayerStore();
+const store = yatzyStore();
 </script>
 
 <template>
@@ -23,7 +23,7 @@ const $store = usePlayerStore();
           min="1"
           max="4"
           placeholder="Antall"
-          v-model="$store.playerNumber"
+          v-model="store.players"
         />
       </label>
     </div>

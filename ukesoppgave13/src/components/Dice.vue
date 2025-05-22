@@ -2,11 +2,12 @@
 import { computed, ref } from 'vue';
 import { useScoreboardStore } from '@/stores/useScoreboardStore';
 import { useDiceStore } from '@/stores/useDiceStore';
-
+import { yatzyStore } from '@/stores/yatzyStore';
 import type { Die } from '../yatzyLogic';
 
 // defineProps<{ msg: string }>()
 const $diceStore = useDiceStore();
+const store = yatzyStore();
 
 const trillText = computed(() =>
   $diceStore.throwCount <= 0 ? 'Ferdig' : 'Ganger igjen'
@@ -15,14 +16,14 @@ const trillText = computed(() =>
 
 <template>
   <fieldset>
-    <legend>Terninger</legend>
+    <legend>Spiller: 1</legend>
     <button @click="$diceStore.throwDice()" :disabled="$diceStore.throwCount <= 0">
       Trill
     </button>
-    <div>{{ $diceStore.throwCount }}</div>
-    <h3>{{ trillText }}</h3>
+    <div>{{ $diceStore.throwCount }} {{ trillText }}</div>
+    
 
-    <div class="dice" style="display: flex">
+    <div :v-show="store.gameStarted == false" class="dice" style="display: flex">
       <span v-for="dieObject of $diceStore.diceObjects" :key="dieObject.index">
         <div :style="dieObject.style" @click="$diceStore.flip(dieObject.index)">
           {{ dieObject.char }}

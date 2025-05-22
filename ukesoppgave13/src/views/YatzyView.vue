@@ -3,10 +3,6 @@ import { ref } from "vue";
 import Scoreboard from "@/components/Scoreboard.vue";
 import Dice from "@/components/Dice.vue";
 import Player from "@/components/Player.vue";
-import { usePlayerStore } from "@/stores/usePlayerStore";
-
-const $store = usePlayerStore();
-const playersNr = ref($store.playerNumber);
 </script>
 
 <template>
