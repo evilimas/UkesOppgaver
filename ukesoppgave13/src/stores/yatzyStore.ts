@@ -24,14 +24,16 @@ export const yatzyStore = defineStore('scoreBoard', () => {
   // - og bruke dem til rendering
   // - og at endring skjer via actions
   const nextTurn = () => {
+    placeScore();
+    console.log('scoreplaced', scoreBoards[activePlayer.value - 1].aces);
     if (activePlayer.value < players.value) {
       activePlayer.value++;
     } else {
       activePlayer.value = 1;
-    }
-    placeScore();
+    }    
+    
   };
-  const placeScore = () => {};
+  const placeScore = () => {scoreBoards[activePlayer.value - 1].aces = 1};
   const scoreBoards = reactive<Scoreboard[]>(
     Array.from({ length: Math.min(players.value, 4) }, emptyScoreboard)
   );
