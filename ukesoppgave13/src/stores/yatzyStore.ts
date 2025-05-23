@@ -141,8 +141,6 @@ export const yatzyStore = defineStore('scoreBoard', () => {
     activePlayer,
     placeScore,
     allBoardScores,
-    gameOver,
-    winner,
     // Dice store
     dieColor,
     holdDie,
