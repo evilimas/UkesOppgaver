@@ -14,7 +14,7 @@ import type {
 } from '../yatzyLogic';
 
 export const yatzyStore = defineStore('scoreBoard', () => {
-  const players = ref<number>(4);
+  const players = ref<number>(1);
 
   const gameStarted = ref<boolean>(false);
   const activePlayer = ref<number>(1);
@@ -24,8 +24,6 @@ export const yatzyStore = defineStore('scoreBoard', () => {
   // - og at endring skjer via actions
   const nextTurn = (combination: string) => {
     placeScore(combination);
-    // console.log('scoreplaced', scoreBoards[activePlayer.value - 1][combination]);
-    // console.log(combination);
 
     if (activePlayer.value < players.value) {
       activePlayer.value++;
@@ -63,7 +61,24 @@ export const yatzyStore = defineStore('scoreBoard', () => {
     );
   });
 
-  // const scoreTable = reactive<number[]>();
+  const gameOver = computed(() => {
+    return scoreBoards.every((scoreBoard) =>
+      Object.values(scoreBoard).every((score) => score !== null)
+    );
+  });
+
+  const winner = () => {
+    const scores = allBoardScores.value;
+    const maxScore = Math.max(...scores.map((score) => score.total));
+    const winners = scores
+      .map((score, index) => ({ player: index + 1, score: score.total }))
+      .filter((score) => score.score === maxScore);
+    return winners.length > 1
+      ? `It's a tie between players ${winners
+          .map((winner) => winner.player)
+          .join(', ')} with a score of ${maxScore}`
+      : `Player ${winners[0].player} wins with a score of ${maxScore}`;
+  };
 
   //   Dice store
 
@@ -112,6 +127,8 @@ export const yatzyStore = defineStore('scoreBoard', () => {
     activePlayer,
     placeScore,
     allBoardScores,
+    gameOver,
+    winner,
     // Dice store
     dieColor,
     holdDie,

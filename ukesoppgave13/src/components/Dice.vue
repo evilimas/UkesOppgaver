@@ -40,6 +40,10 @@ const trillText = computed(() =>
         </span> -->
       </div>
     </div>
+    <div v-if="store.gameOver">
+      <h2>Spillet er over!</h2>
+      <h3>{{ store.winner() }}</h3>
+    </div>
   </fieldset>
 </template>
 
