@@ -81,7 +81,7 @@ defineProps<{
         </tr>
         <tr>
           <td>Totalsum</td>
-          <td v-for="score in store.allBoardScores" :key="score">
+          <td v-for="score in store.allBoardScores">
             {{ score.total }}
           </td>
         </tr>
