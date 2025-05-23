@@ -32,6 +32,7 @@ defineProps<{
           v-for="(scoreBoard, index) of store.scoreBoards"
           :key="index"
           :id="combination"
+          
         >
           {{ scoreBoard[combination] }}
         </td>
