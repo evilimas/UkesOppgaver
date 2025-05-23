@@ -62,7 +62,23 @@ export const yatzyStore = defineStore('scoreBoard', () => {
       ...Array.from({ length: Math.min(newVal, 4) }, emptyScoreboard)
     );
   });
-
+  const isGameFinished = computed(() => {
+    return scoreBoards.every(board =>
+      Object.values(board).every(score => score !== null)
+    );
+  });
+  const winner = () => {
+    const scores = allBoardScores.value;
+    const maxScore = Math.max(...scores.map((score) => score.total));
+    const winners = scores
+      .map((score, index) => ({ player: index + 1, score: score.total }))
+      .filter((score) => score.score === maxScore);
+    return winners.length > 1
+      ? `It's a tie between players ${winners
+        .map((winner) => winner.player)
+        .join(', ')} with a score of ${maxScore}`
+      : `Player ${winners[0].player} wins with a score of ${maxScore}`;
+  };
   // const scoreTable = reactive<number[]>();
 
   //   Dice store
@@ -103,8 +119,23 @@ export const yatzyStore = defineStore('scoreBoard', () => {
       style: dieStyle(index),
     }))
   );
+  const resetGame = () => {
+  scoreBoards.splice(
+    0,
+    scoreBoards.length,
+    ...Array.from({ length: Math.min(players.value, 4) }, emptyScoreboard)
+  );
+  activePlayer.value = 1;
+  throwCount.value = 3;
+  holdDie.value = new Array(5).fill(false);
+  dice.value = [null, null, null, null, null];
+  gameStarted.value = false;
+};
 
   return {
+    resetGame,
+    isGameFinished,
+    winner,
     gameStarted,
     players,
     nextTurn,
