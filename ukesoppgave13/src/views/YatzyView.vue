@@ -3,7 +3,7 @@ import { ref, watch } from 'vue';
 import Scoreboard from '@/components/Scoreboard.vue';
 import Dice from '@/components/Dice.vue';
 import Player from '@/components/Player.vue';
-import WinnerModal from '@components/WinnerModal.vue';
+import WinnerModal from '@/components/WinnerModal.vue';
 
 import { yatzyStore } from '@/stores/yatzyStore';
 const showWinnerModal = ref(false);
@@ -40,7 +40,7 @@ const handleNewGame = () => {
     </div>
     <WinnerModal
     :is-visible="showWinnerModal"
-    :winner-text="store.winnerText"
+    :winner-text="store.winner()"
     @close="handleCloseModal"
     @new-game="handleNewGame"
   />

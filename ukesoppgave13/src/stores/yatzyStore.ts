@@ -77,7 +77,7 @@ export const yatzyStore = defineStore('scoreBoard', () => {
       ? `It's a tie between players ${winners
         .map((winner) => winner.player)
         .join(', ')} with a score of ${maxScore}`
-      : `Player ${winners[0].player} wins with a score of ${maxScore}`;
+      : `Spiller ${winners[0].player} vinner med ${maxScore} poeng`;
   };
   // const scoreTable = reactive<number[]>();
 
