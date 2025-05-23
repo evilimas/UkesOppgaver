@@ -3,8 +3,15 @@ const compose =
   (...args: any[]) =>
     fns.reduceRight((res, fn) => [fn.call(null, ...res)], args)[0];
 
-const dieValues = [1 || null, 2 || null, 3 || null, 4 || null, 5 || null, 6 || null] as const;
-type Die = (typeof dieValues)[number] ;
+const dieValues = [
+  1 || null,
+  2 || null,
+  3 || null,
+  4 || null,
+  5 || null,
+  6 || null,
+] as const;
+type Die = (typeof dieValues)[number];
 type DieFrequencyTable = {
   [K in Die]: number;
 };
@@ -77,8 +84,8 @@ const scoreFunctions = {
   twoPairs: pointsTwoPairs,
   threeOfAKind: nOfAKind(3),
   fourOfAKind: nOfAKind(4),
-  largeStraight: pointsStraight(1, 20),
   smallStraight: pointsStraight(6, 15),
+  largeStraight: pointsStraight(1, 20),
   house: pointsHouse,
   chance: pointsSum,
   yatzy: compose(positiveToFixedNumber(50), nOfAKind(5)),
@@ -125,8 +132,8 @@ const emptyScoreboard = (): Scoreboard => ({
   twoPairs: null,
   threeOfAKind: null,
   fourOfAKind: null,
-  largeStraight: null,
   smallStraight: null,
+  largeStraight: null,
   house: null,
   chance: null,
   yatzy: null,
@@ -143,8 +150,8 @@ const uiLabels = {
   twoPairs: 'To par',
   threeOfAKind: 'Tre like',
   fourOfAKind: 'Fire like',
-  largeStraight: 'Liten Straight',
   smallStraight: 'Stor Straight',
+  largeStraight: 'Liten Straight',
   house: 'Hus',
   chance: 'Sjanse',
   yatzy: 'Yatzy',

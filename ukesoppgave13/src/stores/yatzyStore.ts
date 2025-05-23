@@ -1,4 +1,4 @@
-import { ref, computed, reactive } from 'vue';
+import { ref, computed, reactive, watch } from 'vue';
 import { defineStore } from 'pinia';
 
 import {
@@ -34,7 +34,7 @@ export const yatzyStore = defineStore('scoreBoard', () => {
     }
     throwCount.value = 3;
     holdDie.value = new Array(5).fill(false);
-    dice.value = [null, null, null, null, null];
+    dice.value = [2, 3, 4, 5, 6];
   };
   const placeScore = (combination: string) => {
     let combo = combination as YatzyCombination;
@@ -54,6 +54,14 @@ export const yatzyStore = defineStore('scoreBoard', () => {
   const scoreBoards = reactive<Scoreboard[]>(
     Array.from({ length: Math.min(players.value, 4) }, emptyScoreboard)
   );
+
+  watch(players, (newVal) => {
+    scoreBoards.splice(
+      0,
+      scoreBoards.length,
+      ...Array.from({ length: Math.min(newVal, 4) }, emptyScoreboard)
+    );
+  });
 
   // const scoreTable = reactive<number[]>();
 

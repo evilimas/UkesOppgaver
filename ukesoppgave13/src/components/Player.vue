@@ -3,7 +3,7 @@ import { yatzyStore } from '@/stores/yatzyStore';
 const store = yatzyStore();
 </script>
 <template>
-  <div id="Player">
+  <div v-if="!store.gameStarted" id="Player">
     <h3>Spillere: {{ store.players }}</h3>
     <button
       :disabled="store.players >= 4"
@@ -22,6 +22,4 @@ const store = yatzyStore();
     <button @click="store.gameStarted = !store.gameStarted">Start Spill</button>
   </div>
 </template>
-<style scoped>
-
-</style>
+<style scoped></style>
