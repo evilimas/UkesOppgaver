@@ -5,7 +5,6 @@ import {
   scoreFunctions,
   scoreboardFunctions,
   emptyScoreboard,
-  createFrequencyTable,
 } from '../yatzyLogic';
 import type {
   Die,
@@ -15,7 +14,7 @@ import type {
 } from '../yatzyLogic';
 
 export const yatzyStore = defineStore('scoreBoard', () => {
-  const players = ref<number>(4);
+  const players = ref<number>(1);
 
   const gameStarted = ref<boolean>(false);
   const activePlayer = ref<number>(1);
@@ -43,6 +42,14 @@ export const yatzyStore = defineStore('scoreBoard', () => {
       dice.value.filter((d): d is Die => d !== null)
     );
   };
+
+  const allBoardScores = computed(() => {
+    return scoreBoards.map((scoreBoard) => ({
+      sum: scoreboardFunctions.sum(scoreBoard),
+      bonus: scoreboardFunctions.bonus(scoreBoard),
+      total: scoreboardFunctions.totalSum(scoreBoard),
+    }));
+  });
 
   const scoreBoards = reactive<Scoreboard[]>(
     Array.from({ length: Math.min(players.value, 4) }, emptyScoreboard)
@@ -96,6 +103,7 @@ export const yatzyStore = defineStore('scoreBoard', () => {
     scoreBoards,
     activePlayer,
     placeScore,
+    allBoardScores,
     // Dice store
     dieColor,
     holdDie,
