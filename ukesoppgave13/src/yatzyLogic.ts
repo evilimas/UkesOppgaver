@@ -4,12 +4,12 @@ const compose =
     fns.reduceRight((res, fn) => [fn.call(null, ...res)], args)[0];
 
 const dieValues = [
-  1 || null,
-  2 || null,
-  3 || null,
-  4 || null,
-  5 || null,
-  6 || null,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
 ] as const;
 type Die = (typeof dieValues)[number];
 type DieFrequencyTable = {
