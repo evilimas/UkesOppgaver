@@ -3,8 +3,8 @@ const compose =
   (...args: any[]) =>
     fns.reduceRight((res, fn) => [fn.call(null, ...res)], args)[0];
 
-const dieValues = [1, 2, 3, 4, 5, 6] as const;
-type Die = (typeof dieValues)[number];
+const dieValues = [1 || null, 2 || null, 3 || null, 4 || null, 5 || null, 6 || null] as const;
+type Die = (typeof dieValues)[number] ;
 type DieFrequencyTable = {
   [K in Die]: number;
 };

@@ -13,16 +13,16 @@ const trillText = computed(() =>
 </script>
 
 <template>
-  <fieldset>
+  <fieldset >
     <legend>Spiller: {{ store.activePlayer }}</legend>
     <div v-show="store.gameStarted">
       <button @click="store.throwDice()" :disabled="store.throwCount <= 0">
-        Trill
+        Trill terninger
       </button>
       <div>{{ store.throwCount }} {{ trillText }}</div>
 
-      <div class="dice" style="display: flex">
-        <span v-for="dieObject of store.diceObjects" :key="dieObject.index">
+      <div class="dice" style="display: flex" :disabled="store.throwCount === 3">
+        <span v-for="dieObject of store.diceObjects" :key="dieObject.index" >
           <div :style="dieObject.style" @click="store.flip(dieObject.index)">
             {{ dieObject.char }}
           </div>
@@ -48,5 +48,12 @@ span {
 .dice {
   user-select: none;
   cursor: pointer;
+}
+fieldset {
+  height: 15vh;
+  width: 23vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

@@ -22,4 +22,6 @@ const store = yatzyStore();
     <button @click="store.gameStarted = !store.gameStarted">Start Spill</button>
   </div>
 </template>
-<style scoped></style>
+<style scoped>
+
+</style>

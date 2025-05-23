@@ -35,13 +35,12 @@ export const yatzyStore = defineStore('scoreBoard', () => {
     }
     throwCount.value = 3;
     holdDie.value = new Array(5).fill(false);
-    dice.value = [1, 2, 3, 4, 5];
+    dice.value = [null, null, null, null, null];
   };
   const placeScore = (combination: string) => {
     let combo = combination as YatzyCombination;
-    console.log(scoreBoards[activePlayer.value - 1]);
     scoreBoards[activePlayer.value - 1][combo] = scoreFunctions[combo](
-      dice.value
+      dice.value.filter((d): d is Die => d !== null)
     );
   };
 
@@ -49,12 +48,13 @@ export const yatzyStore = defineStore('scoreBoard', () => {
     Array.from({ length: Math.min(players.value, 4) }, emptyScoreboard)
   );
 
-  const scoreTable = reactive<number[]>();
+  // const scoreTable = reactive<number[]>();
 
   //   Dice store
 
   const diceChars = '⚀⚁⚂⚃⚄⚅';
-  const dice = ref<Die[]>([1, 2, 3, 4, 5]);
+  const dice = ref<(Die | null)[]>([null, null, null, null, null]);
+  // const dice = ref<Die[]>([1 2, 3, 4, 5]);
   const holdDie = ref<boolean[]>(new Array(5).fill(false));
   const dieColor = ref<string[]>(['black', 'black', 'black', 'black', 'black']);
   const throwCount = ref(3);
@@ -82,7 +82,7 @@ export const yatzyStore = defineStore('scoreBoard', () => {
 
   const diceObjects = computed(() =>
     dice.value.map((die: Die, index: number) => ({
-      value: die,
+      value: die || null,
       index: index,
       char: diceChars[die - 1],
       style: dieStyle(index),
