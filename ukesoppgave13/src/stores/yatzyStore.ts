@@ -14,7 +14,7 @@ import type {
 } from '../yatzyLogic';
 
 export const yatzyStore = defineStore('scoreBoard', () => {
-  const players = ref<number>(1);
+  const players = ref<number>(4);
 
   const gameStarted = ref<boolean>(false);
   const activePlayer = ref<number>(1);
