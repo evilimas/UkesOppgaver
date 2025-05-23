@@ -34,7 +34,7 @@ export const yatzyStore = defineStore('scoreBoard', () => {
     }
     throwCount.value = 3;
     holdDie.value = new Array(5).fill(false);
-    dice.value = [2, 3, 4, 5, 6];
+    dice.value = [null, null, null, null, null];
   };
   const placeScore = (combination: string) => {
     let combo = combination as YatzyCombination;
@@ -96,10 +96,10 @@ export const yatzyStore = defineStore('scoreBoard', () => {
   };
 
   const diceObjects = computed(() =>
-    dice.value.map((die: Die, index: number) => ({
-      value: die || null,
+    dice.value.map((die: Die | null, index: number) => ({
+      value: die,
       index: index,
-      char: diceChars[die - 1],
+      char: die ? diceChars[die - 1] : '',
       style: dieStyle(index),
     }))
   );
