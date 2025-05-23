@@ -14,7 +14,7 @@ import type {
 } from '../yatzyLogic';
 
 export const yatzyStore = defineStore('scoreBoard', () => {
-  const players = ref<number>(4);
+  const players = ref<number>(1);
 
   const gameStarted = ref<boolean>(false);
   const activePlayer = ref<number>(1);
@@ -24,8 +24,6 @@ export const yatzyStore = defineStore('scoreBoard', () => {
   // - og at endring skjer via actions
   const nextTurn = (combination: string) => {
     placeScore(combination);
-    // console.log('scoreplaced', scoreBoards[activePlayer.value - 1][combination]);
-    // console.log(combination);
 
     if (activePlayer.value < players.value) {
       activePlayer.value++;
@@ -143,6 +141,8 @@ export const yatzyStore = defineStore('scoreBoard', () => {
     activePlayer,
     placeScore,
     allBoardScores,
+    gameOver,
+    winner,
     // Dice store
     dieColor,
     holdDie,

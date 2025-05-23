@@ -60,7 +60,7 @@ defineProps<{
     <table>
       <thead>
         <tr>
-          <th>Poeng</th>
+          <th>----Poeng----</th>
           <th v-for="player of store.players" :key="player">
             Spiller: {{ player }}
           </th>
