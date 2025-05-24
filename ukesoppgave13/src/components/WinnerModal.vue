@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { yatzyStore } from '@/stores/yatzyStore';
-const store = yatzyStore();
 interface Props {
     isVisible: boolean;
     winnerText: string;
