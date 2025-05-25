@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { yatzyStore } from '@/stores/yatzyStore';
-import type { Die } from '../yatzyLogic';
-
-// defineProps<{ msg: string }>()
 
 const store = yatzyStore();
 
@@ -40,7 +37,6 @@ const trillText = computed(() =>
         </span> -->
       </div>
     </div>
-    
   </fieldset>
 </template>
 

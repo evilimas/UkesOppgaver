@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { yatzyStore } from '@/stores/yatzyStore';
 
 const store = yatzyStore();

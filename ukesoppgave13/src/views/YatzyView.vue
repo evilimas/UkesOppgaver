@@ -4,16 +4,19 @@ import Scoreboard from '@/components/Scoreboard.vue';
 import Dice from '@/components/Dice.vue';
 import Player from '@/components/Player.vue';
 import WinnerModal from '@/components/WinnerModal.vue';
-
 import { yatzyStore } from '@/stores/yatzyStore';
+
 const showWinnerModal = ref(false);
 const store = yatzyStore();
 
-watch(() => store.isGameFinished, (isFinished) => {
-  if (isFinished) {
-    showWinnerModal.value = true;
+watch(
+  () => store.isGameFinished,
+  (isFinished) => {
+    if (isFinished) {
+      showWinnerModal.value = true;
+    }
   }
-});
+);
 const handleCloseModal = () => {
   showWinnerModal.value = false;
 };
@@ -26,11 +29,6 @@ const handleNewGame = () => {
 <template>
   <div id="game">
     <h1>Det beste Yatzy-spillet!</h1>
-    <!-- <div>
-      <h2 v-for="(die, index) in store.diceChars" :key="index">
-        {{ die }}
-      </h2>
-    </div> -->
     <div>
       <Player></Player>
     </div>
@@ -39,11 +37,11 @@ const handleNewGame = () => {
       <Scoreboard :activePlayer="store.activePlayer" />
     </div>
     <WinnerModal
-    :is-visible="showWinnerModal"
-    :winner-text="store.winner()"
-    @close="handleCloseModal"
-    @new-game="handleNewGame"
-  />
+      :is-visible="showWinnerModal"
+      :winner-text="store.winner()"
+      @close="handleCloseModal"
+      @new-game="handleNewGame"
+    />
   </div>
 </template>
 

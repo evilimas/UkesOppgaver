@@ -1,27 +1,17 @@
 import { ref, computed, reactive, watch } from 'vue';
 import { defineStore } from 'pinia';
-
 import {
   scoreFunctions,
   scoreboardFunctions,
   emptyScoreboard,
 } from '../yatzyLogic';
-import type {
-  Die,
-  DieFrequencyTable,
-  YatzyCombination,
-  Scoreboard,
-} from '../yatzyLogic';
+import type { Die, YatzyCombination, Scoreboard } from '../yatzyLogic';
 
 export const yatzyStore = defineStore('scoreBoard', () => {
   const players = ref<number>(1);
-
   const gameStarted = ref<boolean>(false);
   const activePlayer = ref<number>(1);
-  // const turn = ...
-  // ideelt sett skal komponentene kun lese de reaktive variablene
-  // - og bruke dem til rendering
-  // - og at endring skjer via actions
+
   const nextTurn = (combination: string) => {
     placeScore(combination);
 
@@ -34,6 +24,7 @@ export const yatzyStore = defineStore('scoreBoard', () => {
     holdDie.value = new Array(5).fill(false);
     dice.value = [null, null, null, null, null];
   };
+
   const placeScore = (combination: string) => {
     let combo = combination as YatzyCombination;
     scoreBoards[activePlayer.value - 1][combo] = scoreFunctions[combo](
@@ -60,11 +51,13 @@ export const yatzyStore = defineStore('scoreBoard', () => {
       ...Array.from({ length: Math.min(newVal, 4) }, emptyScoreboard)
     );
   });
+
   const isGameFinished = computed(() => {
     return scoreBoards.every((board) =>
       Object.values(board).every((score) => score !== null)
     );
   });
+
   const winner = () => {
     const scores = allBoardScores.value;
     const maxScore = Math.max(...scores.map((score) => score.total));
@@ -82,7 +75,6 @@ export const yatzyStore = defineStore('scoreBoard', () => {
 
   const diceChars = '⚀⚁⚂⚃⚄⚅';
   const dice = ref<(Die | null)[]>([null, null, null, null, null]);
-  // const dice = ref<Die[]>([1 2, 3, 4, 5]);
   const holdDie = ref<boolean[]>(new Array(5).fill(false));
   const dieColor = ref<string[]>(['black', 'black', 'black', 'black', 'black']);
   const throwCount = ref(3);
@@ -116,6 +108,7 @@ export const yatzyStore = defineStore('scoreBoard', () => {
       style: dieStyle(index),
     }))
   );
+
   const resetGame = () => {
     scoreBoards.splice(
       0,

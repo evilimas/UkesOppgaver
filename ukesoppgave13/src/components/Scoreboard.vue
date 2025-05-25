@@ -69,19 +69,19 @@ defineProps<{
       <tbody>
         <tr>
           <td>Sum</td>
-          <td v-for="score in store.allBoardScores" :key="score">
+          <td v-for="score, index in store.allBoardScores" :key="index">
             {{ score.sum }}
           </td>
         </tr>
         <tr>
           <td>Bonus</td>
-          <td v-for="score in store.allBoardScores" :key="score">
+          <td v-for="score, index in store.allBoardScores" :key="index">
             {{ score.bonus }}
           </td>
         </tr>
         <tr>
           <td>Totalsum</td>
-          <td v-for="score in store.allBoardScores">
+          <td v-for="score, index in store.allBoardScores" :key="index">
             {{ score.total }}
           </td>
         </tr>
