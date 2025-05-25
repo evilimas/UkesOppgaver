@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { yatzyStore } from '@/stores/yatzyStore';
+import { yatzyStore } from '../stores/yatzyStore';
 const store = yatzyStore();
 </script>
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { yatzyStore } from '@/stores/yatzyStore';
+import { yatzyStore } from '../stores/yatzyStore';
 
 const store = yatzyStore();
 

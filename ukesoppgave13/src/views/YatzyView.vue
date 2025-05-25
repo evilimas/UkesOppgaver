@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import Scoreboard from '@/components/Scoreboard.vue';
-import Dice from '@/components/Dice.vue';
-import Player from '@/components/Player.vue';
-import WinnerModal from '@/components/WinnerModal.vue';
-import { yatzyStore } from '@/stores/yatzyStore';
+import Scoreboard from '../components/Scoreboard.vue';
+import Dice from '../components/Dice.vue';
+import Player from '../components/Player.vue';
+import WinnerModal from '../components/WinnerModal.vue';
+import { yatzyStore } from '../stores/yatzyStore';
 
 const showWinnerModal = ref(false);
 const store = yatzyStore();

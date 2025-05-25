@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { yatzyStore } from '@/stores/yatzyStore';
+import { yatzyStore } from '../stores/yatzyStore';
 import { uiLabels } from '../yatzyLogic';
 
 const store = yatzyStore();
@@ -8,6 +7,7 @@ const store = yatzyStore();
 defineProps<{
   activePlayer: number;
 }>();
+
 </script>
 
 <template>
