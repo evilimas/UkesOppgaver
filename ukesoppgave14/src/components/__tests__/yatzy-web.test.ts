@@ -14,7 +14,7 @@ const routes = [
 ];
 
 describe("HomeView", () => {
-  it("sets 4 players and navigates to /yatzy", async () => {
+  it("sets 4 players and navigates to /yatzy - view", async () => {
     setActivePinia(createPinia());
 
     const router = createRouter({
@@ -44,19 +44,19 @@ describe("HomeView", () => {
   });
 });
 
-// describe("Check Component action and event", () => {
-//   test("Enter value and emit event on button click", () => {
-//     let wrapper = mount(WinnerModal);
-//     const store = yatzyStore();
-//     store.gameStarted = true;
+describe("Check Component action and event", () => {
+  test("Enter value and emit event on button click", () => {
+    let wrapper = mount(WinnerModal);
+    const store = yatzyStore();
+    store.gameStarted = true;
 
-//     // Find the button and activate it
-//     wrapper.find("button").trigger("click");
+    // Find the button and activate it
+    wrapper.find("button").trigger("click");
 
-//     // Capture the event parameters
-//     let inputEvents = wrapper.emitted("newGame");
-//     console.log(inputEvents);
-//     // Check if the gameStarted is false
-//     expect(inputEvents[0]).toEqual([(store.gameStarted = false)]);
-//   });
-// });
+    // Capture the event parameters
+    let inputEvents = wrapper.emitted("newGame");
+    console.log(inputEvents);
+    // Check if the gameStarted is false
+    expect(inputEvents[0]).toEqual([(store.gameStarted = false)]);
+  });
+});

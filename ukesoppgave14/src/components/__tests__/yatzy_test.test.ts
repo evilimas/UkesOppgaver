@@ -30,7 +30,7 @@ describe("Yatzy Store", () => {
     expect(store.scoreBoards[0].yatzy).toBe(50);
   });
 
-  it("check if total works", () => {
+  it("check if total score works", () => {
     const store = yatzyStore();
     store.dice = [1, 1, 1, 1, 1];
     const Scoreboard = store.scoreBoards[0];
@@ -43,21 +43,33 @@ describe("Yatzy Store", () => {
     expect(store.allBoardScores[0].total).toBe(50);
   });
 
-  it("check sum and bonus works", () => {
+  it("check if sum and bonus works", () => {
     const store = yatzyStore();
-    store.dice = [1, 1, 1, 1, 1];
-    const Scoreboard = store.scoreBoards[0];
-    store.activePlayer = 1;
-    store.gameStarted = true;
-    store.throwCount = 2;
-    Scoreboard.aces = 5;
-    Scoreboard.twos = 10;
-    Scoreboard.threes = 15;
-    Scoreboard.fours = 20;
-    Scoreboard.fives = 25;
-    Scoreboard.sixes = 30;
+    store.scoreBoards[0] = {
+      aces: 5,
+      twos: 10,
+      threes: 15,
+      fours: 12,
+      fives: 10,
+      sixes: 12,
+    };
 
-    expect(store.allBoardScores[0].sum).toBe(105);
+    expect(store.allBoardScores[0].sum).toBe(64);
     expect(store.allBoardScores[0].bonus).toBe(50);
+  });
+
+  it("check if sum and no bonus works", () => {
+    const store = yatzyStore();
+    store.scoreBoards[0] = {
+      aces: 1,
+      twos: 4,
+      threes: 3,
+      fours: 8,
+      fives: 10,
+      sixes: 6,
+    };
+
+    expect(store.allBoardScores[0].sum).toBe(32);
+    expect(store.allBoardScores[0].bonus).toBe(0);
   });
 });
