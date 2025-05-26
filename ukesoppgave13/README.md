@@ -37,3 +37,12 @@ npm run build
 ```sh
 npm run test:unit
 ```
+### Docker
+Build 
+```sh
+docker build -t vue-yatzy-app .
+```
+Run 
+```sh
+docker run -p 8080:8080 vue-yatzy-app
+```
