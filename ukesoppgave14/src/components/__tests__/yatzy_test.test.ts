@@ -1,8 +1,7 @@
-import { mount } from '@vue/test-utils'
-import { createTestingPinia } from '@pinia/testing'
+
 import { yatzyStore } from '@/stores/yatzyStore'
 import { expect, vi, it } from 'vitest'
-import { beforeEach, describe } from 'node:test'
+import { beforeEach, describe } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
 
 
@@ -13,11 +12,11 @@ describe('Yatzy Store', () => {
 
     it('changing active player', () => {
         const store = yatzyStore();
-        store.activePlayer = 2
-        store.players = 2
+        store.activePlayer = 1
+        store.players = 4
         store.gameStarted = true
-
-        expect(store.players).toBe(2)
-
+        store.nextTurn('aces');
+        expect(store.players).toBe(4)
+        expect(store.activePlayer).toBe(2)
     })
 });
