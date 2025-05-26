@@ -26,10 +26,14 @@ export const yatzyStore = defineStore('scoreBoard', () => {
   };
 
   const placeScore = (combination: string) => {
-    let combo = combination as YatzyCombination;
-    scoreBoards[activePlayer.value - 1][combo] = scoreFunctions[combo](
-      dice.value.filter((d): d is Die => d !== null)
-    );
+    if (gameStarted.value && throwCount.value <= 2) {
+      let combo = combination as YatzyCombination;
+      scoreBoards[activePlayer.value - 1][combo] = scoreFunctions[combo](
+        dice.value.filter((d): d is Die => d !== null)
+      );
+    } else {
+      return;
+    }
   };
 
   const allBoardScores = computed(() => {
@@ -66,8 +70,8 @@ export const yatzyStore = defineStore('scoreBoard', () => {
       .filter((score) => score.score === maxScore);
     return winners.length > 1
       ? `It's a tie between players ${winners
-          .map((winner) => winner.player)
-          .join(', ')} with a score of ${maxScore}`
+        .map((winner) => winner.player)
+        .join(', ')} with a score of ${maxScore}`
       : `Spiller ${winners[0].player} vinner med ${maxScore} poeng`;
   };
 
