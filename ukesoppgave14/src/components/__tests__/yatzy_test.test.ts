@@ -10,6 +10,7 @@ describe("Yatzy Store", () => {
 
   it("changing active player - next Turn", () => {
     const store = yatzyStore();
+    store.dice = [1, 1, 1, 1, 1];
     store.activePlayer = 1;
     store.players = 4;
     store.gameStarted = true;

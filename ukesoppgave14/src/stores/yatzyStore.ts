@@ -13,13 +13,14 @@ export const yatzyStore = defineStore("scoreBoard", () => {
     scoreBoards.length = 0;
     scoreBoards.push(...createEmptyScoreboards(playerCount));
   };
+  const createEmptyDice = Array.from({ length: 5 }, () => null);
 
   // reactive state
   const players = ref<number>(1);
   const gameStarted = ref<boolean>(false);
   const activePlayer = ref<number>(1);
   const diceChars = "⚀⚁⚂⚃⚄⚅";
-  const dice = ref<(Die | null)[]>(Array.from({ length: 5 }, () => null));
+  const dice = ref<(Die | null)[]>(createEmptyDice);
   const holdDie = ref<boolean[]>(new Array(5).fill(false));
   const dieColor = ref<string[]>(["black", "black", "black", "black", "black"]);
   const throwCountRemaining = ref(3);
@@ -32,23 +33,25 @@ export const yatzyStore = defineStore("scoreBoard", () => {
 
   // action
   const nextTurn = (combination: string) => {
+    if (!dice.value || dice.value.some((die) => die === null)) return;
     placeScore(combination);
-    const isLastPlayer = activePlayer.value < players.value;
+    const isLastPlayer = activePlayer.value >= players.value;
     activePlayer.value = isLastPlayer ? 1 : activePlayer.value + 1;
     throwCountRemaining.value = 3;
     holdDie.value = new Array(5).fill(false);
-    dice.value = [1, 2, 3, 4, 5];
+    dice.value = createEmptyDice;
     // createNewDiceAndTurn
   };
 
   // action
   const placeScore = (combination: string) => {
-    if (!gameStarted.value || throwCountRemaining.value == 3) return;
     let combo = combination as YatzyCombination;
     const playerIndex = activePlayer.value - 1;
+    if (!gameStarted.value || throwCountRemaining.value == 3) return;
     const scoreboard = scoreBoards[playerIndex];
     const scoreFunction = scoreFunctions[combo];
-    scoreboard[combo] = scoreFunction(dice.value);
+    scoreboard[combo] = scoreFunction(dice.value as Die[]);
+    // scoreboard[combo] = scoreFunction(dice.value.filter((d): d is Die => d !== null));
   };
 
   // action
@@ -99,7 +102,7 @@ export const yatzyStore = defineStore("scoreBoard", () => {
 
   // computed
   const diceObjects = computed(() =>
-    dice.value.map((die: Die, index: number) => ({
+    dice.value.map((die: Die | null, index: number) => ({
       value: die,
       index: index,
       char: die ? diceChars[die - 1] : "",

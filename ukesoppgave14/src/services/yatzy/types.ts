@@ -1,5 +1,8 @@
 const dieValues = [1, 2, 3, 4, 5, 6] as const;
 type Die = (typeof dieValues)[number];
+// type Die = 1 | 2 | 3 | 4 | 5 | 6;
+// const dieValues: ReadonlyArray<Die | null> = [1, 2, 3, 4, 5, 6] as const;
+
 type DieFrequencyTable = {
   [K in Die]: number;
 };

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import Scoreboard from "../components/Scoreboard.vue";
-import Dice from "../components/Dice.vue";
-import Player from "../components/Player.vue";
-import WinnerModal from "../components/WinnerModal.vue";
+import Scoreboard from "@/components/Scoreboard.vue";
+import Dice from "@/components/Dice.vue";
+import Player from "@/components/Player.vue";
+import WinnerModal from "@/components/WinnerModal.vue";
 import { yatzyStore } from "../stores/yatzyStore";
 
 const showWinnerModal = ref(false);
@@ -24,17 +24,57 @@ const handleNewGame = () => {
   store.resetGame();
   showWinnerModal.value = false;
 };
+const handlePlayerUpdate = (players: string) => {
+  if (players === "increase") {
+    store.players++;
+  } else if (players === "decrease" && store.players > 1) {
+    store.players--;
+  }
+};
+const handleStartGame = () => {
+  store.gameStarted = true;
+};
+const handlePlaceScore = (score: string | null) => {
+  if (score) {
+    store.nextTurn(score);
+  }
+};
 </script>
 
 <template>
   <div id="game">
     <h1>Det beste Yatzy-spillet!</h1>
     <div>
-      <Player :players="store.players" :gameStarted="store.gameStarted" />
+      <Player
+        :players="store.players"
+        :gameStarted="store.gameStarted"
+        @player="handlePlayerUpdate"
+        @startGame="handleStartGame"
+      />
     </div>
-    <div><Dice /></div>
     <div>
-      <Scoreboard :activePlayer="store.activePlayer" />
+      <Dice
+        :activePlayer="store.activePlayer"
+        :gameStarted="store.gameStarted"
+        :throwCount="store.throwCount"
+        :diceObjects="
+          store.diceObjects.map((die) => ({
+            ...die,
+            style: () => `background: ${die.style.background}; color: ${die.style.color};`,
+          }))
+        "
+        @throwDice="store.throwDice"
+        @flip="store.flip"
+      />
+    </div>
+    <div>
+      <Scoreboard
+        :activePlayer="store.activePlayer"
+        :players="store.players"
+        :scoreBoards="store.scoreBoards"
+        :allBoardScores="store.allBoardScores"
+        @placeScore="handlePlaceScore"
+      />
     </div>
     <WinnerModal
       :is-visible="showWinnerModal"
