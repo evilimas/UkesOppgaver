@@ -1,5 +1,5 @@
-import { dieValues } from './types';
-import type {Die, DieFrequencyTable, YatzyCombination, Scoreboard} from './types';
+import { dieValues } from "./types";
+import type { Die, DieFrequencyTable, YatzyCombination, Scoreboard } from "./types";
 
 const compose =
   (...fns: Function[]) =>
@@ -7,27 +7,24 @@ const compose =
     fns.reduceRight((res, fn) => [fn.call(null, ...res)], args)[0];
 
 const uiLabels = {
-  aces: 'Enere',
-  twos: 'Toere',
-  threes: 'Treere',
-  fours: 'Firere',
-  fives: 'Femmere',
-  sixes: 'Seksere',
-  onePair: 'Ett par',
-  twoPairs: 'To par',
-  threeOfAKind: 'Tre like',
-  fourOfAKind: 'Fire like',
-  smallStraight: 'Liten Straight',
-  largeStraight: 'Stor Straight',
-  house: 'Hus',
-  chance: 'Sjanse',
-  yatzy: 'Yatzy',
+  aces: "Enere",
+  twos: "Toere",
+  threes: "Treere",
+  fours: "Firere",
+  fives: "Femmere",
+  sixes: "Seksere",
+  onePair: "Ett par",
+  twoPairs: "To par",
+  threeOfAKind: "Tre like",
+  fourOfAKind: "Fire like",
+  smallStraight: "Liten Straight",
+  largeStraight: "Stor Straight",
+  house: "Hus",
+  chance: "Sjanse",
+  yatzy: "Yatzy",
 } as const;
 
-const countOne = (
-  table: DieFrequencyTable,
-  number: Die
-): DieFrequencyTable => ({
+const countOne = (table: DieFrequencyTable, number: Die): DieFrequencyTable => ({
   ...table,
   [number]: table[number] + 1,
 });
@@ -40,16 +37,12 @@ const nOfAKind =
   (dice: Die[]): number => {
     const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
     const reduceOne = (points: number, dieValue: Die) =>
-      frequencyTable[dieValue] >= numberOfAKind
-        ? dieValue * numberOfAKind
-        : points;
+      frequencyTable[dieValue] >= numberOfAKind ? dieValue * numberOfAKind : points;
     return dieValues.reduce(reduceOne, 0);
   };
 
-const positiveToFixedNumber = (fixedNumber: number) => (n: number) =>
-  n > 0 ? fixedNumber : 0;
-const pointsSum = (dice: Die[]) =>
-  dice.reduce((sum: number, die: Die) => sum + die, 0);
+const positiveToFixedNumber = (fixedNumber: number) => (n: number) => n > 0 ? fixedNumber : 0;
+const pointsSum = (dice: Die[]) => dice.reduce((sum: number, die: Die) => sum + die, 0);
 
 const pointsStraight =
   (skipDie: Die, points: number) =>
@@ -99,7 +92,6 @@ const scoreFunctions = {
   yatzy: compose(positiveToFixedNumber(50), nOfAKind(5)),
 } as const;
 
-
 const scoreboardFunctions = {
   sum: (board: Scoreboard): number => {
     // Object.keys(board).slice(0, 6).reduce(
@@ -120,9 +112,7 @@ const scoreboardFunctions = {
 
   totalSum: (board: Scoreboard): number => {
     const allScores = Object.values(board).map((n) => n ?? 0);
-    return (
-      allScores.reduce((a, b) => a + b, 0) + scoreboardFunctions.bonus(board)
-    );
+    return allScores.reduce((a, b) => a + b, 0) + scoreboardFunctions.bonus(board);
   },
 };
 
@@ -144,10 +134,15 @@ const emptyScoreboard = (): Scoreboard => ({
   yatzy: null,
 });
 
+export { scoreFunctions, scoreboardFunctions, emptyScoreboard, uiLabels, createFrequencyTable };
+
 export {
-  scoreFunctions,
-  scoreboardFunctions,
-  emptyScoreboard,
-  uiLabels,
-  createFrequencyTable,
+  compose,
+  pointsSum,
+  pointsHouse,
+  pointsTwoPairs,
+  pointsStraight,
+  positiveToFixedNumber,
+  nOfAKind,
+  pointsUpperSection,
 };

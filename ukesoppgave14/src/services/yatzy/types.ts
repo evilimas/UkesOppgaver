@@ -1,62 +1,63 @@
-const compose =
-    (...fns: Function[]) =>
-        (...args: any[]) =>
-            fns.reduceRight((res, fn) => [fn.call(null, ...res)], args)[0];
-
-const dieValues = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-] as const;
+const dieValues = [1, 2, 3, 4, 5, 6] as const;
 type Die = (typeof dieValues)[number];
 type DieFrequencyTable = {
-    [K in Die]: number;
+  [K in Die]: number;
 };
 
-type YatzyCombination = "aces" | "twos" | "threes" | "fours" | "fives" | "sixes" | "onePair" | "twoPairs" | "threeOfAKind" | "fourOfAKind" | "smallStraight" | "largeStraight" | "house" | "chance" | "yatzy"
+type YatzyCombination =
+  | "aces"
+  | "twos"
+  | "threes"
+  | "fours"
+  | "fives"
+  | "sixes"
+  | "onePair"
+  | "twoPairs"
+  | "threeOfAKind"
+  | "fourOfAKind"
+  | "smallStraight"
+  | "largeStraight"
+  | "house"
+  | "chance"
+  | "yatzy";
 
 type Scoreboard = {
-    [K in YatzyCombination]?: number | null;
+  [K in YatzyCombination]?: number | null;
 };
 
 interface DiceAndTurn {
-    dice: Die[];
-    throwCountRemaining: number;
-    holdDie: boolean[];
-    activePlayer: number;
-    players: number;
+  dice: Die[];
+  throwCountRemaining: number;
+  holdDie: boolean[];
+  activePlayer: number;
+  players: number;
 }
 
-
 class DiceAndTurn2 implements DiceAndTurn {
-    public dice: Die[];
-    public throwCountRemaining: number;
-    public holdDie: boolean[];
-    public activePlayer: number;
-    public players: number;
+  public dice: Die[];
+  public throwCountRemaining: number;
+  public holdDie: boolean[];
+  public activePlayer: number;
+  public players: number;
 
-    constructor() {
-        this.players = 1;
-        this.activePlayer = 1;
-        this.throwCountRemaining = 3;
-        this.holdDie = new Array(5).fill(false);
-        this.dice = [];
-    }
+  constructor() {
+    this.players = 1;
+    this.activePlayer = 1;
+    this.throwCountRemaining = 3;
+    this.holdDie = new Array(5).fill(false);
+    this.dice = [];
+  }
 
-    nextTurn(): void {
-        const isLastPlayer = this.activePlayer < this.players;
-        this.activePlayer = isLastPlayer ? 1 : this.activePlayer + 1;
-        this.throwCountRemaining = 3;
-        for (let i = 0; i < this.holdDie.length; i++) {
-            this.holdDie[i] = false;
-        }
-        this.dice.length = 0;
+  nextTurn(): void {
+    const isLastPlayer = this.activePlayer < this.players;
+    this.activePlayer = isLastPlayer ? 1 : this.activePlayer + 1;
+    this.throwCountRemaining = 3;
+    for (let i = 0; i < this.holdDie.length; i++) {
+      this.holdDie[i] = false;
     }
+    this.dice.length = 0;
+  }
 }
 
 export { dieValues };
 export type { Die, DieFrequencyTable, YatzyCombination, Scoreboard, DiceAndTurn };
-
