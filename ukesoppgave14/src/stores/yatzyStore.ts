@@ -1,7 +1,8 @@
 import { ref, computed, reactive, watch } from "vue";
 import { defineStore } from "pinia";
-import { scoreFunctions, scoreboardFunctions, emptyScoreboard } from "../yatzyLogic";
-import type { Die, YatzyCombination, Scoreboard } from "../yatzyLogic";
+import { createNewDiceAndTurn } from "../services/yatzy/diceAndTurns";
+import { scoreFunctions, scoreboardFunctions, emptyScoreboard } from "../services/yatzy/scoreboard";
+import type { Die, YatzyCombination, Scoreboard, DiceAndTurn } from "../services/yatzy/types";
 
 export const yatzyStore = defineStore("scoreBoard", () => {
   // hjelpefunksjoner
@@ -23,6 +24,8 @@ export const yatzyStore = defineStore("scoreBoard", () => {
   const dieColor = ref<string[]>(["black", "black", "black", "black", "black"]);
   const throwCountRemaining = ref(3);
   const scoreBoards = reactive<Scoreboard[]>(createEmptyScoreboards(players.value));
+  // const diceAndTurn = reactive<DiceAndTurn>(createNewDiceAndTurn())
+  // const diceAndTurn2 = reactive<DiceAndTurn>(new DiceAndTurn2());
 
   // watch
   watch(players, setupScoreboardsFromPlayerCount);
@@ -30,15 +33,12 @@ export const yatzyStore = defineStore("scoreBoard", () => {
   // action
   const nextTurn = (combination: string) => {
     placeScore(combination);
-
-    if (activePlayer.value < players.value) {
-      activePlayer.value++;
-    } else {
-      activePlayer.value = 1;
-    }
+    const isLastPlayer = activePlayer.value < players.value
+    activePlayer.value = isLastPlayer ? 1 : activePlayer.value + 1;
     throwCountRemaining.value = 3;
     holdDie.value = new Array(5).fill(false);
-    dice.value = [];
+    dice.value.length = 0;
+    // createNewDiceAndTurn
   };
 
   // action

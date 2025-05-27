@@ -1,15 +1,28 @@
-const dieValues = [
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-] as const;
-type Die = (typeof dieValues)[number];
-type DieFrequencyTable = {
-  [K in Die]: number;
-};
+import { dieValues } from './types';
+import type {Die, DieFrequencyTable, YatzyCombination, Scoreboard} from './types';
+
+const compose =
+  (...fns: Function[]) =>
+  (...args: any[]) =>
+    fns.reduceRight((res, fn) => [fn.call(null, ...res)], args)[0];
+
+const uiLabels = {
+  aces: 'Enere',
+  twos: 'Toere',
+  threes: 'Treere',
+  fours: 'Firere',
+  fives: 'Femmere',
+  sixes: 'Seksere',
+  onePair: 'Ett par',
+  twoPairs: 'To par',
+  threeOfAKind: 'Tre like',
+  fourOfAKind: 'Fire like',
+  smallStraight: 'Liten Straight',
+  largeStraight: 'Stor Straight',
+  house: 'Hus',
+  chance: 'Sjanse',
+  yatzy: 'Yatzy',
+} as const;
 
 const countOne = (
   table: DieFrequencyTable,
@@ -86,9 +99,6 @@ const scoreFunctions = {
   yatzy: compose(positiveToFixedNumber(50), nOfAKind(5)),
 } as const;
 
-type Scoreboard = {
-  [K in YatzyCombination]?: number | null;
-};
 
 const scoreboardFunctions = {
   sum: (board: Scoreboard): number => {
@@ -134,38 +144,6 @@ const emptyScoreboard = (): Scoreboard => ({
   yatzy: null,
 });
 
-const uiLabels = {
-  aces: 'Enere',
-  twos: 'Toere',
-  threes: 'Treere',
-  fours: 'Firere',
-  fives: 'Femmere',
-  sixes: 'Seksere',
-  onePair: 'Ett par',
-  twoPairs: 'To par',
-  threeOfAKind: 'Tre like',
-  fourOfAKind: 'Fire like',
-  smallStraight: 'Liten Straight',
-  largeStraight: 'Stor Straight',
-  house: 'Hus',
-  chance: 'Sjanse',
-  yatzy: 'Yatzy',
-} as const;
-
-type YatzyCombination = keyof typeof scoreFunctions;
-
-// const pointsSmallStraight = (dice: Die[]): number => {
-//     const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
-//     const smallStraight = [1, 2, 3, 4, 5] as Die[];
-//     return smallStraight.every((die) => frequencyTable[die] === 1) ? 15 : 0;
-// };
-
-// const pointsLargeStraight = (dice: Die[]): number => {
-//     const frequencyTable: DieFrequencyTable = createFrequencyTable(dice);
-//     const largeStraight = [2, 3, 4, 5, 6] as Die[];
-//     return largeStraight.every((die) => frequencyTable[die] === 1) ? 20 : 0;
-// };
-
 export {
   scoreFunctions,
   scoreboardFunctions,
@@ -173,4 +151,3 @@ export {
   uiLabels,
   createFrequencyTable,
 };
-export type { Die, DieFrequencyTable, YatzyCombination, Scoreboard };
