@@ -12,14 +12,14 @@ export const yatzyStore = defineStore("scoreBoard", () => {
   const setupScoreboardsFromPlayerCount = (playerCount: number) => {
     scoreBoards.length = 0;
     scoreBoards.push(...createEmptyScoreboards(playerCount));
-  }
+  };
 
   // reactive state
   const players = ref<number>(1);
   const gameStarted = ref<boolean>(false);
   const activePlayer = ref<number>(1);
   const diceChars = "⚀⚁⚂⚃⚄⚅";
-  const dice = ref<(Die)[]>([]);
+  const dice = ref<Die[]>([1, 2, 3, 4, 5]);
   const holdDie = ref<boolean[]>(new Array(5).fill(false));
   const dieColor = ref<string[]>(["black", "black", "black", "black", "black"]);
   const throwCountRemaining = ref(3);
@@ -33,11 +33,11 @@ export const yatzyStore = defineStore("scoreBoard", () => {
   // action
   const nextTurn = (combination: string) => {
     placeScore(combination);
-    const isLastPlayer = activePlayer.value < players.value
+    const isLastPlayer = activePlayer.value < players.value;
     activePlayer.value = isLastPlayer ? 1 : activePlayer.value + 1;
     throwCountRemaining.value = 3;
     holdDie.value = new Array(5).fill(false);
-    dice.value.length = 0;
+    dice.value = [1, 2, 3, 4, 5];
     // createNewDiceAndTurn
   };
 
@@ -52,7 +52,9 @@ export const yatzyStore = defineStore("scoreBoard", () => {
   };
 
   // action
+
   const throwDice = () => {
+    // dice.value ? [...dice.value] : (dice.value = new Array(5).fill(0) as Die[]);
     for (let i = 0; i < dice.value.length; i++) {
       if (holdDie.value[i]) continue;
       dice.value[i] = Math.floor(Math.random() * 6 + 1) as Die;
@@ -112,8 +114,8 @@ export const yatzyStore = defineStore("scoreBoard", () => {
 
     return winners.length > 1
       ? `Det er uavgjort mellom spillerne ${winners
-        .map((winner) => winner.player)
-        .join(", ")} med en poengsum på ${maxScore}`
+          .map((winner) => winner.player)
+          .join(", ")} med en poengsum på ${maxScore}`
       : `Spiller ${winners[0].player} vinner med ${maxScore} poeng`;
   };
 
