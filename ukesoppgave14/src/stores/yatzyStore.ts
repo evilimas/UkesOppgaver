@@ -4,10 +4,30 @@ import { scoreFunctions, scoreboardFunctions, emptyScoreboard } from "../yatzyLo
 import type { Die, YatzyCombination, Scoreboard } from "../yatzyLogic";
 
 export const yatzyStore = defineStore("scoreBoard", () => {
+  // hjelpefunksjoner
+  const createEmptyScoreboards = (count: number) =>
+    Array.from({ length: Math.min(count, 4) }, emptyScoreboard);
+
+  const setupScoreboardsFromPlayerCount = (playerCount: number) => {
+    scoreBoards.length = 0;
+    scoreBoards.push(...createEmptyScoreboards(playerCount));
+  }
+
+  // reactive state
   const players = ref<number>(1);
   const gameStarted = ref<boolean>(false);
   const activePlayer = ref<number>(1);
+  const diceChars = "⚀⚁⚂⚃⚄⚅";
+  const dice = ref<(Die)[]>([]);
+  const holdDie = ref<boolean[]>(new Array(5).fill(false));
+  const dieColor = ref<string[]>(["black", "black", "black", "black", "black"]);
+  const throwCountRemaining = ref(3);
+  const scoreBoards = reactive<Scoreboard[]>(createEmptyScoreboards(players.value));
 
+  // watch
+  watch(players, setupScoreboardsFromPlayerCount);
+
+  // action
   const nextTurn = (combination: string) => {
     placeScore(combination);
 
@@ -16,20 +36,46 @@ export const yatzyStore = defineStore("scoreBoard", () => {
     } else {
       activePlayer.value = 1;
     }
-    throwCount.value = 3;
+    throwCountRemaining.value = 3;
     holdDie.value = new Array(5).fill(false);
-    dice.value = [null, null, null, null, null];
+    dice.value = [];
   };
 
+  // action
   const placeScore = (combination: string) => {
-    if (gameStarted.value && throwCount.value <= 2) {
-      let combo = combination as YatzyCombination;
-      scoreBoards[activePlayer.value - 1][combo] = scoreFunctions[combo](
-        dice.value.filter((d): d is Die => d !== null)
-      );
-    }
+    if (!gameStarted.value || throwCountRemaining.value == 3) return;
+    let combo = combination as YatzyCombination;
+    const playerIndex = activePlayer.value - 1;
+    const scoreboard = scoreBoards[playerIndex];
+    const scoreFunction = scoreFunctions[combo];
+    scoreboard[combo] = scoreFunction(dice.value);
   };
 
+  // action
+  const throwDice = () => {
+    for (let i = 0; i < dice.value.length; i++) {
+      if (holdDie.value[i]) continue;
+      dice.value[i] = Math.floor(Math.random() * 6 + 1) as Die;
+    }
+    throwCountRemaining.value--;
+  };
+
+  // action
+  const flip = (index: number) => {
+    holdDie.value[index] = !holdDie.value[index];
+  };
+
+  // action
+  const resetGame = () => {
+    setupScoreboardsFromPlayerCount(players.value);
+    activePlayer.value = 1;
+    throwCountRemaining.value = 3;
+    holdDie.value = new Array(5).fill(false);
+    dice.value = [];
+    gameStarted.value = false;
+  };
+
+  // computed
   const allBoardScores = computed(() => {
     return scoreBoards.map((scoreBoard) => ({
       sum: scoreboardFunctions.sum(scoreBoard),
@@ -38,52 +84,40 @@ export const yatzyStore = defineStore("scoreBoard", () => {
     }));
   });
 
-  const scoreBoards = reactive<Scoreboard[]>(
-    Array.from({ length: Math.min(players.value, 4) }, emptyScoreboard)
-  );
-
-  watch(players, (newVal) => {
-    scoreBoards.splice(
-      0,
-      scoreBoards.length,
-      ...Array.from({ length: Math.min(newVal, 4) }, emptyScoreboard)
-    );
-  });
-
+  // computed
   const isGameFinished = computed(() => {
     return scoreBoards.every((board) => Object.values(board).every((score) => score !== null));
   });
 
+  // computed
+  const diceObjects = computed(() =>
+    dice.value.map((die: Die, index: number) => ({
+      value: die,
+      index: index,
+      char: die ? diceChars[die - 1] : "",
+      style: dieStyle(index),
+    }))
+  );
+
+  // viewstate funksjon
   const winner = () => {
     const scores = allBoardScores.value;
+    // const boards = [...scores];
+    // boards.sort((a, b) => b.total - a.total);
+    // const winner = boards[0];
     const maxScore = Math.max(...scores.map((score) => score.total));
     const winners = scores
       .map((score, index) => ({ player: index + 1, score: score.total }))
       .filter((score) => score.score === maxScore);
+
     return winners.length > 1
       ? `Det er uavgjort mellom spillerne ${winners
-          .map((winner) => winner.player)
-          .join(", ")} med en poengsum på ${maxScore}`
+        .map((winner) => winner.player)
+        .join(", ")} med en poengsum på ${maxScore}`
       : `Spiller ${winners[0].player} vinner med ${maxScore} poeng`;
   };
 
-  //   Dice store
-
-  const diceChars = "⚀⚁⚂⚃⚄⚅";
-  const dice = ref<(Die | null)[]>([null, null, null, null, null]);
-  const holdDie = ref<boolean[]>(new Array(5).fill(false));
-  const dieColor = ref<string[]>(["black", "black", "black", "black", "black"]);
-  const throwCount = ref(3);
-  const throwDice = () => {
-    for (let i = 0; i < dice.value.length; i++) {
-      if (holdDie.value[i]) {
-        continue;
-      }
-      dice.value[i] = Math.floor(Math.random() * 6 + 1) as Die;
-    }
-    throwCount.value--;
-  };
-
+  // viewstate funksjon
   const dieStyle = (index: number) => {
     const isSelected = holdDie.value[index];
     return {
@@ -92,52 +126,25 @@ export const yatzyStore = defineStore("scoreBoard", () => {
     };
   };
 
-  const flip = (index: number) => {
-    holdDie.value[index] = !holdDie.value[index];
-  };
-
-  const diceObjects = computed(() =>
-    dice.value.map((die: Die | null, index: number) => ({
-      value: die,
-      index: index,
-      char: die ? diceChars[die - 1] : "",
-      style: dieStyle(index),
-    }))
-  );
-
-  const resetGame = () => {
-    scoreBoards.splice(
-      0,
-      scoreBoards.length,
-      ...Array.from({ length: Math.min(players.value, 4) }, emptyScoreboard)
-    );
-    activePlayer.value = 1;
-    throwCount.value = 3;
-    holdDie.value = new Array(5).fill(false);
-    dice.value = [null, null, null, null, null];
-    gameStarted.value = false;
-  };
-
   return {
-    resetGame,
     isGameFinished,
-    winner,
     gameStarted,
     players,
-    nextTurn,
     scoreBoards,
     activePlayer,
-    placeScore,
     allBoardScores,
-    // Dice store
     dieColor,
     holdDie,
     dice,
     diceChars,
-    throwCount,
-    throwDice,
-    flip,
-    dieStyle,
+    throwCount: throwCountRemaining,
     diceObjects,
+    dieStyle,
+    flip,
+    nextTurn,
+    placeScore,
+    resetGame,
+    throwDice,
+    winner,
   };
 });
