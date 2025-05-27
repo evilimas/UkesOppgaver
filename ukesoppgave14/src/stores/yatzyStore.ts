@@ -1,13 +1,9 @@
-import { ref, computed, reactive, watch } from 'vue';
-import { defineStore } from 'pinia';
-import {
-  scoreFunctions,
-  scoreboardFunctions,
-  emptyScoreboard,
-} from '../yatzyLogic';
-import type { Die, YatzyCombination, Scoreboard } from '../yatzyLogic';
+import { ref, computed, reactive, watch } from "vue";
+import { defineStore } from "pinia";
+import { scoreFunctions, scoreboardFunctions, emptyScoreboard } from "../yatzyLogic";
+import type { Die, YatzyCombination, Scoreboard } from "../yatzyLogic";
 
-export const yatzyStore = defineStore('scoreBoard', () => {
+export const yatzyStore = defineStore("scoreBoard", () => {
   const players = ref<number>(1);
   const gameStarted = ref<boolean>(false);
   const activePlayer = ref<number>(1);
@@ -31,8 +27,6 @@ export const yatzyStore = defineStore('scoreBoard', () => {
       scoreBoards[activePlayer.value - 1][combo] = scoreFunctions[combo](
         dice.value.filter((d): d is Die => d !== null)
       );
-    } else {
-      return;
     }
   };
 
@@ -57,9 +51,7 @@ export const yatzyStore = defineStore('scoreBoard', () => {
   });
 
   const isGameFinished = computed(() => {
-    return scoreBoards.every((board) =>
-      Object.values(board).every((score) => score !== null)
-    );
+    return scoreBoards.every((board) => Object.values(board).every((score) => score !== null));
   });
 
   const winner = () => {
@@ -69,18 +61,18 @@ export const yatzyStore = defineStore('scoreBoard', () => {
       .map((score, index) => ({ player: index + 1, score: score.total }))
       .filter((score) => score.score === maxScore);
     return winners.length > 1
-      ? `It's a tie between players ${winners
-        .map((winner) => winner.player)
-        .join(', ')} with a score of ${maxScore}`
+      ? `Det er uavgjort mellom spillerne ${winners
+          .map((winner) => winner.player)
+          .join(", ")} med en poengsum på ${maxScore}`
       : `Spiller ${winners[0].player} vinner med ${maxScore} poeng`;
   };
 
   //   Dice store
 
-  const diceChars = '⚀⚁⚂⚃⚄⚅';
+  const diceChars = "⚀⚁⚂⚃⚄⚅";
   const dice = ref<(Die | null)[]>([null, null, null, null, null]);
   const holdDie = ref<boolean[]>(new Array(5).fill(false));
-  const dieColor = ref<string[]>(['black', 'black', 'black', 'black', 'black']);
+  const dieColor = ref<string[]>(["black", "black", "black", "black", "black"]);
   const throwCount = ref(3);
   const throwDice = () => {
     for (let i = 0; i < dice.value.length; i++) {
@@ -95,8 +87,8 @@ export const yatzyStore = defineStore('scoreBoard', () => {
   const dieStyle = (index: number) => {
     const isSelected = holdDie.value[index];
     return {
-      background: isSelected ? 'lightblue' : 'black',
-      color: isSelected ? 'black' : 'white',
+      background: isSelected ? "lightblue" : "black",
+      color: isSelected ? "black" : "white",
     };
   };
 
@@ -108,7 +100,7 @@ export const yatzyStore = defineStore('scoreBoard', () => {
     dice.value.map((die: Die | null, index: number) => ({
       value: die,
       index: index,
-      char: die ? diceChars[die - 1] : '',
+      char: die ? diceChars[die - 1] : "",
       style: dieStyle(index),
     }))
   );
