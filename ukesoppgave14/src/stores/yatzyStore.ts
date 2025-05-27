@@ -19,7 +19,7 @@ export const yatzyStore = defineStore("scoreBoard", () => {
   const gameStarted = ref<boolean>(false);
   const activePlayer = ref<number>(1);
   const diceChars = "⚀⚁⚂⚃⚄⚅";
-  const dice = ref<Die[]>([1, 2, 3, 4, 5]);
+  const dice = ref<(Die | null)[]>(Array.from({ length: 5 }, () => null));
   const holdDie = ref<boolean[]>(new Array(5).fill(false));
   const dieColor = ref<string[]>(["black", "black", "black", "black", "black"]);
   const throwCountRemaining = ref(3);
@@ -53,12 +53,18 @@ export const yatzyStore = defineStore("scoreBoard", () => {
 
   // action
 
+  // const throwDice = () => {
+  // dice.value ? [...dice.value] : (dice.value = new Array(5).fill(0) as Die[]);
+  // for (let i = 0; i < dice.value.length; i++) {
+  //   if (holdDie.value[i]) continue;
+  //   dice.value[i] = Math.floor(Math.random() * 6 + 1) as Die;
+  // }
+  // throwCountRemaining.value--;
+  // };
   const throwDice = () => {
-    // dice.value ? [...dice.value] : (dice.value = new Array(5).fill(0) as Die[]);
-    for (let i = 0; i < dice.value.length; i++) {
-      if (holdDie.value[i]) continue;
-      dice.value[i] = Math.floor(Math.random() * 6 + 1) as Die;
-    }
+    dice.value = dice.value.map((die, index) =>
+      holdDie.value[index] ? die : (Math.floor(Math.random() * 6 + 1) as Die)
+    );
     throwCountRemaining.value--;
   };
 
