@@ -2,7 +2,7 @@ import { ref, computed, reactive, watch } from "vue";
 import { defineStore } from "pinia";
 import { createNewDiceAndTurn } from "../services/yatzy/diceAndTurns";
 import { scoreFunctions, scoreboardFunctions, emptyScoreboard } from "../services/yatzy/scoreboard";
-import type { Die, YatzyCombination, Scoreboard, DiceAndTurn } from "../services/yatzy/types";
+import type { Die, YatzyCombination, Scoreboard, DiceAndTurn } from "@/services/yatzy/types";
 
 export const yatzyStore = defineStore("scoreBoard", () => {
   // hjelpefunksjoner
@@ -82,7 +82,7 @@ export const yatzyStore = defineStore("scoreBoard", () => {
     activePlayer.value = 1;
     throwCountRemaining.value = 3;
     holdDie.value = new Array(5).fill(false);
-    dice.value = [];
+    dice.value = createEmptyDice;
     gameStarted.value = false;
   };
 

@@ -11,6 +11,7 @@ const props = defineProps<Props>();
 const emit = defineEmits<{
   player: ["increase" | "decrease"];
   startGame: [];
+  reStartGame: [];
 }>();
 </script>
 <template>
@@ -20,5 +21,6 @@ const emit = defineEmits<{
     <button :disabled="players <= 1" @click="emit('player', 'decrease')">-</button>
     <button @click="emit('startGame')">Start Spill</button>
   </div>
+  <button v-if="gameStarted" @click="emit('reStartGame')">Restart Spill</button>
 </template>
 <style scoped></style>
