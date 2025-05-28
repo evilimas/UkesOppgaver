@@ -62,5 +62,16 @@ class DiceAndTurn2 implements DiceAndTurn {
   }
 }
 
+interface DieViewStateStyle  {
+  color: string;
+  background: string;
+}
+interface DieViewState {
+  value: Die;
+  index: number;
+  char: string;
+  style: DieViewStateStyle;
+}
+
 export { dieValues };
-export type { Die, DieFrequencyTable, YatzyCombination, Scoreboard, DiceAndTurn };
+export type { Die, DieFrequencyTable, YatzyCombination, Scoreboard, DiceAndTurn, DieViewState, DieViewStateStyle };

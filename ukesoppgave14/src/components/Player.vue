@@ -11,6 +11,15 @@ const emit = defineEmits<{
   startGame: [];
   reStartGame: [];
 }>();
+
+/*
+const emit = defineEmits<{
+  (event: 'player', type: 'increase' | 'decrease'): void;
+  (event: 'startGame'): void;
+  (event: 'reStartGame'): void;
+}>();
+*/
+
 </script>
 <template>
   <div>

@@ -62,12 +62,7 @@ const handleRestartGame = () => {
         :activePlayer="store.activePlayer"
         :gameStarted="store.gameStarted"
         :throwCount="store.throwCount"
-        :diceObjects="
-          store.diceObjects.map((die) => ({
-            ...die,
-            style: () => `background: ${die.style.background}; color: ${die.style.color};`,
-          }))
-        "
+        :diceObjects="store.diceObjects"
         @throwDice="store.throwDice"
         @flip="store.flip"
       />

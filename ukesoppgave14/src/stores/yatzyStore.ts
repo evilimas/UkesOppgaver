@@ -2,7 +2,7 @@ import { ref, computed, reactive, watch } from "vue";
 import { defineStore } from "pinia";
 import { createNewDiceAndTurn } from "../services/yatzy/diceAndTurns";
 import { scoreFunctions, scoreboardFunctions, emptyScoreboard } from "../services/yatzy/scoreboard";
-import type { Die, YatzyCombination, Scoreboard, DiceAndTurn } from "@/services/yatzy/types";
+import type { Die, YatzyCombination, Scoreboard, DiceAndTurn, DieViewStateStyle, DieViewState } from "@/services/yatzy/types";
 
 export const yatzyStore = defineStore("scoreBoard", () => {
   // hjelpefunksjoner
@@ -123,13 +123,13 @@ export const yatzyStore = defineStore("scoreBoard", () => {
 
     return winners.length > 1
       ? `Det er uavgjort mellom spillerne ${winners
-          .map((winner) => winner.player)
-          .join(", ")} med en poengsum på ${maxScore}`
+        .map((winner) => winner.player)
+        .join(", ")} med en poengsum på ${maxScore}`
       : `Spiller ${winners[0].player} vinner med ${maxScore} poeng`;
   };
 
   // viewstate funksjon
-  const dieStyle = (index: number) => {
+  const dieStyle = (index: number): DieViewStateStyle => {
     const isSelected = holdDie.value[index];
     return {
       background: isSelected ? "lightblue" : "black",
