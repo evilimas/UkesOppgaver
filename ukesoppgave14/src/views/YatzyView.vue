@@ -49,6 +49,12 @@ const handleRestartGame = () => {
 <template>
   <div id="game">
     <h1>Det beste Yatzy-spillet!</h1>
+    <ConfettiExplosion
+      v-if="showWinnerModal"
+      :duration="8000"
+      :particleCount="600"
+      :colors="['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff']"
+    />
     <div>
       <Player
         :players="store.players"
@@ -81,12 +87,6 @@ const handleRestartGame = () => {
       :winner-text="store.winner()"
       @close="handleCloseModal"
       @new-game="handleNewGame"
-    />
-    <ConfettiExplosion
-      v-if="showWinnerModal"
-      :duration="3000"
-      :particleCount="200"
-      :colors="['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff']"
     />
   </div>
 </template>
