@@ -40,7 +40,7 @@ describe("HomeView", () => {
 
     expect(router.currentRoute.value.path).toBe("/yatzy");
 
-    expect(store.scoreBoards.length).toBe(4);
+    expect(store.scoreboards.length).toBe(4);
   });
 });
 
