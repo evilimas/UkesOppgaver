@@ -33,7 +33,7 @@ describe("Yatzy Store", () => {
 
   it("check if sum, bonus and total works", () => {
     const store = yatzyStore();
-    store.scoreBoards[0] = {
+    store.scoreboards[0] = {
       aces: 5,
       twos: 10,
       threes: 15,
@@ -42,9 +42,9 @@ describe("Yatzy Store", () => {
       sixes: 12,
     };
 
-    expect(store.allBoardScores[0].sum).toBe(64);
-    expect(store.allBoardScores[0].bonus).toBe(50);
-    expect(store.allBoardScores[0].total).toBe(114);
+    expect(store.completeScoreboards[0].sum).toBe(64);
+    expect(store.completeScoreboards[0].bonus).toBe(50);
+    expect(store.completeScoreboards[0].total).toBe(114);
   });
 
   it("check if sum and no bonus works", () => {
