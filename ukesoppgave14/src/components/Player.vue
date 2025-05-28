@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { yatzyStore } from "../stores/yatzyStore";
-
 interface Props {
   gameStarted: boolean;
   players: number;
