@@ -39,6 +39,10 @@ const handlePlaceScore = (score: string | null) => {
     store.nextTurn(score);
   }
 };
+const handleRestartGame = () => {
+  store.resetGame();
+  store.gameStarted = false;
+};
 </script>
 
 <template>
@@ -50,6 +54,7 @@ const handlePlaceScore = (score: string | null) => {
         :gameStarted="store.gameStarted"
         @player="handlePlayerUpdate"
         @startGame="handleStartGame"
+        @reStartGame="handleRestartGame"
       />
     </div>
     <div>

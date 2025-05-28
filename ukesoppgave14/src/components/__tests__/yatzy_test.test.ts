@@ -109,4 +109,30 @@ describe("winner() function", () => {
 
     expect(store.winner()).toBe("Det er uavgjort mellom spillerne 1, 2 med en poengsum på 57");
   });
+  it("check new game button works", () => {
+    const store = yatzyStore();
+
+    store.scoreBoards[0] = {
+      aces: 5,
+      twos: 4,
+      threes: 9,
+      fours: 12,
+      fives: 15,
+      sixes: 12,
+    };
+    store.scoreBoards[1] = {
+      aces: 2,
+      twos: 4,
+      threes: 3,
+      fours: 8,
+      fives: 10,
+      sixes: 6,
+    };
+    store.resetGame();
+    expect(store.dice).toEqual([null, null, null, null, null]);
+    expect(store.scoreBoards[0].aces).toBeNull();
+    expect(store.activePlayer).toBe(1);
+    expect(store.gameStarted).toBe(false);
+  });
 });
+
