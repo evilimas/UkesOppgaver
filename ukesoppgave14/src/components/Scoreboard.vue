@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { CompleteScoreboard } from "@/services/yatzy/types";
-import type { Scoreboard } from "../yatzyLogic";
 import { uiLabels } from "../yatzyLogic";
 interface Props {
   players: number;
