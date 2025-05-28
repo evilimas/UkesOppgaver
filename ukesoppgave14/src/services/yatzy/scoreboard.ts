@@ -1,5 +1,11 @@
 import { dieValues } from "./types";
-import type { Die, DieFrequencyTable, YatzyCombination, Scoreboard, CompleteScoreboard } from "./types";
+import type {
+  Die,
+  DieFrequencyTable,
+  YatzyCombination,
+  Scoreboard,
+  CompleteScoreboard,
+} from "./types";
 
 const compose =
   (...fns: Function[]) =>
@@ -123,8 +129,8 @@ const emptyScoreboard = (): Scoreboard => ({
   fours: null,
   fives: null,
   sixes: null,
-  sum: null,
-  bonus: null,
+  // sum: null,
+  // bonus: null,
   onePair: null,
   twoPairs: null,
   threeOfAKind: null,
@@ -132,8 +138,8 @@ const emptyScoreboard = (): Scoreboard => ({
   smallStraight: null,
   largeStraight: null,
   house: null,
-  // chance: null,
-  // yatzy: null,
+  chance: null,
+  yatzy: null,
   // total: null,
 });
 

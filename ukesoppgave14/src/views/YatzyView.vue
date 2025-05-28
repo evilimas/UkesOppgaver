@@ -5,6 +5,7 @@ import Dice from "@/components/Dice.vue";
 import Player from "@/components/Player.vue";
 import WinnerModal from "@/components/WinnerModal.vue";
 import { yatzyStore } from "../stores/yatzyStore";
+import ConfettiExplosion from "vue-confetti-explosion";
 
 const showWinnerModal = ref(false);
 const store = yatzyStore();
@@ -80,6 +81,12 @@ const handleRestartGame = () => {
       :winner-text="store.winner()"
       @close="handleCloseModal"
       @new-game="handleNewGame"
+    />
+    <ConfettiExplosion
+      v-if="showWinnerModal"
+      :duration="3000"
+      :particleCount="200"
+      :colors="['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff']"
     />
   </div>
 </template>
