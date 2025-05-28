@@ -24,9 +24,16 @@ type YatzyCombination =
   | "chance"
   | "yatzy";
 
+
 type Scoreboard = {
   [K in YatzyCombination]?: number | null;
 };
+
+type ScoreboardCombination = YatzyCombination | "sum" | "bonus" | "total";
+
+type CompleteScoreboard = {
+  [K in ScoreboardCombination]?: number | null;
+}
 
 interface DiceAndTurn {
   dice: Die[];
@@ -62,7 +69,7 @@ class DiceAndTurn2 implements DiceAndTurn {
   }
 }
 
-interface DieViewStateStyle  {
+interface DieViewStateStyle {
   color: string;
   background: string;
 }
@@ -74,4 +81,8 @@ interface DieViewState {
 }
 
 export { dieValues };
-export type { Die, DieFrequencyTable, YatzyCombination, Scoreboard, DiceAndTurn, DieViewState, DieViewStateStyle };
+export type { 
+  Die, DieFrequencyTable, YatzyCombination, 
+  Scoreboard, DiceAndTurn, DieViewState, DieViewStateStyle,
+  ScoreboardCombination, CompleteScoreboard
+ };

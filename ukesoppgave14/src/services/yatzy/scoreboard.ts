@@ -1,5 +1,5 @@
 import { dieValues } from "./types";
-import type { Die, DieFrequencyTable, YatzyCombination, Scoreboard } from "./types";
+import type { Die, DieFrequencyTable, YatzyCombination, Scoreboard, CompleteScoreboard } from "./types";
 
 const compose =
   (...fns: Function[]) =>
@@ -110,7 +110,7 @@ const scoreboardFunctions = {
     return scoreboardFunctions.sum(board) >= 63 ? 50 : 0;
   },
 
-  totalSum: (board: Scoreboard): number => {
+  total: (board: Scoreboard): number => {
     const allScores = Object.values(board).map((n) => n ?? 0);
     return allScores.reduce((a, b) => a + b, 0) + scoreboardFunctions.bonus(board);
   },
@@ -123,6 +123,8 @@ const emptyScoreboard = (): Scoreboard => ({
   fours: null,
   fives: null,
   sixes: null,
+  sum: null,
+  bonus: null,
   onePair: null,
   twoPairs: null,
   threeOfAKind: null,
@@ -130,8 +132,9 @@ const emptyScoreboard = (): Scoreboard => ({
   smallStraight: null,
   largeStraight: null,
   house: null,
-  chance: null,
-  yatzy: null,
+  // chance: null,
+  // yatzy: null,
+  // total: null,
 });
 
 export { scoreFunctions, scoreboardFunctions, emptyScoreboard, uiLabels, createFrequencyTable };

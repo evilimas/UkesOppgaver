@@ -127,6 +127,8 @@ const uiLabels = {
   fours: "Firere",
   fives: "Femmere",
   sixes: "Seksere",
+  sum: "Sum",
+  bonus: "Bonus",
   onePair: "Ett par",
   twoPairs: "To par",
   threeOfAKind: "Tre like",
@@ -136,6 +138,7 @@ const uiLabels = {
   house: "Hus",
   chance: "Sjanse",
   yatzy: "Yatzy",
+  total: "Total sum",
 } as const;
 
 type YatzyCombination = keyof typeof scoreFunctions;

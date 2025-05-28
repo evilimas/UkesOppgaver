@@ -71,8 +71,7 @@ const handleRestartGame = () => {
       <Scoreboard
         :activePlayer="store.activePlayer"
         :players="store.players"
-        :scoreBoards="store.scoreBoards"
-        :allBoardScores="store.allBoardScores"
+        :complete-scoreboards="store.completeScoreboards"
         @placeScore="handlePlaceScore"
       />
     </div>

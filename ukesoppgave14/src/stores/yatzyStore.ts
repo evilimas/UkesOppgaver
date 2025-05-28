@@ -2,7 +2,11 @@ import { ref, computed, reactive, watch } from "vue";
 import { defineStore } from "pinia";
 import { createNewDiceAndTurn } from "../services/yatzy/diceAndTurns";
 import { scoreFunctions, scoreboardFunctions, emptyScoreboard } from "../services/yatzy/scoreboard";
-import type { Die, YatzyCombination, Scoreboard, DiceAndTurn, DieViewStateStyle, DieViewState } from "@/services/yatzy/types";
+import type {
+  Die, YatzyCombination, Scoreboard, DiceAndTurn,
+  DieViewStateStyle, DieViewState,
+  ScoreboardCombination, CompleteScoreboard
+} from "@/services/yatzy/types";
 
 export const yatzyStore = defineStore("scoreBoard", () => {
   // hjelpefunksjoner
@@ -10,8 +14,8 @@ export const yatzyStore = defineStore("scoreBoard", () => {
     Array.from({ length: Math.min(count, 4) }, emptyScoreboard);
 
   const setupScoreboardsFromPlayerCount = (playerCount: number) => {
-    scoreBoards.length = 0;
-    scoreBoards.push(...createEmptyScoreboards(playerCount));
+    scoreboards.length = 0;
+    scoreboards.push(...createEmptyScoreboards(playerCount));
   };
   const createEmptyDice = Array.from({ length: 5 }, () => null);
 
@@ -24,7 +28,7 @@ export const yatzyStore = defineStore("scoreBoard", () => {
   const holdDie = ref<boolean[]>(new Array(5).fill(false));
   const dieColor = ref<string[]>(["black", "black", "black", "black", "black"]);
   const throwCountRemaining = ref(3);
-  const scoreBoards = reactive<Scoreboard[]>(createEmptyScoreboards(players.value));
+  const scoreboards = reactive<Scoreboard[]>(createEmptyScoreboards(players.value));
   // const diceAndTurn = reactive<DiceAndTurn>(createNewDiceAndTurn())
   // const diceAndTurn2 = reactive<DiceAndTurn>(new DiceAndTurn2());
 
@@ -48,7 +52,7 @@ export const yatzyStore = defineStore("scoreBoard", () => {
     let combo = combination as YatzyCombination;
     const playerIndex = activePlayer.value - 1;
     if (!gameStarted.value || throwCountRemaining.value == 3) return;
-    const scoreboard = scoreBoards[playerIndex];
+    const scoreboard = scoreboards[playerIndex];
     const scoreFunction = scoreFunctions[combo];
     scoreboard[combo] = scoreFunction(dice.value as Die[]);
     // scoreboard[combo] = scoreFunction(dice.value.filter((d): d is Die => d !== null));
@@ -87,17 +91,18 @@ export const yatzyStore = defineStore("scoreBoard", () => {
   };
 
   // computed
-  const allBoardScores = computed(() => {
-    return scoreBoards.map((scoreBoard) => ({
-      sum: scoreboardFunctions.sum(scoreBoard),
-      bonus: scoreboardFunctions.bonus(scoreBoard),
-      total: scoreboardFunctions.totalSum(scoreBoard),
+  const completeScoreboards = computed(() =>
+    scoreboards.map((sb) => {
+      const completeScoreboard: CompleteScoreboard = { ...sb };
+      completeScoreboard.sum = scoreboardFunctions.sum(sb);
+      completeScoreboard.bonus = scoreboardFunctions.bonus(sb);
+      completeScoreboard.total = scoreboardFunctions.total(sb);
+      return completeScoreboard;
     }));
-  });
 
   // computed
   const isGameFinished = computed(() => {
-    return scoreBoards.every((board) => Object.values(board).every((score) => score !== null));
+    return scoreboards.every((board) => Object.values(board).every((score) => score !== null));
   });
 
   // computed
@@ -112,7 +117,7 @@ export const yatzyStore = defineStore("scoreBoard", () => {
 
   // viewstate funksjon
   const winner = () => {
-    const scores = allBoardScores.value;
+    const scores = completeScoreboards.value;
     // const boards = [...scores];
     // boards.sort((a, b) => b.total - a.total);
     // const winner = boards[0];
@@ -141,9 +146,8 @@ export const yatzyStore = defineStore("scoreBoard", () => {
     isGameFinished,
     gameStarted,
     players,
-    scoreBoards,
     activePlayer,
-    allBoardScores,
+    completeScoreboards,
     dieColor,
     holdDie,
     dice,

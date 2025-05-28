@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import type { CompleteScoreboard } from "@/services/yatzy/types";
 import type { Scoreboard } from "../yatzyLogic";
 import { uiLabels } from "../yatzyLogic";
 interface Props {
   players: number;
   activePlayer: number;
-  scoreBoards: Scoreboard[];
-  allBoardScores: { sum: number; bonus: number; total: number }[];
+  completeScoreboards: CompleteScoreboard[];
 }
 const props = defineProps<Props>();
 
@@ -34,7 +34,7 @@ const emit = defineEmits<{
         <tr v-for="(value, combination) in uiLabels" :key="combination">
           <td :id="combination">{{ value }}</td>
           <td
-            v-for="(scoreBoard, index) of scoreBoards"
+            v-for="(scoreBoard, index) of completeScoreboards"
             :key="index"
             :id="combination"
             :class="{
@@ -51,35 +51,7 @@ const emit = defineEmits<{
           </td>
         </tr>
       </tbody>
-    </table>
-    <table>
-      <thead>
-        <tr>
-          <th>----Poeng----</th>
-          <th v-for="player of players" :key="player">Spiller: {{ player }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Sum</td>
-          <td v-for="(score, index) in allBoardScores" :key="index">
-            {{ score.sum }}
-          </td>
-        </tr>
-        <tr>
-          <td>Bonus</td>
-          <td v-for="(score, index) in allBoardScores" :key="index">
-            {{ score.bonus }}
-          </td>
-        </tr>
-        <tr>
-          <td>Totalsum</td>
-          <td v-for="(score, index) in allBoardScores" :key="index">
-            {{ score.total }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    </table>    
   </div>
 </template>
 
