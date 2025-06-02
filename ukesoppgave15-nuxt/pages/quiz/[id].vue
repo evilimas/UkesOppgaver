@@ -1,6 +1,8 @@
 <script setup lang="ts">
+const route = useRoute();
+const { id } = route.params;
 const props = defineProps<{ quizId: string }>();
-const quiz = computed(() => quizzes.find((q) => q.id === props.quizId));
+const quiz = computed(() => quizzes.find((q) => q.id === id));
 
 const currentQuestion = ref(0);
 const answers = ref<number[]>([]);

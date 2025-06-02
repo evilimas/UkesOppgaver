@@ -9,6 +9,4 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { quizzes } from '~/data/quizzes';
-</script>
+<script setup lang="ts"></script>

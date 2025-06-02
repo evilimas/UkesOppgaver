@@ -11,7 +11,7 @@
     <div v-if="answered">
       <p v-if="isCorrect">Riktig!</p>
       <p v-else>
-        Feil. Riktig svar: 
+        Feil. Riktig svar:
         <strong>
           {{ question.options[question.answer] }}
         </strong>
@@ -22,13 +22,11 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, computed } from 'vue';
-import type { Question } from '../types/quiz';
 const props = defineProps<{
   question: Question;
   answered: boolean;
   selected: number | null;
-}>()
+}>();
 
-const isCorrect = computed(() => props.selected === props.question.answer)
+const isCorrect = computed(() => props.selected === props.question.answer);
 </script>
