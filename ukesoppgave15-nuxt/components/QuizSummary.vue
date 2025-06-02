@@ -13,7 +13,7 @@
     </ul>
     <button @click="$emit('restart')">Spill igjen</button>
     <br />
-    <router-link to="/">Ta en ny quiz</router-link>
+    <Nuxt-link to="/">Ta en ny quiz</Nuxt-link>
   </div>
 </template>
 

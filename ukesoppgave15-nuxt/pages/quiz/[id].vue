@@ -26,7 +26,7 @@ function restart() {
 watch(() => props.quizId, restart);
 
 definePageMeta({
-  layout: 'customLayout',
+  layout: 'custom',
 });
 </script>
 
