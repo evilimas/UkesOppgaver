@@ -18,8 +18,6 @@
 </template>
 
 <script setup lang="ts">
-import type { Question } from '../utils/quiz';
-
 const props = defineProps<{
   questions: Question[];
   answers: number[];
