@@ -9,11 +9,4 @@
 div {
   background: rgb(132, 132, 255);
 }
-
-a:link,
-a:visited,
-a:hover {
-  color: white;
-  text-decoration: underline;
-}
 </style>
