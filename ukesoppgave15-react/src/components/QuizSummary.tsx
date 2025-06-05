@@ -4,12 +4,12 @@ function QuizSummary({
   answers,
   restart,
 }: {
-  questions: any;
-  answers: any;
+  questions: Question[];
+  answers: string[];
   restart: () => void;
 }) {
   const isCorrectAnswer = (answer: string, index: number) =>
-    answer === questions[index].answer;
+    Number(answer) === questions[index].answer;
   const correctCount = answers.filter((answer: string, index: number) =>
     isCorrectAnswer(answer, index)
   ).length;
@@ -26,7 +26,7 @@ function QuizSummary({
             {q.question}
             <br />
             <small>
-              Ditt svar: {q.options[answers[idx]] ?? 'ikke svart'}
+              Ditt svar: {q.options[Number(answers[idx])] ?? 'ikke svart'}
               <br />
               Riktig: {q.options[q.answer]}
             </small>
