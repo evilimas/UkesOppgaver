@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import './index.css';
 import App from './App.tsx';
 import QuizDetail from './QuizDetail.tsx';
-import { quizzes } from './data/quizzes.ts';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
