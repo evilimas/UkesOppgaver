@@ -1,26 +1,17 @@
-import React from 'react';
-import { useNavigate } from 'react-router';
 import { quizzes } from './data/quizzes';
 import QuestionView from './components/QuestionView';
 import QuizSummary from './components/QuizSummary';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router';
 
 export default function QuizDetail() {
-  let { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>();
   const quiz = quizzes.find((x) => x.id === id);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [answered, setAnswered] = useState(false);
 
-  //   function answerQuestion(selectedIdx: number) {
-  //   setAnswers([currentQuestion.value] = selectedIdx)
-  //   setAnswered(true)
-  // }
-  // function nextQuestion() {
-  //   answered.value = false
-  //   currentQuestion.value++
-  // }
+
   function answerQuestion(selectedIdx: number) {
     setAnswers((prev) => {
       const newAnswers = [...prev];
@@ -59,6 +50,7 @@ export default function QuizDetail() {
           answered={answered}
           onAnswer={answerQuestion}
           onNext={nextQuestion}
+          isCorrect = {false}
         />
       ) : (
         <QuizSummary
