@@ -1,63 +1,72 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { quizzes } from './data/quizzes';
 import QuestionView from './components/QuestionView';
 import QuizSummary from './components/QuizSummary';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
 
-export default function QuizDetail({ quizId }: { quizId: string }) {}
+export default function QuizDetail() {
+  let { id } = useParams<{ id: string }>();
+  const quiz = quizzes.find((x) => x.id === id);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState<number[]>([]);
+  const [answered, setAnswered] = useState(false);
 
-// <template>
-//   <div v-if="quiz">
-//     <h1>{{ quiz.title }}</h1>
-//     <div v-if="currentQuestion < quiz.questions.length">
-//       <QuestionView
-//         :question="quiz.questions[currentQuestion]"
-//         :answered="answered"
-//         :selected="answers[currentQuestion]"
-//         @answer="answerQuestion"
-//         @next="nextQuestion"
-//       />
-//     </div>
-//     <QuizSummary v-else
-//       :questions="quiz.questions"
-//       :answers="answers"
-//       @restart="restart"
-//     />
-//   </div>
-//   <div v-else>
-//     <p>Quiz ikke funnet.</p>
-//   </div>
-// </template>
+  //   function answerQuestion(selectedIdx: number) {
+  //   setAnswers([currentQuestion.value] = selectedIdx)
+  //   setAnswered(true)
+  // }
+  // function nextQuestion() {
+  //   answered.value = false
+  //   currentQuestion.value++
+  // }
+  function answerQuestion(selectedIdx: number) {
+    setAnswers((prev) => {
+      const newAnswers = [...prev];
+      newAnswers[currentQuestion] = selectedIdx;
+      return newAnswers;
+    });
+    setAnswered(true);
+  }
 
-// <script setup lang="ts">
-// import { quizzes } from '../data/quizzes';
-// import { computed, ref, watch } from 'vue';
-// import { defineProps } from 'vue';
-// import QuestionView from '../components/QuestionView.vue';
-// import QuizSummary from '../components/QuizSummary.vue';
+  function nextQuestion() {
+    setAnswered(false);
+    setCurrentQuestion(currentQuestion + 1);
+  }
 
-// const props = defineProps<{ quizId: string }>();
-// const quiz = computed(() => quizzes.find(q => q.id === props.quizId));
+  function restart() {
+    setCurrentQuestion(0);
+    setAnswers([]);
+    setAnswered(false);
+  }
 
-// const currentQuestion = ref(0);
-// const answers = ref<number[]>([]);
-// const answered = ref(false);
+  if (!quiz) {
+    return (
+      <div>
+        <p>Quiz not found</p>
+      </div>
+    );
+  }
 
-// function answerQuestion(selectedIdx: number) {
-//   answers.value[currentQuestion.value] = selectedIdx
-//   answered.value = true
-// }
-// function nextQuestion() {
-//   answered.value = false
-//   currentQuestion.value++
-// }
-
-// function restart() {
-//   currentQuestion.value = 0
-//   answers.value = []
-//   answered.value = false
-// }
-
-// watch(() => props.quizId, restart)
-// </script>
+  return (
+    <div>
+      <h1>{quiz!.title}</h1>
+      {currentQuestion < quiz!.questions.length ? (
+        <QuestionView
+          question={quiz!.questions[currentQuestion]}
+          answers={answers}
+          answered={answered}
+          onAnswer={answerQuestion}
+          onNext={nextQuestion}
+        />
+      ) : (
+        <QuizSummary
+          questions={quiz!.questions}
+          answers={answers}
+          restart={restart}
+        />
+      )}
+    </div>
+  );
+}

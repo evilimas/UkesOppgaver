@@ -1,13 +1,8 @@
-import { useState } from 'react';
-
 import { Link } from 'react-router';
-
 import './App.css';
 import { quizzes } from './data/quizzes';
 
 function App() {
-  // const [count, setCount] = useState(0);
-
   return (
     <>
       <div>
