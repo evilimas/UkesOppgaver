@@ -1,11 +1,5 @@
-import type { Question } from '../types/quiz';
+import type { Question, QuizSummaryProps } from '../types/quiz';
 import { Link } from 'react-router';
-
-interface QuizSummaryProps {
-  questions: Question[];
-  answers: number[];
-  onRestart: () => void;
-}
 
 const QuizSummary = (props: QuizSummaryProps) => {
   const { questions, answers, onRestart } = props;
@@ -27,7 +21,7 @@ const QuizSummary = (props: QuizSummaryProps) => {
             {q.question}
             <br />
             <small>
-              Ditt svar: {q.options[Number(answers[idx])] ?? 'ikke svart'}
+              Ditt svar: {q.options[answers[idx]] ?? 'ikke svart'}
               <br />
               Riktig: {q.options[q.answer]}
             </small>

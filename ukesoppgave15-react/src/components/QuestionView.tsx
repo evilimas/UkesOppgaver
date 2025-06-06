@@ -1,12 +1,4 @@
-import type { Question } from '../types/quiz';
-
-interface QuestionViewProps {
-  question: Question;
-  answered: boolean;
-  selected: number[] | number;
-  onAnswer: (idx: number) => void;
-  onNext: () => void;
-}
+import type { QuestionViewProps } from '../types/quiz';
 
 const QuestionView = (props: QuestionViewProps) => {
   const { question, answered, selected, onAnswer, onNext } = props;
