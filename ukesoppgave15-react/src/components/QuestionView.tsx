@@ -1,45 +1,43 @@
-import React from 'react';
 import type { Question } from '../types/quiz';
 
-type QuestionViewProps = {
+interface QuestionViewProps {
   question: Question;
   answers: number[];
   answered: boolean;
   isCorrect: boolean;
   onAnswer: (idx: number) => void;
   onNext: () => void;
-};
+}
 
-const QuestionView: React.FC<QuestionViewProps> = (props) => {
+const QuestionView = (props: QuestionViewProps) => {
+  const { question, answered, isCorrect, onAnswer, onNext } = props;
+
   return (
-    <div>
-      <h2>{props.question.question}</h2>
+    <>
+      <h2>{question.question}</h2>
       <ul>
-        {props.question.options.map((option, idx) => (
+        {question.options.map((option, idx) => (
           <li key={idx}>
-            <button
-              disabled={props.answered}
-              onClick={() => props.onAnswer(idx)}
-            >
+            <button disabled={answered} onClick={() => onAnswer(idx)}>
               {option}
             </button>
           </li>
         ))}
       </ul>
-      {props.answered && (
+      {answered && (
         <div>
-          {props.isCorrect ? (
+          {isCorrect ? (
             <p>Riktig!</p>
           ) : (
             <p>
               Feil. Riktig svar:
-              <strong>{props.question.options[props.question.answer]}</strong>
+              <strong>{question.options[question.answer]}</strong>
             </p>
           )}
-          <button onClick={props.onNext}>Neste spørsmål</button>
+          <button onClick={onNext}>Neste spørsmål</button>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

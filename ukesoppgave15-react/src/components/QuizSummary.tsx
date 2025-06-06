@@ -1,21 +1,22 @@
 import type { Question } from '../types/quiz';
-function QuizSummary({
-  questions,
-  answers,
-  restart,
-}: {
+
+interface QuizSummaryProps {
   questions: Question[];
-  answers: string[];
+  answers: number[];
   restart: () => void;
-}) {
+}
+
+const QuizSummary = (props: QuizSummaryProps) => {
+  const { questions, answers, restart } = props;
+
   const isCorrectAnswer = (answer: string, index: number) =>
     Number(answer) === questions[index].answer;
-  const correctCount = answers.filter((answer: string, index: number) =>
-    isCorrectAnswer(answer, index)
+  const correctCount = answers.filter((answer: number, index: number) =>
+    isCorrectAnswer(String(answer), index)
   ).length;
 
   return (
-    <div>
+    <>
       <h2>Resultat</h2>
       <p>
         Du fikk {correctCount} av {questions.length} riktige.
@@ -36,8 +37,8 @@ function QuizSummary({
       <button onClick={restart}>Spill igjen</button>
       <br />
       <a href="/">Ta en ny quiz</a>
-    </div>
+    </>
   );
-}
+};
 
 export default QuizSummary;

@@ -6,10 +6,11 @@ import { useParams } from 'react-router';
 
 export default function QuizDetail() {
   const { id } = useParams<{ id: string }>();
-  const quiz = quizzes.find((x) => x.id === id);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [answered, setAnswered] = useState<boolean>(false);
+
+  const quiz = quizzes.find((x) => x.id === id);
 
   const isCorrect = (id: number) => {
     if (currentQuestion >= quiz!.questions.length) return false;
@@ -45,11 +46,11 @@ export default function QuizDetail() {
   }
 
   return (
-    <div>
-      <h1>{quiz!.title}</h1>
-      {currentQuestion < quiz!.questions.length ? (
+    <>
+      <h1>{quiz.title}</h1>
+      {currentQuestion < quiz.questions.length ? (
         <QuestionView
-          question={quiz!.questions[currentQuestion]}
+          question={quiz.questions[currentQuestion]}
           answers={answers}
           answered={answered}
           onAnswer={answerQuestion}
@@ -58,11 +59,11 @@ export default function QuizDetail() {
         />
       ) : (
         <QuizSummary
-          questions={quiz!.questions}
+          questions={quiz.questions}
           answers={answers}
           restart={restart}
         />
       )}
-    </div>
+    </>
   );
 }
