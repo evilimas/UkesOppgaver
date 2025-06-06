@@ -10,11 +10,10 @@ const QuizDetail = () => {
   const [answers, setAnswers] = useState<number[]>([]);
   const [answered, setAnswered] = useState<boolean>(false);
 
-  const quiz = quizzes.find((x) => x.id === id);
+  const quiz = quizzes.find((q) => q.id === id);
 
   function answerQuestion(selectedIdx: number) {
     answers[currentQuestion] = selectedIdx;
-    setAnswers([...answers]);
     setAnswered(true);
   }
 
@@ -32,7 +31,7 @@ const QuizDetail = () => {
   if (!quiz) {
     return (
       <div>
-        <p>Quiz not found</p>
+        <p>Quiz ikke funnet.</p>
       </div>
     );
   }
