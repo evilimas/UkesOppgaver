@@ -1,19 +1,19 @@
 import type { Question } from '../types/quiz';
+import { Link } from 'react-router';
 
 interface QuizSummaryProps {
   questions: Question[];
   answers: number[];
-  restart: () => void;
+  onRestart: () => void;
 }
 
 const QuizSummary = (props: QuizSummaryProps) => {
-  const { questions, answers, restart } = props;
+  const { questions, answers, onRestart } = props;
 
-  const isCorrectAnswer = (answer: string, index: number) =>
-    Number(answer) === questions[index].answer;
-  const correctCount = answers.filter((answer: number, index: number) =>
-    isCorrectAnswer(String(answer), index)
-  ).length;
+  const isCorrectAnswer = (answer: number, index: number) =>
+    answer === props.questions[index].answer;
+
+  const correctCount = answers.filter(isCorrectAnswer).length;
 
   return (
     <>
@@ -34,9 +34,9 @@ const QuizSummary = (props: QuizSummaryProps) => {
           </li>
         ))}
       </ul>
-      <button onClick={restart}>Spill igjen</button>
+      <button onClick={onRestart}>Spill igjen</button>
       <br />
-      <a href="/">Ta en ny quiz</a>
+      <Link to={'/'}>Ta en ny quiz</Link>
     </>
   );
 };

@@ -4,7 +4,7 @@ import QuizSummary from './components/QuizSummary.tsx';
 import { useState } from 'react';
 import { useParams } from 'react-router';
 
-export default function QuizDetail() {
+const QuizDetail = () => {
   const { id } = useParams<{ id: string }>();
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [answers, setAnswers] = useState<number[]>([]);
@@ -12,17 +12,9 @@ export default function QuizDetail() {
 
   const quiz = quizzes.find((x) => x.id === id);
 
-  const isCorrect = (id: number) => {
-    if (currentQuestion >= quiz!.questions.length) return false;
-    return id === quiz!.questions[currentQuestion].answer;
-  };
-
   function answerQuestion(selectedIdx: number) {
-    setAnswers((answers) => {
-      const newAnswers = [...answers];
-      newAnswers[currentQuestion] = selectedIdx;
-      return newAnswers;
-    });
+    answers[currentQuestion] = selectedIdx;
+    setAnswers([...answers]);
     setAnswered(true);
   }
 
@@ -51,19 +43,20 @@ export default function QuizDetail() {
       {currentQuestion < quiz.questions.length ? (
         <QuestionView
           question={quiz.questions[currentQuestion]}
-          answers={answers}
           answered={answered}
+          selected={answers[currentQuestion]}
           onAnswer={answerQuestion}
           onNext={nextQuestion}
-          isCorrect={isCorrect(answers[currentQuestion])}
         />
       ) : (
         <QuizSummary
           questions={quiz.questions}
           answers={answers}
-          restart={restart}
+          onRestart={restart}
         />
       )}
     </>
   );
-}
+};
+
+export default QuizDetail;

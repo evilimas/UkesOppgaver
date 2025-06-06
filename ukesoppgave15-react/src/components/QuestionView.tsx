@@ -2,15 +2,15 @@ import type { Question } from '../types/quiz';
 
 interface QuestionViewProps {
   question: Question;
-  answers: number[];
   answered: boolean;
-  isCorrect: boolean;
+  selected: number[] | number;
   onAnswer: (idx: number) => void;
   onNext: () => void;
 }
 
 const QuestionView = (props: QuestionViewProps) => {
-  const { question, answered, isCorrect, onAnswer, onNext } = props;
+  const { question, answered, selected, onAnswer, onNext } = props;
+  const isCorrect = selected === question.answer;
 
   return (
     <>
