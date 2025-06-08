@@ -22,7 +22,7 @@ const QuestionView = (props: QuestionViewProps) => {
             <p>Riktig!</p>
           ) : (
             <p>
-              Feil. Riktig svar:
+              Feil. Riktig svar :
               <strong>{question.options[question.answer]}</strong>
             </p>
           )}
