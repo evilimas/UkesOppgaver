@@ -31,7 +31,7 @@ const QuizDetail = () => {
   if (!quiz) {
     return (
       <div>
-        <p>Quiz ikke funnet.</p>
+        <p>Quiz ikke funnet</p>
       </div>
     );
   }
