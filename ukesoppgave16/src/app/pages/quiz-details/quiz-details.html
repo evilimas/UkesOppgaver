@@ -55,17 +55,26 @@
  -->
 
 <div>
-  @if(quiz){
-  <h1>{{quiz.title}}</h1>
-  @if(currentQuestion < quiz.questions.length){
+  @if(quiz()){
+  <h1>{{quiz()!.title}}</h1>
+  @if(currentQuestion() < quiz()!.questions.length){
   <div>
-    <QuestionView
-      [question]="quiz.questions[currentQuestion]"
-      [answered]="answered"
-      [selected]="answers[currentQuestion]"
-      @answer="answerQuestion"
-      @next="nextQuestion"
+    <app-question-view
+      [question]="quiz()!.questions[currentQuestion()]"
+      [answered]="answered()"
+      [selected]="answers()[currentQuestion()]"
+      (answer)="answerQuestion($event)"
+      (next)="nextQuestion()"
+    ></app-question-view>
     />
   </div>
-  } }
+  } @else{
+  <app-quiz-summary
+    [questions]="quiz()!.questions"
+    [answers]="answers()"
+    (restart)="restart()"
+  ></app-quiz-summary>
+  } } @else{
+  <p>Quiz ikke funnet.</p>
+  }
 </div>
