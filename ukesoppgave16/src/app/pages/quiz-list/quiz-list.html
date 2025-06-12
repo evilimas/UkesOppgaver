@@ -1,0 +1,10 @@
+<div>
+  <h1>Quiz List</h1>
+  <ul>
+    @for (quiz of quizzes; track quiz.id){
+    <li>
+      <a routerLink="['/quiz', quiz.id]">{{ quiz.title }}</a>
+    </li>
+    }
+  </ul>
+</div>
