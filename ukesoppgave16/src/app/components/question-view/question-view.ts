@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { quizzes } from '../../../data/quizes';
+import type { Question } from '../../../types/quiz';
+
+
 
 @Component({
   selector: 'app-question-view',
@@ -7,5 +11,7 @@ import { Component } from '@angular/core';
   styleUrl: './question-view.css'
 })
 export class QuestionView {
-
+  @Input() question!: Question;
+  @Input() answered!: boolean;
+  @Input() selected!: number | null;
 }

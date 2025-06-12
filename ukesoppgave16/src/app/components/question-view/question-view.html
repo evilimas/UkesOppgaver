@@ -32,3 +32,23 @@ const props = defineProps<{
 
 const isCorrect = computed(() => props.selected === props.question.answer)
 </script> -->
+
+<div>
+  <h2 [question]="quiz()!.questions[currentQuestion()]">{{ question }}</h2>
+  @for (question of questions; track question.id) {
+  <ul>
+    <li>
+      <button [disabled]="answered" (click)="answer(idx)">{{ option }}</button>
+    </li>
+  </ul>
+  } @if(answered) { @if(isCorrect){
+  <p>Riktig!</p>
+  } @else{
+  <p>
+    Feil. Riktig svar:
+    <strong>{{ question.options()[question.answer] }}</strong>
+  </p>
+  }
+  <button (click)="('next')">Neste spørsmål</button>
+  }
+</div>
