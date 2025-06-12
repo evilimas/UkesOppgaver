@@ -29,3 +29,7 @@ const props = defineProps<{
 const isCorrectAnswer = (answer: number, index: number) => answer === props.questions[index].answer;
 const correctCount = computed(() => props.answers.filter(isCorrectAnswer).length);
 </script> -->
+<div>
+    <h1>Hello from quiz-summary!</h1>
+    <button (click)="restart()">Strat på nytt!</button>
+</div>

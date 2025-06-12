@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-quiz-summary',
@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './quiz-summary.css'
 })
 export class QuizSummary {
-
+@Input() restart = () => {
+  console.log('Restarting quiz...');
+};
 }
