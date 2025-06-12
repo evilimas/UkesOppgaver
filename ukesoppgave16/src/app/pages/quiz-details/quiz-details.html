@@ -13,13 +13,12 @@
   </div>
   } @else {
   <app-quiz-summary
+    [questions]="quiz()!.questions"
+    [answers]="answers()"
     (restart)="restart()"
   ></app-quiz-summary>
-  } 
-} @else {
+  } } @else {
 
   <p>Quiz ikke funnet.</p>
-}
-  
-
+  }
 </div>

@@ -15,21 +15,23 @@
         <br />
         <router-link to="/">Ta en ny quiz</router-link>
     </div>
-</template>
+</template> -->
 
-<script setup lang="ts">
-import { defineProps, computed } from 'vue';
-import type { Question } from '../types/quiz';
-
-const props = defineProps<{
-    questions: Question[];
-    answers: number[]
-}>();
-
-const isCorrectAnswer = (answer: number, index: number) => answer === props.questions[index].answer;
-const correctCount = computed(() => props.answers.filter(isCorrectAnswer).length);
-</script> -->
 <div>
-    <h1>Hello from quiz-summary!</h1>
-    <button (click)="restart()">Strat på nytt!</button>
+  <h2>Resultat</h2>
+  <p>Du fikk {{correctCount()}} av {{questions.length}} riktige.</p>
+  <ul>
+    @for (question of questions; track question.question) {
+    <li>
+      {{question().question}}<br />
+      <small>
+        Ditt svar: {{question.options[answers[questions.indexOf(question)]] ??
+        'ikke svart'}}<br />
+        Riktig: {{question.options[question.answer]}}
+      </small>
+    </li>
+    }
+  </ul>
+  <h1>Hello from quiz-summary!</h1>
+  <button (click)="restart()">Strat på nytt!</button>
 </div>
