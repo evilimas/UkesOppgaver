@@ -1,54 +1,35 @@
-<!-- <template>
-  <div>
-    <h2>{{ question.question }}</h2>
-    <ul>
-      <li v-for="(option, idx) in question.options" :key="idx">
-        <button :disabled="answered" @click="$emit('answer', idx)">
-          {{ option }}
-        </button>
-      </li>
-    </ul>
-    <div v-if="answered">
-      <p v-if="isCorrect">Riktig!</p>
-      <p v-else>
-        Feil. Riktig svar: 
-        <strong>
-          {{ question.options[question.answer] }}
-        </strong>
-      </p>
-      <button @click="$emit('next')">Neste spørsmål</button>
-    </div>
-  </div>
-</template>
-
-<script setup lang="ts">
-import { defineProps, computed } from 'vue';
-import type { Question } from '../types/quiz';
-const props = defineProps<{
-  question: Question;
-  answered: boolean;
-  selected: number | null;
-}>()
-
-const isCorrect = computed(() => props.selected === props.question.answer)
-</script> -->
-
 <div>
-  <h2 [question]="quiz()!.questions[currentQuestion()]">{{ question }}</h2>
-  @for (question of questions; track question.id) {
+  <h2>{{ question.question }}</h2>
   <ul>
     <li>
-      <button [disabled]="answered" (click)="answer(idx)">{{ option }}</button>
+      <button [disabled]="answered" (click)="answer.emit(0)">
+        {{ question.options[0] }}
+      </button>
+    </li>
+    <li>
+      <button [disabled]="answered" (click)="answer.emit(1)">
+        {{ question.options[1] }}
+      </button>
+    </li>
+    <li>
+      <button [disabled]="answered" (click)="answer.emit(2)">
+        {{ question.options[2] }}
+      </button>
+    </li>
+    <li>
+      <button [disabled]="answered" (click)="answer.emit(3)">
+        {{ question.options[3] }}
+      </button>
     </li>
   </ul>
-  } @if(answered) { @if(isCorrect){
-  <p>Riktig!</p>
-  } @else{
-  <p>
-    Feil. Riktig svar:
-    <strong>{{ question.options()[question.answer] }}</strong>
-  </p>
-  }
-  <button (click)="('next')">Neste spørsmål</button>
-  }
+  <div [hidden]="!answered">
+    <p [hidden]="selected !== question.answer">Riktig!</p>
+    <p [hidden]="selected === question.answer">
+      Feil. Riktig svar:
+      <strong>
+        {{ question.options[question.answer] }}
+      </strong>
+    </p>
+    <button (click)="next.emit()">Neste spørsmål</button>
+  </div>
 </div>

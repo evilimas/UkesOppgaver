@@ -1,8 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { quizzes } from '../../../data/quizes';
-import type { Question } from '../../../types/quiz';
-
-
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-question-view',
@@ -11,7 +7,10 @@ import type { Question } from '../../../types/quiz';
   styleUrl: './question-view.css'
 })
 export class QuestionView {
-  @Input() question!: Question;
-  @Input() answered!: boolean;
-  @Input() selected!: number | null;
+ @Input() question: any;
+  @Input() answered: boolean = false;
+  @Input() selected: number | null = null;
+
+  @Output() answer = new EventEmitter<number>();
+  @Output() next = new EventEmitter<void>();
 }

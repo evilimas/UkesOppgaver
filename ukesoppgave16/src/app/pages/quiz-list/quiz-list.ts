@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { quizzes } from '../../../data/quizes';
-import { RouterModule, RouterLink } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-quiz-list',
-  imports: [RouterModule, RouterLink],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './quiz-list.html',
   styleUrl: './quiz-list.css',
 })
