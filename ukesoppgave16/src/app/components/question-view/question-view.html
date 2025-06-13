@@ -1,34 +1,19 @@
 <div>
   <h2>{{ question.question }}</h2>
   <ul>
+    @for(option of question.options; track option; let idx = $index) {
     <li>
-      <button [disabled]="answered" (click)="answer.emit(0)">
-        {{ question.options[0] }}
+      <button [disabled]="answered" (click)="answer.emit(idx)">
+        {{ question.options[idx] }}
       </button>
     </li>
-    <li>
-      <button [disabled]="answered" (click)="answer.emit(1)">
-        {{ question.options[1] }}
-      </button>
-    </li>
-    <li>
-      <button [disabled]="answered" (click)="answer.emit(2)">
-        {{ question.options[2] }}
-      </button>
-    </li>
-    <li>
-      <button [disabled]="answered" (click)="answer.emit(3)">
-        {{ question.options[3] }}
-      </button>
-    </li>
+    }
   </ul>
   <div [hidden]="!answered">
     <p [hidden]="selected !== question.answer">Riktig!</p>
     <p [hidden]="selected === question.answer">
       Feil. Riktig svar:
-      <strong>
-        {{ question.options[question.answer] }}
-      </strong>
+      <strong> {{ question.options[question.answer] }} </strong>
     </p>
     <button (click)="next.emit()">Neste spørsmål</button>
   </div>

@@ -11,7 +11,6 @@ import { RouterModule, RouterLink } from '@angular/router';
   selector: 'app-quiz-summary',
   templateUrl: './quiz-summary.html',
   styleUrl: './quiz-summary.css',
-  standalone: true,
   imports: [RouterModule, RouterLink],
 })
 export class QuizSummary {
@@ -22,11 +21,6 @@ export class QuizSummary {
     () => this.answers.filter(this.isCorrectAnswer).length
   );
 
-  // @Input() questions: { answer: number }[] = [];
-  // @Input() answers: number[] = [];
-  // @Input() restart = () => {
-  //   console.log('Restarting quiz...');
-  // };
   @Input() questions: any;
   @Input() answers: any;
   @Output() restart = new EventEmitter<void>();
