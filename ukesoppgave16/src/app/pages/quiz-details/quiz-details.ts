@@ -12,12 +12,12 @@ import { QuizSummary } from '../../components/quiz-summary/quiz-summary';
 })
 export class QuizDetails {
   quizzes = quizzes;
-  quizId = signal('');
+  quizId = signal<string>('');
+  currentQuestion = signal<number>(0);
+  answers = signal<number[]>([]);
+  answered = signal<boolean>(false);
   private activatedRoute = inject(ActivatedRoute);
   quiz = computed(() => quizzes.find((q) => q.id === this.quizId()));
-  currentQuestion = signal(0);
-  answers = signal<number[]>([]);
-  answered = signal(false);
 
   answerQuestion(selectedIdx: number) {
     this.answers()[this.currentQuestion()] = selectedIdx;
