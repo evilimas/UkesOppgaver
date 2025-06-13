@@ -17,21 +17,64 @@
     </div>
 </template> -->
 
-<div>
+<!-- <div>
   <h2>Resultat</h2>
   <p>Du fikk {{correctCount()}} av {{questions.length}} riktige.</p>
   <ul>
-    @for (question of questions; track question.question) {
+    @for (question of questions; track question.question; let idx = $index) {
     <li>
       {{question().question}}<br />
       <small>
-        Ditt svar: {{question.options[answers[questions.indexOf(question)]] ??
-        'ikke svart'}}<br />
+        Ditt svar: {{question.options[answers[idx]] ?? 'ikke svart'}}<br />
         Riktig: {{question.options[question.answer]}}
       </small>
     </li>
     }
   </ul>
   <h1>Hello from quiz-summary!</h1>
-  <button (click)="restart()">Strat på nytt!</button>
-</div>
+  <button (click)="restart.emit()">Strat på nytt!</button>
+</div> -->
+<h2>Oppsummering</h2>
+<ul>
+  <li>
+    <strong>{{ questions[0].question }}</strong><br>
+    Ditt svar:
+    <span [class.riktig]="answers[0] === questions[0].answer" [class.feil]="answers[0] !== questions[0].answer">
+      {{ questions[0].options[answers[0]] || 'Ingen svar' }}
+    </span>
+    <span [hidden]="answers[0] === questions[0].answer">
+      <br>Riktig svar: <strong>{{ questions[0].options[questions[0].answer] }}</strong>
+    </span>
+  </li>
+  <li>
+    <strong>{{ questions[1].question }}</strong><br>
+    Ditt svar:
+    <span [class.riktig]="answers[1] === questions[1].answer" [class.feil]="answers[1] !== questions[1].answer">
+      {{ questions[1].options[answers[1]] || 'Ingen svar' }}
+    </span>
+    <span [hidden]="answers[1] === questions[1].answer">
+      <br>Riktig svar: <strong>{{ questions[1].options[questions[1].answer] }}</strong>
+    </span>
+  </li>
+  <li>
+    <strong>{{ questions[2].question }}</strong><br>
+    Ditt svar:
+    <span [class.riktig]="answers[2] === questions[2].answer" [class.feil]="answers[2] !== questions[2].answer">
+      {{ questions[2].options[answers[2]] || 'Ingen svar' }}
+    </span>
+    <span [hidden]="answers[2] === questions[2].answer">
+      <br>Riktig svar: <strong>{{ questions[2].options[questions[2].answer] }}</strong>
+    </span>
+  </li>
+  <li>
+    <strong>{{ questions[3].question }}</strong><br>
+    Ditt svar:
+    <span [class.riktig]="answers[3] === questions[3].answer" [class.feil]="answers[3] !== questions[3].answer">
+      {{ questions[3].options[answers[3]] || 'Ingen svar' }}
+    </span>
+    <span [hidden]="answers[3] === questions[3].answer">
+      <br>Riktig svar: <strong>{{ questions[3].options[questions[3].answer] }}</strong>
+    </span>
+  </li>
+</ul>
+<button (click)="restart.emit()">Start på nytt</button> 
